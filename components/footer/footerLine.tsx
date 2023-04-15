@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Button } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 import MyButton from '../buttons/button';
 import SmallButton from '../buttons/smallButton';
 
@@ -20,22 +20,58 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 const FooterLine = () => {
 
     return(
-        <Grid container spacing={2}>
-            <Grid item xs={6}>
-                <MyButton text={'App Store'} smallText={'Загрузить в'} icon={<AppleIcon/>}/>
-                <MyButton text={'Google Play'} smallText={'Доступно в'} icon={<GoogleIcon/>}/>
-                <MyButton text={'Smart TV'}smallText={'Смотрите на'} icon={<HomeMaxIcon/>}/>
-                <MyButton text={'Все устройства'} icon={<DevicesIcon/>}/>
+        <Grid container justifyContent="space-between" sx={{mt:'48px'}}>
+            <Grid item>
+                <Box display="flex">
+                    <Box sx={{ margin: 1 }}>
+                        <MyButton text={'App Store'} smallText={'Загрузить в'} icon={<AppleIcon />} />
+                    </Box>
+                    <Box sx={{ margin: 1 }}>
+                        <MyButton text={'Google Play'} smallText={'Доступно в'} icon={<GoogleIcon />} />
+                    </Box>
+                    <Box sx={{ margin: 1 }}>
+                        <MyButton text={'Smart TV'} smallText={'Смотрите на'} icon={<HomeMaxIcon />} />
+                    </Box>
+                    <Box sx={{ margin: 1 }}>
+                        <MyButton text={'Все устройства'} icon={<DevicesIcon />} />
+                    </Box>
+                </Box>
             </Grid>
-            <Grid item xs={6}>
-               <SmallButton icon={vkIcon} isCircle={true}/>
-               <SmallButton icon={odnoklassnikIcon} isCircle={true}/>
-               <SmallButton icon={ <PhoneForwardedIcon sx={{ color: "#fff", width:'16px' }}/> }isCircle={true}/>
-               <SmallButton icon={<TelegramIcon sx={{ color: "#fff", width:'16px' } }/>}isCircle={true}/>
-               <SmallButton icon={<TwitterIcon sx={{ color: "#fff", width:'16px' }} />}isCircle={true}/>
-               <SmallButton icon={<LinkedInIcon sx={{ color: "#fff", width:'16px' }} />}isCircle={true}/>
+            <Grid item>
+                <Box display="flex">
+                    <Box sx={{ margin: 1 }}>
+                        <SmallButton icon={vkIcon} isCircle={true} />
+                    </Box>
+                    <Box sx={{ margin: 1 }}>
+                        <SmallButton icon={odnoklassnikIcon} isCircle={true} />
+                    </Box>
+                    <Box sx={{ margin: 1 }}>
+                        <SmallButton
+                        icon={<PhoneForwardedIcon sx={{ color: '#fff', width: '16px' }} />}
+                        isCircle={true}
+                        />
+                    </Box>
+                    <Box sx={{ margin: 1 }}>
+                        <SmallButton
+                        icon={<TelegramIcon sx={{ color: '#fff', width: '16px' }} />}
+                        isCircle={true}
+                        />
+                    </Box>
+                    <Box sx={{ margin: 1 }}>
+                        <SmallButton
+                        icon={<TwitterIcon sx={{ color: '#fff', width: '16px' }} />}
+                        isCircle={true}
+                        />
+                    </Box>
+                    <Box sx={{ margin: 1 }}>
+                        <SmallButton
+                        icon={<LinkedInIcon sx={{ color: '#fff', width: '16px' }} />}
+                        isCircle={true}
+                        />
+                    </Box>
+                </Box>
             </Grid>
-        </Grid>
+        </Grid>    
     )
 }
 
