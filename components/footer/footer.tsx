@@ -3,9 +3,9 @@ import { Mail, Phone} from "@mui/icons-material";
 
 import FooterLine from './footerLine';
 import FooterTitle from './footerTitle';
-import MyLink from '../navigation/link';
+import MyLink from '../navigation/myLink';
 import SmallButton from '../buttons/smallButton';
-import MyButton from '../buttons/button';
+import MyButton from '../buttons/myButton';
 import MyText from '../content/myText';
 
 import mouthpiece from '../../public/icons/mouthpiece.svg'
@@ -22,28 +22,28 @@ const Footer = () => {
                     <FooterTitle text={'О нас'}/>    
                     <List>
                         <ListItem disablePadding>
-                            <MyLink link={'https://corp.ivi.ru/'} text={'О компании'}/>
+                            <MyLink link={'https://corp.ivi.ru/'} text={'О компании'} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://corp.ivi.ru/career/#career-vacancy-block'} text={'Вакансии'} />
+                            <MyLink link={'https://corp.ivi.ru/career/#career-vacancy-block'} text={'Вакансии'} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/pages/beta/'} text={'Программа бета-тестирования'} />
+                            <MyLink link={'https://www.ivi.tv/pages/beta/'} text={'Программа бета-тестирования'} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/info/partners'} text={'Информация для партнёров'} />
+                            <MyLink link={'https://www.ivi.tv/info/partners'} text={'Информация для партнёров'} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://corp.ivi.ru/advertisers/'} text={'Размещение рекламы'} />
+                            <MyLink link={'https://corp.ivi.ru/advertisers/'} text={'Размещение рекламы'} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/info/agreement'} text={'Пользовательское соглашение'} />
+                            <MyLink link={'https://www.ivi.tv/info/agreement'} text={'Пользовательское соглашение'} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/info/confidential'} text={'Политика конфиденциальности'} />
+                            <MyLink link={'https://www.ivi.tv/info/confidential'} text={'Политика конфиденциальности'} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/info/goryachaya-liniya-komplaens'} text={'Комплаенс'} />
+                            <MyLink link={'https://www.ivi.tv/info/goryachaya-liniya-komplaens'} text={'Комплаенс'} fontSize={'15px'} fontWeight={400}/>
                         </ListItem> 
                     </List>
                 </Grid>
@@ -51,28 +51,28 @@ const Footer = () => {
                     <FooterTitle text={'Разделы'}/>    
                     <List>
                         <ListItem disablePadding>
-                            <MyLink link={'https://www.ivi.tv/'} text={'Мой Иви'} />
+                            <MyLink link={'https://www.ivi.tv/'} text={'Мой Иви'} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/new'} text={'Что нового'} />
+                            <MyLink link={'https://www.ivi.tv/new'} text={'Что нового'} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/movies'} text={'Фильмы'} />
+                            <MyLink link={'https://www.ivi.tv/movies'} text={'Фильмы'} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/series'} text={'Сериалы'} />
+                            <MyLink link={'https://www.ivi.tv/series'} text={'Сериалы'} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/animation'} text={'Мультфильмы'} />
+                            <MyLink link={'https://www.ivi.tv/animation'} text={'Мультфильмы'} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/tvplus'} text={'TV+'} />
+                            <MyLink link={'https://www.ivi.tv/tvplus'} text={'TV+'} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/goodmovies'} text={'Что посмотреть'} />
+                            <MyLink link={'https://www.ivi.tv/goodmovies'} text={'Что посмотреть'} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/cert'} text={'Активация сертификата'} gradient={true}/>
+                            <MyLink link={'https://www.ivi.tv/cert'} text={'Активация сертификата'} gradient={true} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>           
                     </List>
                 </Grid>
@@ -87,7 +87,7 @@ const Footer = () => {
                             </Box>
                         </Grid>
                         <Grid item>
-                            <MyButton  text={'Написать в чате'} />
+                            <MyButton  text={'Написать в чате'} color='#1f1b2e' hoverColor='#3e3659'/>
                         </Grid>
                         <Grid item>
                             <Grid container spacing={1}>

@@ -2,6 +2,8 @@ import { Button, Box, Typography } from '@mui/material';
 import { ReactElement } from "react";
 
 interface ButtonProps{
+    color:string;
+    hoverColor?:string;
     text:string;
     smallText?:string;
     icon?: ReactElement;
@@ -9,28 +11,31 @@ interface ButtonProps{
 }
 
 
-const MyButton = ({text, smallText, icon, onClick}:ButtonProps) => {
+const MyButton = ({color, hoverColor, text, smallText, icon, onClick}:ButtonProps) => {
 
-
+    if(!hoverColor){
+        hoverColor = color
+    }
 
     return(
         <Button
             variant="contained"
+            disableRipple
+            disableTouchRipple
                     sx={{
                         textTransform: 'none',
-                        backgroundColor: '#1f1b2e',
-                        borderColor: '#1f1b2e',
+                        backgroundColor: color,
+                        borderColor: color,
                         borderWidth: '1px',
                         borderRadius: '0.5rem',
                         height:'40px',
                         width: icon ? undefined : '196px',
                         paddingLeft: icon ? '1rem' : 0,
                         paddingRight: icon ? '1rem' : 0,
-                    '&:hover': {
-                        backgroundColor: '#3e3659',
-                        borderColor: '#3e3659',
-                    
-                    },
+                        '&:hover':  {
+                            backgroundColor: hoverColor,
+                            borderColor: hoverColor,
+                        },
                     }}>
                        {icon}
                        <Box
