@@ -1,5 +1,6 @@
-
-import { Box, Typography, Container } from '@mui/material'
+import Footer from '@/components/footer/footer';
+import CommentsList from '@/components/comments/commentsList';
+import { Box,  Container } from '@mui/material'
 
 const Home = () => {
   return (
@@ -7,14 +8,15 @@ const Home = () => {
       <Container 
         sx={{
         width: '1216px',
-        marginLeft: 'auto',
-        marginRight: 'auto',
+        ml: 'auto',
+        mr: 'auto',
       }}>
 
-      
-      <Typography>Hello World</Typography>
 
-    
+
+
+      <CommentsList/>   
+      <Footer />
     </Container>
     </Box>
   )

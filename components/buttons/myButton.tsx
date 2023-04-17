@@ -7,18 +7,20 @@ interface ButtonProps{
     text:string;
     smallText?:string;
     icon?: ReactElement;
-    onClick?:()=> void;
+    func?:any;
 }
 
 
-const MyButton = ({color, hoverColor, text, smallText, icon, onClick}:ButtonProps) => {
+const MyButton = ({color, hoverColor, text, smallText, icon, func}:ButtonProps) => {
 
     if(!hoverColor){
         hoverColor = color
     }
 
+    
     return(
         <Button
+            onClick={func}
             variant="contained"
             disableRipple
             disableTouchRipple
@@ -59,7 +61,7 @@ const MyButton = ({color, hoverColor, text, smallText, icon, onClick}:ButtonProp
                         )}
                     <Typography variant="body1" >{text}</Typography>
             </Box>
-        </Button>
+        </Button> 
     )
 }
 

@@ -13,6 +13,7 @@ export default meta;
 
 type Story = StoryObj<typeof MyText>;
 
+
 export const Lefted: Story = {
     args: {
         text:'Мы всегда готовы вам помочь. Наши операторы онлайн 24/7',
@@ -27,9 +28,17 @@ export const Centered: Story = {
     },
 };
 
-export const Rightted: Story = {
+export const Righted: Story = {
     args: {
         text:'Мы всегда готовы вам помочь. Наши операторы онлайн 24/7',
         align:'right'
+    },
+};
+
+export const Colored: Story = {
+    args: {
+        text:'Мы всегда готовы вам помочь. Наши операторы онлайн 24/7',
+        align:'left',
+        color:'red'
     },
 };
