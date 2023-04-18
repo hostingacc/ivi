@@ -1,9 +1,24 @@
-import { Box, Typography } from '@mui/material'
+import Footer from '@/components/footer/footer';
+import CommentsList from '@/components/comments/commentsList';
+import { Box,  Container, Typography } from '@mui/material'
+
 
 const Home = () => {
   return (
     <Box>
-      <Typography>Hello World</Typography>
+      <Container 
+        sx={{
+        width: '1216px',
+        ml: 'auto',
+        mr: 'auto',
+      }}>
+
+
+
+
+      <CommentsList/>   
+      <Footer />
+    </Container>
     </Box>
   )
 }

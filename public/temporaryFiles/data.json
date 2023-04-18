@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "name": "person",
+      "text": "первый",
+      "timestamp": "2021-04-14T12:34:56Z",
+      "comment_id": 1,
+      "user_id": 1,
+      "likes": 2,
+      "replies": [
+        {
+          "name": "person2",
+          "text": "второй",
+          "timestamp": "2023-04-15T12:34:56Z",
+          "comment_id": 2,
+          "user_id": 1,
+          "repliedOnComment": 1,
+          "likes": 0
+        },
+        {
+          "name": "admin",
+          "text": "забаню",
+          "timestamp": "2023-04-15T12:34:56Z",
+          "comment_id": 3,
+          "user_id": 1,
+          "repliedOnComment": 1,
+          "likes": 12
+        },
+        {
+          "name": "someuser23141",
+          "text": "lorem lllll asda ddddd",
+          "timestamp": "2023-04-15T12:34:56Z",
+          "comment_id": 4,
+          "user_id": 1,
+          "repliedOnComment": 1,
+          "likes": 2
+        },
+        {
+          "name": "person1",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel massa placerat, maximus ex venenatis, fringilla tortor. Sed malesuada ut augue eget dictum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel massa placerat, maximus ex venenatis, fringilla tortor. Sed malesuada ut augue eget dictum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel massa placerat, maximus ex venenatis, fringilla tortor. Sed malesuada ut augue eget dictum.",
+          "timestamp": "2023-04-15T12:34:56Z",
+          "comment_id": 5,
+          "user_id": 1,
+          "repliedOnComment": 1,
+          "likes": 2
+        },
+        {
+          "name": "someuser2312341",
+          "text": "А что это за язык такой?",
+          "timestamp": "2023-04-17T12:34:56Z",
+          "comment_id": 6,
+          "user_id": 1,
+          "repliedOnComment": 1,
+          "likes": 2
+        }
+      ]
+    },
+    {
+      "name": "person2",
+      "text": "Вторая ветка",
+      "timestamp": "2023-04-16T12:34:56Z",
+      "comment_id": 7,
+      "user_id": 1,
+      "likes": 2,
+      "replies": [
+        {
+          "name": "person131",
+          "text": "круто",
+          "timestamp": "2023-04-15T12:34:56Z",
+          "comment_id": 8,
+          "user_id": 1,
+          "repliedOnComment": 7,
+          "likes": 0
+        }
+      ]
+    }
+  ]
+}
