@@ -1,0 +1,26 @@
+.swiper {
+    max-width: 1300px;
+    overflow: visible;
+}
+
+.image-container {
+    width: 100%;
+}
+
+.image-container>div {
+    position: unset !important;
+}
+
+.image {
+    object-fit: contain;
+    width: 90% !important;
+    position: relative !important;
+    height: unset !important;
+}
+
+@media (max-width:600px) {
+    .image {
+        height: 220px !important;
+        object-fit: initial;
+    }    
+}
