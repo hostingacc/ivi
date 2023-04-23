@@ -2,11 +2,17 @@ import { Box, Button, IconButton, List, ListItem, Stack, Typography } from '@mui
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import React from 'react'
-import Image from 'next/image'
+import React from 'react';
+import Image from 'next/image';
+import TranslateButton from '../translateButton/translateButton';
+import { useTranslation } from 'react-i18next';
+import '../translate/i18next';
+
 
 export const NavBar = () => {
+    const { t } = useTranslation();
     return (
+        
         <Box sx={{
             display: "flex",
             alignItems: "center",
@@ -50,7 +56,7 @@ export const NavBar = () => {
                         "@media (max-width:420px)": {
                             fontSize: "20px",
                         }
-                    }}>Кино<span style={{ color: "#00b0ff" }}>Ман</span></Typography>
+                    }}>{t('Кино')}<span style={{ color: "#00b0ff" }}>{t('Ман')}</span></Typography>
                 </Box>
                 <List
                     sx={{
@@ -68,27 +74,27 @@ export const NavBar = () => {
                     }}>
                     <ListItem>
                         <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
-                            Что нового
+                            {t('Что нового')}
                         </Typography>
                     </ListItem>
                     <ListItem>
                         <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
-                            Фильмы
+                            {t('Фильмы')}
                         </Typography>
                     </ListItem>
                     <ListItem>
                         <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
-                            Сериалы
+                            {t('Сериалы')}
                         </Typography>
                     </ListItem>
                     <ListItem>
                         <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
-                            Мультфильмы
+                            {t('Мультфильмы')}
                         </Typography>
                     </ListItem>
                     <ListItem>
                         <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
-                            ТВ-каналы
+                            {t('ТВ-каналы')}
                         </Typography>
                     </ListItem>
                 </List>
@@ -107,9 +113,9 @@ export const NavBar = () => {
                             width: "150px",
                             height: "40px",
                         }
-
+                        
                     }}
-                >Смотреть 30 дней бесплатно</Button>
+                >{t('Смотреть 30 дней бесплатно')}</Button>
                 <Button
                     startIcon={<SearchIcon sx={{ color: "rgba(255,255,255,.48)" }} />}
                     sx={{
@@ -123,7 +129,7 @@ export const NavBar = () => {
                             display: "none"
                         }
                     }}
-                >Поиск</Button>
+                >{t('Поиск')}</Button>
                 <IconButton
                     sx={{
                         width: "40px",
@@ -152,7 +158,8 @@ export const NavBar = () => {
                 >
                     <PersonOutlineIcon sx={{ color: "rgba(255,255,255,.48)" }} />
                 </Button>
+                <TranslateButton />
             </Stack>
-        </Box>
+        </Box>        
     )
 }

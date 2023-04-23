@@ -14,24 +14,25 @@ import PhoneForwardedIcon from '@mui/icons-material/PhoneForwarded';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { useTranslation } from 'react-i18next';
 
 const FooterLine = () => {
-
+    const { t } = useTranslation();
     return(
         <Grid container justifyContent="space-between" sx={{mt:'48px'}}>
             <Grid item>
                 <Box display="flex">
                     <Box sx={{ margin: 1 }}>
-                        <MyButton text={'App Store'} smallText={'Загрузить в'} color='#1f1b2e' hoverColor='#3e3659' icon={<AppleIcon />} />
+                        <MyButton text={'App Store'} smallText={`${t('Загрузить в')}`} color='#1f1b2e' hoverColor='#3e3659' icon={<AppleIcon />} />
                     </Box>
                     <Box sx={{ margin: 1 }}>
-                        <MyButton text={'Google Play'} smallText={'Доступно в'} color='#1f1b2e' hoverColor='#3e3659' icon={<GoogleIcon />} />
+                        <MyButton text={'Google Play'} smallText={`${t('Доступно в')}`} color='#1f1b2e' hoverColor='#3e3659' icon={<GoogleIcon />} />
                     </Box>
                     <Box sx={{ margin: 1 }}>
-                        <MyButton text={'Smart TV'} smallText={'Смотрите на'} color='#1f1b2e' hoverColor='#3e3659' icon={<HomeMaxIcon />} />
+                        <MyButton text={'Smart TV'} smallText={`${t('Смотрите на')}`} color='#1f1b2e' hoverColor='#3e3659' icon={<HomeMaxIcon />} />
                     </Box>
                     <Box sx={{ margin: 1 }}>
-                        <MyButton text={'Все устройства'} color='#1f1b2e' hoverColor='#3e3659' icon={<DevicesIcon />} />
+                        <MyButton text={t('Все устройства')} color='#1f1b2e' hoverColor='#3e3659' icon={<DevicesIcon />} />
                     </Box>
                 </Box>
             </Grid>

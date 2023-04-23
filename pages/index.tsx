@@ -1,7 +1,9 @@
-import Head from 'next/head'
-
-import { Header } from '@/components/header/Header'
-
+import Head from 'next/head';
+import { Header } from '@/components/header/Header';
+import Footer from '@/components/footer/footer';
+import React, {Suspense} from 'react'
+import { useTranslation } from 'react-i18next'
+import '../components/translate/i18next'
 
 
 export default function Home() {
@@ -13,9 +15,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Suspense fallback={<div>Loading...</div>}>
       <main>
         <Header />
+        <Footer />
       </main>
+      </Suspense>
     </>
   )
 }
