@@ -56,7 +56,7 @@ export const NavBar = () => {
                         "@media (max-width:420px)": {
                             fontSize: "20px",
                         }
-                    }}>{t('Кино')}<span style={{ color: "#00b0ff" }}>{t('Ман')}</span></Typography>
+                    }}>Кино<span style={{ color: "#00b0ff" }}>Ман</span></Typography>
                 </Box>
                 <List
                     sx={{
