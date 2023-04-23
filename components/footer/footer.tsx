@@ -1,4 +1,4 @@
-import { Box, Grid, List, Button, Typography, Link, SvgIcon, ListItem } from '@mui/material';
+import { Box, Grid, List, Button, Typography, Link, SvgIcon, ListItem, Container } from '@mui/material';
 import { Mail, Phone} from "@mui/icons-material";
 
 import FooterLine from './footerLine';
@@ -15,6 +15,8 @@ const Footer = () => {
 
     
     return(
+        <Container maxWidth={false} sx={{ width: '1240px', position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)' }}>
+
         <Box component="footer" sx={{ flex:1,'@media (max-width: 1200px)': { display: 'none' } }}>
             <Hr/>
             <Grid container justifyContent="space-between" sx={{ mt: '48px', mb:'48px'}}>
@@ -147,6 +149,8 @@ const Footer = () => {
             <FooterLine/>
             
       </Box>
+        </Container>
+       
     )
 }
 

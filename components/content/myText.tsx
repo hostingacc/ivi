@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography } from '@mui/material';
 
 interface MyTextProps {
-  text: string;
+  text: string | number;
   align: 'left' | 'center' | 'right';
   color?: string;
 }
