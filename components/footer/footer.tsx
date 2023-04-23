@@ -83,7 +83,7 @@ const Footer = () => {
                 <Grid item>
                     <Grid container direction="column" spacing={2}>
                         <Grid item>
-                            <FooterTitle text={'Разделы'}/>  
+                            <FooterTitle text={t('Разделы')}/>  
                         </Grid>
                         <Grid item>
                             <Box width={252} sx={{mt:'-10px'}}>
@@ -141,16 +141,11 @@ const Footer = () => {
                             <MyText text={t('Смотрите фильмы, сериалы и мультфильмы без рекламы')} align={'center'}/>
                         </Box>
                     </Box>
-                </Grid>
-
-                
-                
-                
+                </Grid>    
             </Grid>
             <Hr/>
             <FooterLine/>
-            
-      </Box>
+            </Box>
     )
 }
 
