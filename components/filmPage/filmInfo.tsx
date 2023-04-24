@@ -1,8 +1,8 @@
 import { Box, Typography, Stack, Button } from "@mui/material";
 import FilmTime from "./filmTime";
 import FilmAgeLimit from "./filmAgeLimit";
-import ShowMoreText from "./showMoreText";
-import MyText from "./content/myText";
+import ShowMoreText from "../showMoreText";
+import MyText from "../content/myText";
 import GenresAndCountriesList from "./filmGenresAndCountriesList";
 
 

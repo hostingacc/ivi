@@ -15,7 +15,7 @@ const Footer = () => {
 
     
     return(
-        <Container maxWidth={false} sx={{ width: '1240px', position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)' }}>
+        <Container maxWidth={false} sx={{ width: '1240px' }}>
 
         <Box component="footer" sx={{ flex:1,'@media (max-width: 1200px)': { display: 'none' } }}>
             <Hr/>

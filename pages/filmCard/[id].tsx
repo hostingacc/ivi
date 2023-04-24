@@ -1,9 +1,10 @@
 import CommentsList from "@/components/comments/commentsList";
-import FilmInfo from "@/components/filmInfo";
-import FilmTrailer from "@/components/filmTrailer";
-import useRequest from "@/components/useRequest";
+import FilmInfo from "@/components/filmPage/filmInfo";
+import FilmTrailer from "@/components/filmPage/filmTrailer";
+import useRequest from "@/hooks/useRequest";
 import Image from "next/image";
 import { Container } from "@mui/material";
+import { useRouter } from "next/router";
 
 
 export interface FilmProps {
@@ -21,21 +22,17 @@ export interface FilmProps {
 
 const FilmCard = () => {
    
-    const id = 3;
-   
-    const url = 'http://localhost:3001/movies/'+ id
+    const router = useRouter()
+    const { id } = router.query;
+  
+    const url = id ? 'http://localhost:3001/movies/' + id : undefined;
+    const videoUrl = id ? url + '/videos' : undefined;
+    const commentsUrl = id ? 'http://localhost:3004/comments/' + id + '/flat' : undefined;
+  
+    const film = useRequest(url)
+    const video = useRequest(videoUrl)
+    const comments = useRequest(commentsUrl)
 
-    const videoUrl = url + '/videos'
-
-    const film = useRequest(url);
-
-    const video = useRequest(videoUrl);
-    
-    const commentsUrl =  'http://localhost:3004/comments/' + id  + '/flat';
-
-    const comments = useRequest(commentsUrl);
-
-    console.log(film)
 
     return(
       <Container maxWidth={false} sx={{ width: '1240px',

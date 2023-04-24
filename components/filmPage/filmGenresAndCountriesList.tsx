@@ -1,6 +1,7 @@
 import { Stack, Box  } from "@mui/material";
+import React from "react";
 
-import MyLink from "./navigation/myLink";
+import MyLink from "../navigation/myLink";
 
 interface GenresAndCountriesListProps{
     genres: string[];
@@ -16,8 +17,8 @@ const GenresAndCountriesList = ({
     return (
       <Stack direction="row" spacing={1} alignItems='center'>
         {elements.map((e: any, index: number) => (
-          <>
-            <MyLink key={e.id} text={e.nameRu.charAt(0).toUpperCase() + e.nameRu.slice(1)} link="path" fontSize={'15px'} fontWeight={400}/>
+          <React.Fragment key={e.nameRu}>
+            <MyLink /* key={e.id} */ text={e.nameRu.charAt(0).toUpperCase() + e.nameRu.slice(1)} link="path" fontSize={'15px'} fontWeight={400}/>
             {index < elements.length - 1 && (
                 <Box
                 sx={{
@@ -28,7 +29,7 @@ const GenresAndCountriesList = ({
                 }}
               />
             )}
-          </>
+          </React.Fragment>
         ))}
       </Stack>
     );

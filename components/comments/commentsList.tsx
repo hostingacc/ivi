@@ -1,6 +1,4 @@
 import { Box } from '@mui/material';
-import data from '../../public/temporaryFiles/data.json';
-
 
 import CommentAddForm from './commentAddForm';
 import CommentInfo from './commentInfo';
@@ -9,7 +7,7 @@ import ShowMoreText from '../showMoreText';
 
 const CommentsList = ({comments}:any) => {
 
-  console.log(comments)
+
     return (
         <Box>
           <Box gap={10} sx={{backgroundColor:'#1f1b2e', mt:'1rem', mb:'1rem', height:'4rem',display:'flex', alignItems:'center'}}>

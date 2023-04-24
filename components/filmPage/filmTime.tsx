@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import MyText from './content/myText';
+import MyText from '../content/myText';
 
 
 interface FilmTimeProps {

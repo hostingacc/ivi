@@ -1,5 +1,5 @@
 import React from 'react';
-import MyText from './content/myText';
+import MyText from '../content/myText';
 
 interface FilmAgeLimitProps {
   text: string;
