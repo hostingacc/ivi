@@ -1,12 +1,12 @@
 import { Box } from '@mui/material';
-import data from '../../public/temporaryFiles/data.json';
-
 
 import CommentAddForm from './commentAddForm';
 import CommentInfo from './commentInfo';
 import MyText from '../content/myText';
+import ShowMoreText from '../showMoreText';
 
-const CommentsList = () => {
+const CommentsList = ({comments}:any) => {
+
 
     return (
         <Box>
@@ -16,23 +16,23 @@ const CommentsList = () => {
             <MyText text='Здесь будет кнопка, подумать как переиспользовать компонент FormAdd' align='right' color='#fff'/>
             {/* подумать, как переиспользовать CommentAddForm здесь */}
           </Box>
-          {data.comments.map((e) => {
+          {comments?.map((e:any) => {
             return (
-              <Box key={e.comment_id} >
+              <Box key={e.id} >
                 <Box >
                     <CommentInfo
-                        name={e.name}
-                        time={e.timestamp}
-                        id={e.comment_id}
+                        name={e.author}
+                        time={e.createdAt}
+                        id={e.id}
                     />
                 </Box>
                 <Box sx={{mt:'1rem', mb:'1rem'}}>
-                    <MyText text={e.text} align={'left'} color='#fff'/>
+                  <ShowMoreText text={e.description} length={400} buttonText={'показать полностью'} useDangerouslySetInnerHTML={true}/>
                 </Box>
 
 
                 <CommentAddForm/>
-                {e.replies.map((el) => {
+                {e.replies.map((el:any) => {
                   return (
                     <Box key={el.comment_id} sx={{ml:'2rem'}}>
                       <Box>
@@ -43,7 +43,7 @@ const CommentsList = () => {
                         />
                       </Box>
                       <Box sx={{mt:'1rem', mb:'1rem'}}>
-                        <MyText text={el.text} align={'left'} color='#fff'/>
+                        <MyText text={el.text} align={'left'} color='rgba(255,255,255,.48)'/>
                       </Box>
                       <CommentAddForm />
                     </Box>

@@ -8,7 +8,7 @@ interface FooterTitleProps{
 const FooterTitle = ({text}:FooterTitleProps) => {
 
     return(
-            <Typography variant="h5" sx={{fontSize:'15px', fontWeight:700}}>{text}</Typography>
+            <Typography variant="h5" sx={{fontSize:'15px', fontWeight:700, color:'#fff'}}>{text}</Typography>
     )
 }
 
