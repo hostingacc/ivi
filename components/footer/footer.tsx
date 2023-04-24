@@ -8,11 +8,15 @@ import SmallButton from '../buttons/smallButton';
 import MyButton from '../buttons/myButton';
 import MyText from '../content/myText';
 
+import React from 'react';
 import mouthpiece from '../../public/icons/mouthpiece.svg'
 import Hr from '../hr';
 
-const Footer = () => {
+import { useTranslation } from 'react-i18next';
+import '../translate/i18next';
 
+const Footer = () => {
+    const { t } = useTranslation();
     
     return(
         <Container maxWidth={false} sx={{ width: '1240px' }}>
@@ -21,75 +25,75 @@ const Footer = () => {
             <Hr/>
             <Grid container justifyContent="space-between" sx={{ mt: '48px', mb:'48px'}}>
                 <Grid item>
-                    <FooterTitle text={'О нас'}/>    
+                    <FooterTitle text={t('О нас')}/>    
                     <List>
                         <ListItem disablePadding>
-                            <MyLink link={'https://corp.ivi.ru/'} text={'О компании'} fontSize={'15px'} fontWeight={400}/>
+                            <MyLink link={'https://corp.ivi.ru/'} text={t('О компании')} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://corp.ivi.ru/career/#career-vacancy-block'} text={'Вакансии'} fontSize={'15px'} fontWeight={400}/>
+                            <MyLink link={'https://corp.ivi.ru/career/#career-vacancy-block'} text={t('Вакансии')} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/pages/beta/'} text={'Программа бета-тестирования'} fontSize={'15px'} fontWeight={400}/>
+                            <MyLink link={'https://www.ivi.tv/pages/beta/'} text={t('Программа бета-тестирования')} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/info/partners'} text={'Информация для партнёров'} fontSize={'15px'} fontWeight={400}/>
+                            <MyLink link={'https://www.ivi.tv/info/partners'} text={t('Информация для партнёров')} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://corp.ivi.ru/advertisers/'} text={'Размещение рекламы'} fontSize={'15px'} fontWeight={400}/>
+                            <MyLink link={'https://corp.ivi.ru/advertisers/'} text={t('Размещение рекламы')} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/info/agreement'} text={'Пользовательское соглашение'} fontSize={'15px'} fontWeight={400}/>
+                            <MyLink link={'https://www.ivi.tv/info/agreement'} text={t('Пользовательское соглашение')} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/info/confidential'} text={'Политика конфиденциальности'} fontSize={'15px'} fontWeight={400}/>
+                            <MyLink link={'https://www.ivi.tv/info/confidential'} text={t('Политика конфиденциальности')} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/info/goryachaya-liniya-komplaens'} text={'Комплаенс'} fontSize={'15px'} fontWeight={400}/>
+                            <MyLink link={'https://www.ivi.tv/info/goryachaya-liniya-komplaens'} text={t('Комплаенс')} fontSize={'15px'} fontWeight={400}/>
                         </ListItem> 
                     </List>
                 </Grid>
                 <Grid item>
-                    <FooterTitle text={'Разделы'}/>    
+                    <FooterTitle text={t('Разделы')}/>    
                     <List>
                         <ListItem disablePadding>
-                            <MyLink link={'https://www.ivi.tv/'} text={'Мой Иви'} fontSize={'15px'} fontWeight={400}/>
+                            <MyLink link={'https://www.ivi.tv/'} text={t('Мой Иви')} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/new'} text={'Что нового'} fontSize={'15px'} fontWeight={400}/>
+                            <MyLink link={'https://www.ivi.tv/new'} text={t('Что нового')} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/movies'} text={'Фильмы'} fontSize={'15px'} fontWeight={400}/>
+                            <MyLink link={'https://www.ivi.tv/movies'} text={t('Фильмы')} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/series'} text={'Сериалы'} fontSize={'15px'} fontWeight={400}/>
+                            <MyLink link={'https://www.ivi.tv/series'} text={t('Сериалы')} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/animation'} text={'Мультфильмы'} fontSize={'15px'} fontWeight={400}/>
+                            <MyLink link={'https://www.ivi.tv/animation'} text={t('Мультфильмы')} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
                             <MyLink link={'https://www.ivi.tv/tvplus'} text={'TV+'} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/goodmovies'} text={'Что посмотреть'} fontSize={'15px'} fontWeight={400}/>
+                            <MyLink link={'https://www.ivi.tv/goodmovies'} text={t('Что посмотреть')} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>
                         <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/cert'} text={'Активация сертификата'} gradient={true} fontSize={'15px'} fontWeight={400}/>
+                            <MyLink link={'https://www.ivi.tv/cert'} text={t('Активация сертификата')} gradient={true} fontSize={'15px'} fontWeight={400}/>
                         </ListItem>           
                     </List>
                 </Grid>
                 <Grid item>
                     <Grid container direction="column" spacing={2}>
                         <Grid item>
-                            <FooterTitle text={'Разделы'}/>  
+                            <FooterTitle text={t('Разделы')}/>  
                         </Grid>
                         <Grid item>
                             <Box width={252} sx={{mt:'-10px'}}>
-                                <MyText text={'Мы всегда готовы вам помочь. Наши операторы онлайн 24/7'} align={'left'}/>
+                                <MyText text={t('Мы всегда готовы вам помочь. Наши операторы онлайн 24/7')} align={'left'}/>
                             </Box>
                         </Grid>
                         <Grid item>
-                            <MyButton  text={'Написать в чате'} color='#1f1b2e' hoverColor='#3e3659'/>
+                            <MyButton  text={t('Написать в чате')} color='#1f1b2e' hoverColor='#3e3659'/>
                         </Grid>
                         <Grid item>
                             <Grid container spacing={1}>
@@ -116,7 +120,7 @@ const Footer = () => {
                             </Link>
                         </Grid>
                         <Grid item sx={{mt:'-15px'}}>
-                            <MyText text={'Ответы на вопросы'} align={'left'}/>
+                            <MyText text={t('Ответы на вопросы')} align={'left'}/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -136,19 +140,14 @@ const Footer = () => {
                         {mouthpiece()} 
                         </Button>
                         <Box width={252} marginTop={'20px'}>
-                            <MyText text={'Смотрите фильмы, сериалы и мультфильмы без рекламы'} align={'center'}/>
+                            <MyText text={t('Смотрите фильмы, сериалы и мультфильмы без рекламы')} align={'center'}/>
                         </Box>
                     </Box>
-                </Grid>
-
-                
-                
-                
+                </Grid>    
             </Grid>
             <Hr/>
             <FooterLine/>
-            
-      </Box>
+            </Box>
         </Container>
        
     )

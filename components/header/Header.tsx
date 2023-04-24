@@ -12,14 +12,13 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import styles from "../../styles/Header.module.css"
 import Link from 'next/link';
-
+import { useTranslation } from 'react-i18next';
+import '../translate/i18next'
 
 
 
 export const Header = () => {
-
-
-
+    const { t } = useTranslation();
     return (
         <Box >
             <Swiper
@@ -78,7 +77,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -118,7 +117,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -158,7 +157,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -198,7 +197,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -238,7 +237,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -278,7 +277,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -318,7 +317,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -358,7 +357,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -398,7 +397,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -438,7 +437,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -478,7 +477,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -518,7 +517,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -558,7 +557,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -598,7 +597,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -638,7 +637,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -678,7 +677,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -718,7 +717,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -758,7 +757,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -798,7 +797,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -838,7 +837,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -878,7 +877,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -918,7 +917,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -958,7 +957,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -998,7 +997,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -1038,7 +1037,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -1078,7 +1077,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
@@ -1118,7 +1117,7 @@ export const Header = () => {
                                 }
                             }}
                         >
-                            <Link href='/films' style={{ color: "white" }}>В Каталог</Link>
+                            <Link href='/films' style={{ color: "white" }}>{t('В Каталог')}</Link>
                         </Button>
                     </Box>
                 </SwiperSlide>
