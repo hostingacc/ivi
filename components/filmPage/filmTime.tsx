@@ -12,7 +12,7 @@ const FilmTime = ({ minutes }:FilmTimeProps) => {
   const remainingMinutes = minutes % 60;
 
   return (
-    <MyText text={`${hours} ч. ${remainingMinutes} мин.`} align={'center'}/>
+    <MyText text={`${hours} ч. ${remainingMinutes} мин.`} align={'center'} color="rgba(255,255,255,.72)"/>
   );
 };
 

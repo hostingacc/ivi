@@ -1,12 +1,15 @@
 import { Button } from '@mui/material';
 import { useState } from 'react';
 import MyText from './content/myText';
+import { cutText } from '../functions/cutText';
 
 interface ShowMoreTextProps {
   text: string;
   length: number;
   buttonText: string;
+  
   useDangerouslySetInnerHTML?: boolean;
+  
 }
 
 const ShowMoreText = ({
@@ -14,6 +17,7 @@ const ShowMoreText = ({
   length,
   buttonText,
   useDangerouslySetInnerHTML = false,
+
 }: ShowMoreTextProps) => {
   const [showFullText, setShowFullText] = useState(false);
 
@@ -21,20 +25,19 @@ const ShowMoreText = ({
     setShowFullText(true);
   };
 
-  const displayText = showFullText
-    ? text
-    : text.length > length
-    ? `${text.slice(0, length)}...`
-    : text;
+
+  const displayedText = cutText(text, length ,showFullText);
 
   return (
     <>
       {useDangerouslySetInnerHTML ? (
-        <div dangerouslySetInnerHTML={{ __html: displayText }}  style={{ color: 'rgba(255,255,255,.98)', textAlign: 'left' }}/>
+        <div dangerouslySetInnerHTML={{ __html: displayedText }}  style={{ color: 'rgba(255,255,255,.78)', textAlign: 'left' }}/>
       ) : (
-        <MyText text={displayText} align={'left'} />
+        <MyText text={displayedText} align={'left'} color='rgba(255,255,255,.48)'/>
       )}
-      {!showFullText && <Button onClick={handleShowMore}>{buttonText}</Button>}
+      {!showFullText && text.length > length &&  (
+      <Button sx={{color:'grey'}} onClick={handleShowMore}>{buttonText}</Button>
+      )}
     </>
   );
 };

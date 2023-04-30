@@ -5,22 +5,26 @@ interface MyTextProps {
   text: string | number | null;
   align: 'left' | 'center' | 'right';
   color?: string;
+  weight?:number;
 }
 
-const MyText = ({ text, align, color }: MyTextProps) => {
+const MyText = ({ text, align, color, weight }: MyTextProps) => {
 
   if (!color){
     color = 'rgba(255,255,255,.48)'
   } 
+  if (!weight){
+    weight = 400
+  } 
   return (
     <Typography
-    align={align}
-    sx={{
-      color,
-      fontWeight: 400,
-      fontSize: 15,
-      lineHeight: '20px',
-      fontStyle: 'normal',
+      align={align}
+      sx={{
+        color,
+        fontWeight: weight,
+        fontSize: 15,
+        lineHeight: '20px',
+        fontStyle: 'normal',
     }}
   >
     {text}

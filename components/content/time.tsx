@@ -6,40 +6,17 @@ interface TimeProps {
 }
 
 const Time = ({ time }: TimeProps) => {
+
+  const months = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+
   const date = new Date(time);
-  const now = new Date();
-  const yesterday = new Date(now);
-  yesterday.setDate(now.getDate() - 1);
+  const day = date.getDate();
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
 
-  let currentDay;
-  let showTime = true;
-  if (date.getFullYear() < now.getFullYear() - 1) {
-    currentDay = "больше года назад";
-    showTime = false;
-  } else if (date.toDateString() === now.toDateString()) {
-    currentDay = "сегодня";
-  } else if (date.toDateString() === yesterday.toDateString()) {
-    currentDay = "вчера";
-  } else {
-    currentDay = date.toLocaleString("ru", { day: "numeric", month: "long" });
-  }
-
-  const currentTime = date.toLocaleString("ru", {
-    hour: "numeric",
-    minute: "numeric",
-    second: "numeric",
-  });
-
-  //STORYBOOK
   return (
     <Box sx={{ display: "flex", gap: 0.5 }}>
-      <MyText align="left" text={currentDay} />
-      {showTime && (
-        <>
-          <MyText align="left" text={"в"} />
-          <MyText align="left" text={currentTime} />
-        </>
-      )}
+      <MyText align="left" text={`${day} ${month} ${year}`} />
     </Box>
   );
 };
