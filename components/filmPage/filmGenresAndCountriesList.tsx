@@ -15,10 +15,10 @@ const GenresAndCountriesList = ({
     const elements = [...genres, ...countries];
   
     return (
-      <Stack direction="row" spacing={1} alignItems='center'>
+      <Stack direction="row" sx={{ justifyContent: "center", mt:'0.5rem' }} spacing={1} alignItems='center'>
         {elements.map((e: any, index: number) => (
           <React.Fragment key={e.nameRu}>
-            <MyLink /* key={e.id} */ text={e.nameRu.charAt(0).toUpperCase() + e.nameRu.slice(1)} link="path" fontSize={'15px'} fontWeight={400}/>
+            <MyLink color="rgba(255,255,255,.72)" text={e.nameRu.charAt(0).toUpperCase() + e.nameRu.slice(1)} link="path" fontSize={'15px'} fontWeight={400}/>
             {index < elements.length - 1 && (
                 <Box
                 sx={{

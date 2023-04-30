@@ -131,6 +131,17 @@ const Footer = () => {
                                 margin: '0 auto',
                                 background: 'linear-gradient(180deg, #A869F0 0%, #834CC2 100%)',
                                 boxShadow: '0 0 104px #A869F0',
+                                "&::before": {
+                                    content: '""',
+                                    position: "absolute",
+                                    top: "50%",
+                                    left: "50%",
+                                    width: "70%",
+                                  
+                                    height: 2,
+                                    backgroundColor: "#fff",
+                                    transform: "translate(-50%, -50%) rotate(65deg)"
+                                  },
                             
                                     }}>
                         {mouthpiece()} 

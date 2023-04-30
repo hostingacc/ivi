@@ -1,9 +1,10 @@
 import Head from 'next/head'
 import { Header } from '@/components/header/Header'
 import FilmList from '@/components/filmList'
+import { GetServerSideProps } from "next";
 
-
-export default function Home() {
+export default function Home(/* {data}:any */) {
+/*   console.log(data) */
   return (
     <>
       <Head>
@@ -20,3 +21,4 @@ export default function Home() {
     </>
   )
 }
+

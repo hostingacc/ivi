@@ -10,6 +10,12 @@ const nextConfig = {
         port: '',
         pathname: '/get-kinopoisk-image/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'kinopoiskapiunofficial.tech',
+        port: '',
+        pathname: '/images/**',
+      }
     ],
   },
 
