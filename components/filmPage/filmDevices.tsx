@@ -1,8 +1,9 @@
-import { Box, Link } from "@mui/material";
+import { Box, Link, Stack } from "@mui/material";
 import MyText from "../content/myText";
 import MyTitle from "../content/myTitle";
 import MyButton from "../buttons/myButton";
 import Image from "next/image";
+import FilmName from "../content/filmName";
 
 
 const FilmDevices = ({nameRu,nameEn, poster}:any) => {
@@ -11,7 +12,14 @@ const FilmDevices = ({nameRu,nameEn, poster}:any) => {
     return(
         <Box sx={{display:'flex',justifyContent:'space-between', mt:'6rem', mb:'6rem'}}>
             <Box>
-                <MyTitle text={`Смотреть «${nameRu}» на всех устройствах`}  isButton={false}/>
+                <Stack direction='row' alignItems='center'>
+                    <MyTitle text={`Смотреть «`}  isButton={false}/>
+                    <FilmName nameRu={nameRu} nameEn={nameEn} color={"#fff"} weight={700} size={24}/>
+                    <MyTitle text={'» на всех устройствах'} isButton={false}/>
+                </Stack>
+              
+              {/* Расширить mytext, добавив возможность использовать заголовки */}
+
                 <MyText
                     text={'Приложение доступно для скачивания на iOS, Android, SmartTV и приставках'}
                     align={"left"}/>

@@ -28,7 +28,6 @@ export const Primary: Story = {
 };
 
 export const WithSmallTextSecondary: Story = {
-  
   args: {
     text: 'App Store',
     smallText: 'Загрузите в',

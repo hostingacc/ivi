@@ -7,7 +7,7 @@ interface ShowMoreTextProps {
   text: string;
   length: number;
   buttonText: string;
-  
+  color?: string,
   useDangerouslySetInnerHTML?: boolean;
   
 }
@@ -16,6 +16,7 @@ const ShowMoreText = ({
   text,
   length,
   buttonText,
+  color='rgba(255,255,255,.48)',
   useDangerouslySetInnerHTML = false,
 
 }: ShowMoreTextProps) => {
@@ -33,7 +34,7 @@ const ShowMoreText = ({
       {useDangerouslySetInnerHTML ? (
         <div dangerouslySetInnerHTML={{ __html: displayedText }}  style={{ color: 'rgba(255,255,255,.78)', textAlign: 'left' }}/>
       ) : (
-        <MyText text={displayedText} align={'left'} color='rgba(255,255,255,.48)'/>
+        <MyText text={displayedText} align={'left'} color={color}/>
       )}
       {!showFullText && text.length > length &&  (
       <Button sx={{color:'grey'}} onClick={handleShowMore}>{buttonText}</Button>

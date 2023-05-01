@@ -17,6 +17,7 @@ export const NavBar = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            zIndex:'1',
             gap: "6vw",
             margin: "10px 0",
             "@media (max-width:1200px)": {

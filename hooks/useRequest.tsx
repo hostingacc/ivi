@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
-import { FilmProps } from "@/pages/filmCard/[id]";
+import { FilmProps } from "@/pages/filmPage/[id]";
 
 
 const useRequest = (url:string | undefined) => {
   const [data, setData] = useState<FilmProps | null>(null);
 
-  
-  
     useEffect(() => {
       if (!url) {
         return

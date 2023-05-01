@@ -1,29 +1,21 @@
 import React from 'react';
 import { Typography } from '@mui/material';
+import { TextProps } from '../interfaces/textProps';
 
-interface MyTextProps {
+interface MyTextProps extends TextProps{
   text: string | number | null;
-  align: 'left' | 'center' | 'right';
-  color?: string;
-  weight?:number;
 }
 
-const MyText = ({ text, align, color, weight }: MyTextProps) => {
+const MyText = ({ text, align, color = 'rgba(255,255,255,.48)', weight = 400, size = 15, line = '20px' }: MyTextProps) => {
 
-  if (!color){
-    color = 'rgba(255,255,255,.48)'
-  } 
-  if (!weight){
-    weight = 400
-  } 
   return (
     <Typography
       align={align}
       sx={{
         color,
         fontWeight: weight,
-        fontSize: 15,
-        lineHeight: '20px',
+        fontSize: size,
+        lineHeight: line,
         fontStyle: 'normal',
     }}
   >

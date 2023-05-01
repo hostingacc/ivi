@@ -17,27 +17,36 @@ const FilmPersons = observer(({persons}:any) => {
         modalStore.openModal();
     }
 
+
+
     return (
         <Box>
             <MyTitle text={"Актёры и создатели"} isButton={true} onClick={openModal}/>
-            <Stack direction='row' justifyContent='space-between' sx={{mt:'1rem', mb:'2rem'}}>
-            {persons?.slice(0, 10).map((e:any) => {
+            <Stack direction='row' justifyContent='space-between' sx={{mt:'2rem', mb:'2rem'}}>
+            {persons?.slice(0, 10).map((person:any) => {
                 return(
-                    <Box key={e.id} sx={{display:'flex', flexDirection:'column',alignItems:'center'}}>
-                        <Box sx={{width:'88px', height:'88px', borderRadius:'50%', overflow:'hidden' ,display:'flex', alignItems:'center'}}>
-                            <Image 
-                            className="personsImage"
-                            width={88}
-                            height={88}
-                            alt="фото актера"
-                            src={e.posterUrl}
-                            >
-                                
-                            </Image>
-                    </Box>
-                    <Box sx={{width:'77px'}}>
-                        <MyText  text={e.nameRu} align="left" color='rgba(255,255,255,0.89)'/>
-                    </Box>
+                    <Box key={person.id} sx={{display:'flex', flexDirection:'column',alignItems:'center'}}>
+                        <Link
+                            href={{
+                            pathname: `/personPage/${person.id}`,
+                            query: {
+                            id:person.id,
+                            },
+                            }}>
+                            <Box sx={{width:'88px', height:'88px', borderRadius:'50%', overflow:'hidden' ,display:'flex', alignItems:'center'}}>
+                                <Image 
+                                    className="coverImage"
+                                    width={88}
+                                    height={88}
+                                    alt="фото актера"
+                                    src={person.posterUrl}
+                                    >
+                                    </Image>
+                            </Box>
+                            <Box sx={{width:'77px'}}>
+                                <MyText  text={person.nameRu} align="left" color='rgba(255,255,255,0.89)'/>
+                            </Box>
+                        </Link>
                     </Box>
             )
         })}

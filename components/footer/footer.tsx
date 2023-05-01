@@ -19,7 +19,7 @@ const Footer = () => {
     const { t } = useTranslation();
     
     return(
-        <Container maxWidth={false} sx={{ width: '1240px' }}>
+        <Container maxWidth={false} sx={{ width: '1240px', mb:'1rem' }}>
 
         <Box component="footer" sx={{ flex:1,'@media (max-width: 1200px)': { display: 'none' } }}>
             <Hr/>

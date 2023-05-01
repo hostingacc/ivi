@@ -25,8 +25,10 @@ const FilmReviews = () => {
                     <MyText text={count} align="left" />
                 </Box>
                 </Box>
+            <Box sx={{mt:'1rem'}}>
+                <MyText text={'О фильме '} align={'left'}/>
+            </Box>
             
-            <MyText text={'О фильме '} align={'left'}/>
             <CommentsList showChildComments={false} />
             
         </>

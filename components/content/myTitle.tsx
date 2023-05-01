@@ -6,20 +6,22 @@ interface MyTitleProps {
   onClick?:any;
   showRedBorder?:boolean;
   text: string;
+  size?: string;
+  lineHeight?:string;
 }
 
-const MyTitle = ({ isButton, text, onClick, showRedBorder }: MyTitleProps) => {
+const MyTitle = ({ isButton, text, onClick, showRedBorder, size = '24px', lineHeight=size}: MyTitleProps) => {
 
   const isSelected = modalStore.content === text;
   
   const styles = {
     position: 'relative',
-    fontSize: "24px",
-    lineHeight: "28px",
+    fontSize: size,
+    lineHeight,
     fontWeight: 700,
     fontStyle: "normal",
     color: "#fff",
-    marginBottom: "12px",
+
     backgroundColor: "transparent",
     textTransform: "none",
     textDecoration: "none",

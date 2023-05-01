@@ -1,7 +1,8 @@
 import { useState, useEffect} from "react"; 
 import {Box, Button, Modal, IconButton} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-/* import trailer from '../../public/trailer.mp4'; */
+import MyButton from "../buttons/myButton";
+import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
 
 const FilmTrailer = () => {
 
@@ -32,16 +33,21 @@ const FilmTrailer = () => {
     return(
    
         <> 
-           <div style={{height:'404', position:'relative'}}>
-                <div style={{position:'sticky', top: 0, padding:'2rem 0'}}>
+           <Box sx={{height:'404', position:'relative'}}>
+                <Box sx={{position:'sticky', top: 0, padding:'2rem 0'}}>
                     <video id="video" width="719" height="404" controls>
                         <source src="/trailer.mp4" type="video/mp4" />
                     </video>
-                    <Button variant="contained" color="primary" onClick={openModal}>
-                        Трейлер
-                    </Button>
-                </div>
-            </div>
+                    <Box sx={{mt:'1rem'}}>
+                        <MyButton 
+                            text={'Трейлер'}
+                            icon={<PlayArrowOutlinedIcon/>}
+                            func={openModal}
+                            color={'rgba(255,255,255,.08)'}
+                            hoverColor={'rgba(255,255,255,.18)'}/>
+                    </Box>
+                </Box>
+            </Box>
        
            
 
@@ -71,11 +77,11 @@ const FilmTrailer = () => {
                     >
                         <CloseIcon />
                     </IconButton>
-                    <div>
+                    <Box>
                         <video width="100%" height="auto" controls>
                             <source src="/trailer.mp4" type="video/mp4" />
                         </video>
-                    </div>
+                    </Box>
                 </Box>
             </Modal>
             {modalIsOpen && (

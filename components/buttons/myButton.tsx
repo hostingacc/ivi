@@ -2,20 +2,17 @@ import { Button, Box, Typography } from '@mui/material';
 import { ReactElement } from "react";
 
 interface ButtonProps{
-    color:string;
+    color?:string;
     hoverColor?:string;
     text:string;
     smallText?:string;
     icon?: ReactElement;
     func?:any;
+    width?:string;
 }
 
 
-const MyButton = ({color, hoverColor, text, smallText, icon, func}:ButtonProps) => {
-
-    if(!hoverColor){
-        hoverColor = color
-    }
+const MyButton = ({color = '#1f1b2e', hoverColor = color, text, smallText, icon, func, width = '196px'}:ButtonProps) => {
 
     
     return(
@@ -31,7 +28,7 @@ const MyButton = ({color, hoverColor, text, smallText, icon, func}:ButtonProps) 
                         borderWidth: '1px',
                         borderRadius: '0.5rem',
                         height:'40px',
-                        width: icon ? undefined : '196px',
+                        width: icon ? undefined : width,
                         paddingLeft: icon ? '1rem' : 0,
                         paddingRight: icon ? '1rem' : 0,
                         '&:hover':  {
