@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material'
+import { Container, Typography } from '@mui/material'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
@@ -13,11 +13,11 @@ const films = () => {
         { id: 1, title: "Oxota na jivotnix" },
         { id: 2, title: "Ploxie parni" },
     ])
-    return (<>
+    return (<Container>
         <Typography variant='h2' sx={{ color: "white" }}>Films page</Typography>
         {films.map(film => <Typography><Link href={`/films/${film.id}`}>{film.title}</Link></Typography >)
         }
-    </>
+    </Container>
     )
 }
 export default films

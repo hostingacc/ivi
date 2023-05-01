@@ -1,5 +1,8 @@
 import Head from 'next/head'
 import { Header } from '@/components/header/Header'
+import Subscribe from '@/components/header/Subscribe'
+import DropdownSlider from '@/components/navbar/DropdownSlider'
+
 
 export default function Home() {
   return (
@@ -12,6 +15,7 @@ export default function Home() {
       </Head>
       <main>
         <Header />
+        <Subscribe />        
       </main>
     </>
   )
