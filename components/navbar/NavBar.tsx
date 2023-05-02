@@ -2,22 +2,29 @@ import { Box, Button, IconButton, List, ListItem, Stack, Typography } from '@mui
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+
+import Link from 'next/link';
+import FilmsDropdown from './FilmsDropdown';
+import dropdown from '@/store/Dropdown';
+import { observer } from 'mobx-react-lite';
+import AlertDropdown from './AlertDropdown';
+import SubscribeDropdown from './SubscribeDropdown';
+import UserDropdown from './UserDropdown';
+
 import React from 'react';
 import Image from 'next/image';
 import TranslateButton from '../translateButton/translateButton';
 import { useTranslation } from 'react-i18next';
 import '../translate/i18next';
 
-
-export const NavBar = () => {
+export const NavBar = observer(() => {
     const { t } = useTranslation();
     return (
-        
+        <>
         <Box sx={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            zIndex:'1',
             gap: "6vw",
             margin: "10px 0",
             "@media (max-width:1200px)": {
@@ -75,27 +82,27 @@ export const NavBar = () => {
                     }}>
                     <ListItem>
                         <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
-                            {t('Что нового')}
+                        {t('Что нового')}
                         </Typography>
                     </ListItem>
                     <ListItem>
                         <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
-                            {t('Фильмы')}
+                        {t('Фильмы')}
                         </Typography>
                     </ListItem>
                     <ListItem>
                         <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
-                            {t('Сериалы')}
+                        {t('Сериалы')}
                         </Typography>
                     </ListItem>
                     <ListItem>
                         <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
-                            {t('Мультфильмы')}
+                        {t('Мультфильмы')}
                         </Typography>
                     </ListItem>
                     <ListItem>
                         <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
-                            {t('ТВ-каналы')}
+                        {t('ТВ-каналы')}
                         </Typography>
                     </ListItem>
                 </List>
@@ -114,9 +121,9 @@ export const NavBar = () => {
                             width: "150px",
                             height: "40px",
                         }
-                        
+
                     }}
-                >{t('Смотреть 30 дней бесплатно')}</Button>
+                    >{t('Смотреть 30 дней бесплатно')}</Button>
                 <Button
                     startIcon={<SearchIcon sx={{ color: "rgba(255,255,255,.48)" }} />}
                     sx={{
@@ -130,7 +137,7 @@ export const NavBar = () => {
                             display: "none"
                         }
                     }}
-                >{t('Поиск')}</Button>
+                    >{t('Поиск')}</Button>
                 <IconButton
                     sx={{
                         width: "40px",
@@ -157,10 +164,21 @@ export const NavBar = () => {
                         }
                     }}
                 >
-                    <PersonOutlineIcon sx={{ color: "rgba(255,255,255,.48)" }} />
+                        <PersonOutlineIcon sx={{ color: "rgba(255,255,255,.48)" }} />
                 </Button>
                 <TranslateButton />
             </Stack>
-        </Box>        
+        </Box>  
+            <Box sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
+            }}>
+                {dropdown.isOpen && <FilmsDropdown />}
+                {dropdown.isOpenAlert && <AlertDropdown />}
+                {dropdown.isOpenSubscribe && <SubscribeDropdown />}
+                {dropdown.isOpenUser && <UserDropdown />}
+            </Box>   
+            </>   
     )
-}
+})

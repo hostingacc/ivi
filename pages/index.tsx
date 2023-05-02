@@ -5,7 +5,8 @@ import React, {Suspense} from 'react'
 import { useTranslation } from 'react-i18next'
 import '../components/translate/i18next'
 import FilmList from '@/components/filmList';
-
+import Subscribe from '@/components/header/Subscribe'
+import DropdownSlider from '@/components/navbar/DropdownSlider'
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
 
 
         <FilmList/>
+        <Subscribe />        
       </main>
       </Suspense>
     </>
