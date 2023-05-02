@@ -19,6 +19,7 @@ import '../translate/i18next';
 
 export const NavBar = observer(() => {
     const { t } = useTranslation();
+
     return (
         <>
         <Box sx={{
@@ -80,27 +81,30 @@ export const NavBar = observer(() => {
                             display: "none"
                         }
                     }}>
-                    <ListItem>
+                    <ListItem  onMouseOver={() => { dropdown.changeHandler(false) }}> 
                         <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
                         {t('Что нового')}
                         </Typography>
                     </ListItem>
-                    <ListItem>
+                    <ListItem onMouseEnter={() => { dropdown.changeHandler(true) }}>
                         <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
                         {t('Фильмы')}
                         </Typography>
                     </ListItem>
-                    <ListItem>
+                    <ListItem onMouseEnter={() => { dropdown.changeHandler(true) }}>
                         <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
                         {t('Сериалы')}
                         </Typography>
                     </ListItem>
-                    <ListItem>
+                    <ListItem onMouseEnter={() => { dropdown.changeHandler(true) }}>
                         <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
                         {t('Мультфильмы')}
                         </Typography>
                     </ListItem>
-                    <ListItem>
+                    <ListItem
+                            onMouseOver={() => { dropdown.changeHandler(false) }}
+                            onMouseEnter={() => { dropdown.changeHandlerSubscribe(false) }}
+                        >
                         <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
                         {t('ТВ-каналы')}
                         </Typography>
@@ -108,7 +112,7 @@ export const NavBar = observer(() => {
                 </List>
             </Stack>
             <Stack direction={"row"} alignItems={"center"} justifyContent={"center"} gap={"1vw"}>
-                <Button
+            <Link href="/subscribe"> <Button
                     variant="contained"
                     sx={{
                         background: "#00b0ff",
@@ -123,7 +127,8 @@ export const NavBar = observer(() => {
                         }
 
                     }}
-                    >{t('Смотреть 30 дней бесплатно')}</Button>
+                    onMouseOver={() => { dropdown.changeHandlerSubscribe(true) }}
+                    >Смотреть 30 дней бесплатно</Button></Link>
                 <Button
                     startIcon={<SearchIcon sx={{ color: "rgba(255,255,255,.48)" }} />}
                     sx={{

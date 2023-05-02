@@ -13,6 +13,17 @@ import 'swiper/css/scrollbar';
 import styles from "../../styles/Header.module.css"
 import Link from 'next/link';
 
+const slides: string[] = [
+    "/slider/chicago.jpeg", "/slider/cosmos.jpeg", "/slider/crush.jpeg",
+    "/slider/eskort.jpeg", "/slider/false.jpeg", "/slider/family.jpeg",
+    "/slider/fortuna.jpeg", "/slider/hello.jpeg", "/slider/human.jpeg",
+    "/slider/kills.jpeg", "/slider/listen.jpeg", "/slider/marlou.jpeg",
+    "/slider/minute.jpeg", "/slider/money.jpeg", "/slider/moris.jpeg",
+    "/slider/nevskiy.jpeg", "/slider/nolimit.jpeg", "/slider/norton.jpeg",
+    "/slider/prince.jpeg", "/slider/sabyanin.jpeg", "/slider/shpion.jpeg",
+    "/slider/sleeptalk.jpeg", "/slider/snowrod.jpeg", "/slider/three.jpeg",
+    "/slider/universe.jpeg", "/slider/voin.jpeg", "/slider/withall.jpeg"
+]
 
 
 export const Header = () => {

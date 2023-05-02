@@ -14,6 +14,7 @@ const slides: string[] = [
     "/slider/sleeptalk.jpeg", "/slider/snowrod.jpeg", "/slider/three.jpeg",
     "/slider/universe.jpeg", "/slider/voin.jpeg", "/slider/withall.jpeg"
 ]
+
 const DropdownSlider = () => {
     return (
         <Box className={styles.slider}>
