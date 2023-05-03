@@ -1,17 +1,17 @@
 import NextLink from 'next/link';
 import MuiLink from '@mui/material/Link';
 
-interface FooterItemProps{
+interface MyLinkProps{
     color?:string;
     link:string;
-    text:string;
-    fontSize:string;
-    fontWeight:number;
+    content:any;
+    fontSize?:string;
+    fontWeight?:number;
     gradient?:boolean;
 }
 
 
-const MyLink = ({link, text, gradient, fontSize, fontWeight,color}:FooterItemProps) => {
+const MyLink = ({link, content, gradient, fontSize, fontWeight,color}:MyLinkProps) => {
 
     const isInternal = link.startsWith('/');
     const LinkComponent = isInternal ? NextLink : MuiLink;
@@ -43,7 +43,7 @@ const MyLink = ({link, text, gradient, fontSize, fontWeight,color}:FooterItemPro
             },
           }}
       >
-        {text}
+        {content}
       </MuiLink>
     )
 }

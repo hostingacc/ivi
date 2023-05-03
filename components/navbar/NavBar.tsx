@@ -11,11 +11,14 @@ import AlertDropdown from './AlertDropdown';
 import SubscribeDropdown from './SubscribeDropdown';
 import UserDropdown from './UserDropdown';
 
+import logo from '../../public/logo/reposition_iviLogoPlateRounded.svg'
 import React from 'react';
 import Image from 'next/image';
 import TranslateButton from '../translateButton/translateButton';
 import { useTranslation } from 'react-i18next';
 import '../translate/i18next';
+import MyLink from '../navigation/myLink';
+import MyButton from '../buttons/myButton';
 
 export const NavBar = observer(() => {
     const { t } = useTranslation();
@@ -27,6 +30,7 @@ export const NavBar = observer(() => {
             alignItems: "center",
             justifyContent: "center",
             gap: "6vw",
+            zIndex:2,
             margin: "10px 0",
             "@media (max-width:1200px)": {
                 justifyContent: "space-between",
@@ -46,26 +50,9 @@ export const NavBar = observer(() => {
                     justifyContent: "center",
                     position: "relative",
                 }}>
-                    <Image
-                        src="/logo.png"
-                        alt="Logo"
-                        width={90}
-                        height={65}
-                        style={{ background: "transparent" }}
-                    />
-                    <Typography sx={{
-                        color: "white",
-                        fontSize: "24px",
-                        fontWeight: "700",
-                        position: "absolute",
-                        left: "40px",
-                        bottom: "17px",
-                        cursor: "pointer",
-                        opacity: ".7",
-                        "@media (max-width:420px)": {
-                            fontSize: "20px",
-                        }
-                    }}>Кино<span style={{ color: "#00b0ff" }}>Ман</span></Typography>
+                
+                    <MyLink link={'/'} content={logo()}/>
+                   
                 </Box>
                 <List
                     sx={{
@@ -112,23 +99,14 @@ export const NavBar = observer(() => {
                 </List>
             </Stack>
             <Stack direction={"row"} alignItems={"center"} justifyContent={"center"} gap={"1vw"}>
-            <Link href="/subscribe"> <Button
-                    variant="contained"
-                    sx={{
-                        background: "#00b0ff",
-                        width: "210px",
-                        height: "30px",
-                        borderRadius: "10px",
-                        fontSize: "10px",
-                        "@media (max-width:420px)": {
-                            fontSize: "8px",
-                            width: "150px",
-                            height: "40px",
-                        }
 
-                    }}
-                    onMouseOver={() => { dropdown.changeHandlerSubscribe(true) }}
-                    >Смотреть 30 дней бесплатно</Button></Link>
+                <MyLink 
+                    link='/subscribe'
+                    content={
+                        <MyButton text={'Смотреть 30 дней бесплатно'} width={'13.3rem'} size={'0.83rem'} color={'#ea003d'}/>
+                    }
+                />
+
                 <Button
                     startIcon={<SearchIcon sx={{ color: "rgba(255,255,255,.48)" }} />}
                     sx={{

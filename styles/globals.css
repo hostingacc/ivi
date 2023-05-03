@@ -71,3 +71,11 @@ a {
   transition: all 0.5s ease-in-out;
   position: sticky;
 }
+.swiper-button-next,
+.swiper-button-prev{
+  color: rgba(255,255,255, .35) !important;
+}
+.swiper-button-next:hover,
+.swiper-button-prev:hover{
+  color: rgba(255,255,255, 1) !important;
+}

@@ -10,6 +10,8 @@ import DropdownSliderToRight from './DropdownSliderToRight';
 import Link from 'next/link';
 import dropdown from '@/store/Dropdown';
 import { observer } from 'mobx-react-lite';
+import MyLink from '../navigation/myLink';
+import MyButton from '../buttons/myButton';
 
 const SubscribeDropdown = observer(() => {
     return (
@@ -156,21 +158,11 @@ const SubscribeDropdown = observer(() => {
                     alignItems: "center",
                     gap: "20px"
                 }}>
-                    <Link href="/subscribe"> <Button
-                        sx={{
-                            color: "white",
-                            fontSize: "14px",
-                            background: "#00b0ff",
-                            textTransform: "capitalize",
-                            height: "36px",
-                            width: "300px",
-                            borderRadius: "8px",
-                            fontWeight: "600"
-                        }}
-                    >
-                        Попробовать 30 дней бесплатно
-                    </Button>
-                    </Link>
+                    
+                    <MyLink link='/subscribe' content={
+                        <MyButton text='Попробовать 30 дней бесплатно' color='#ea003d'/>
+                    }/>
+
                     <Typography sx={{
                         fontSize: "12px",
                         color: "rgba(255,255,255,.48)"

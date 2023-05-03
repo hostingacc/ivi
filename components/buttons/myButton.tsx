@@ -1,5 +1,6 @@
 import { Button, Box, Typography } from '@mui/material';
 import { ReactElement } from "react";
+import MyText from '../content/myText';
 
 interface ButtonProps{
     color?:string;
@@ -9,10 +10,11 @@ interface ButtonProps{
     icon?: ReactElement;
     func?:any;
     width?:string;
+    size?: string;
 }
 
 
-const MyButton = ({color = '#1f1b2e', hoverColor = color, text, smallText, icon, func, width = '196px'}:ButtonProps) => {
+const MyButton = ({color = '#1f1b2e', hoverColor = color, text, smallText, size = '0.93rem', icon, func, width = '196px'}:ButtonProps) => {
 
     
     return(
@@ -56,8 +58,8 @@ const MyButton = ({color = '#1f1b2e', hoverColor = color, text, smallText, icon,
                             {smallText}
                         </Typography>
                         )}
-                    <Typography variant="body1" >{text}</Typography>
-            </Box>
+                    <MyText  text={text} color='#fff' size={size}/>
+                    </Box>
         </Button> 
     )
 }

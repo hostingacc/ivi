@@ -12,6 +12,8 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import styles from "../../styles/Header.module.css"
 import Link from 'next/link';
+import MyLink from '../navigation/myLink';
+import MyButton from '../buttons/myButton';
 
 const slides: string[] = [
     "/slider/chicago.jpeg", "/slider/cosmos.jpeg", "/slider/crush.jpeg",
@@ -69,26 +71,18 @@ export const Header = () => {
                                     borderRadius: "20px",
                                 }}
                             />
-                            <Link href='/films' style={{ color: "white" }}> <Button
-                                variant='contained'
-                                endIcon={<WidgetsIcon />}
-                                sx={{
-                                    position: "absolute",
-                                    width: "200px",
-                                    height: "40px",
-                                    background: "#00b0ff",
-                                    borderRadius: "10px",
-                                    color: "white",
-                                    bottom: "20px",
-                                    left: "100px",
-                                    "@media (max-width:786px)": {
-                                        display: "none"
-                                    }
-                                }}
-                            >
-                                В Каталог
-                            </Button>
-                            </Link>
+                            <Box sx={{
+                                position:'absolute',
+                                bottom:'1.25rem',
+                                left:'6.25rem'
+                            }}>
+                                <MyLink 
+                                    link='/films'
+                                    content={
+                                        <MyButton text='Смотреть бесплатно' color='#ea003d'/>
+                                    }/>
+                            </Box>
+                        
                         </Box>
                     </SwiperSlide>
                 })}               

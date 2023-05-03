@@ -8,7 +8,7 @@ interface FilmNameProps extends TextProps {
     nameEn: string;
 }
 
-const FilmName = observer(({nameRu, nameEn, align = 'center', color = 'rgba(255,255,255,.48)', weight = 400, size = 15, line = '20px'}:FilmNameProps) => {
+const FilmName = observer(({nameRu, nameEn, align = 'center', color = 'rgba(255,255,255,.48)', weight = 400, size = '0.98rem', line = '20px'}:FilmNameProps) => {
 
     return(
         <MyText text={translationStore.translation ==='ru' ? nameRu: nameEn} align={align} color={color} weight={weight} size={size} line={line}/>
