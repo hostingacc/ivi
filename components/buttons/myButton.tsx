@@ -11,14 +11,16 @@ interface ButtonProps{
     func?:any;
     width?:string;
     size?: string;
+    id?:any;
 }
 
 
-const MyButton = ({color = '#1f1b2e', hoverColor = color, text, smallText, size = '0.93rem', icon, func, width = '196px'}:ButtonProps) => {
+const MyButton = ({id ,color = '#1f1b2e', hoverColor = color, text, smallText, size = '0.93rem', icon, func, width = '196px'}:ButtonProps) => {
 
     
     return(
         <Button
+            id={id}
             onClick={func}
             variant="contained"
             disableRipple
@@ -40,6 +42,7 @@ const MyButton = ({color = '#1f1b2e', hoverColor = color, text, smallText, size 
                     }}>
                        {icon}
                        <Box
+                            id={id}
                             sx={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -58,7 +61,7 @@ const MyButton = ({color = '#1f1b2e', hoverColor = color, text, smallText, size 
                             {smallText}
                         </Typography>
                         )}
-                    <MyText  text={text} color='#fff' size={size}/>
+                    <MyText id={id} text={text} color='#fff' size={size}/>
                     </Box>
         </Button> 
     )

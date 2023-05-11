@@ -8,6 +8,7 @@ import FilmPersons from "@/components/filmPage/filmPersons";
 import MyBreadcrumbs from "@/components/myBreadcrumbs";
 import FilmDevices from "@/components/filmPage/filmDevices";
 import FilmReviews from "@/components/filmPage/filmReviews";
+import FilmModal from "@/components/filmPage/filmModal";
 
 
 export interface FilmProps {
@@ -53,7 +54,7 @@ const FilmCard = () => {
     const comments = useRequest(commentsUrl);
     const persons = useRequest(personsUrl);
 
-    const [modalIsOpen, setModalIsOpen] = useState(false);
+/*     const [modalIsOpen, setModalIsOpen] = useState(false); */
 
     return(
       <>
@@ -92,7 +93,7 @@ const FilmCard = () => {
             
           /> 
         </Box>
-       <FilmPersons
+        <FilmPersons
             persons={persons}
             nameRu={film.nameRu}
             nameEn={film.nameEn}
@@ -100,9 +101,9 @@ const FilmCard = () => {
             countries={film.countries}
             comments={comments}
             id={film.id}
-            modalIsOpen={modalIsOpen}
+           
           /> 
-          <FilmReviews />
+          <FilmReviews comments={comments}/>
           <FilmDevices 
             nameRu={film.nameRu}
             nameEn={film.nameEn}
@@ -112,6 +113,7 @@ const FilmCard = () => {
         </>
       )}
     </>
+    <FilmModal persons={persons} comments={comments} filmId={id}/>
     </Container>
     
     </>

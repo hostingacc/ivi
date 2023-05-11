@@ -41,7 +41,7 @@ const FilmInfo = ({
     return(
         <Box sx={{color:'#fff', width:'439px', ml:'auto'}}>
           <Box sx={{mb:'2rem'}}>
-            <FilmName nameRu={nameRu} nameEn={nameEn} weight={600} size={60} color={'#fff'} line="40px"/>
+            <FilmName nameRu={nameRu} nameEn={nameEn} weight={600} size={'3.75rem'} color={'#fff'} line={'2.9rem'}/>
           </Box>
 
 
@@ -60,11 +60,12 @@ const FilmInfo = ({
         
         {persons?.filter((e:any) => e.roles.some((el:any) => el.nameRu.includes('Актеры'))).slice(0, 4).map((e:any)=>{
           return(
-            <Box key={e.id} sx={{
-                                display:'flex',
-                                flexDirection:'column',
-                                alignItems:'center',
-                              }}>
+            <Box key={e.id} 
+              sx={{
+                display:'flex',
+                flexDirection:'column',
+                alignItems:'center',
+                }}>
               <Box sx={{height:'3.5rem', width:'3.5rem'}}>
                 <Medallion image={e.posterUrl}/>
               </Box>
@@ -86,10 +87,11 @@ const FilmInfo = ({
           <Box sx={{ flexGrow: 3, ml:'1rem'}}>
               <MyText text={'Рейтинг Киноман'} color="#fff" align="left" weight={500}/>
               <MyText text={'Интересный сюжет'} color="rgba(255,255,255,.72)" align="left" weight={400}/>
-              <MyText text={'26620 оценок'} color="rgba(255,255,255,.72)" align="left" size={13} weight={400}/>
+              <MyText text={'26620 оценок'} color="rgba(255,255,255,.72)" align="left" size={'0.81rem'} weight={400}/>
           </Box>
           <Box sx={{ flexGrow: 1, }}>
             <MyButton color={'transparent'} text={'Оценить'} width="3.4rem"/>
+
           </Box>
         </Box>
       </Box>

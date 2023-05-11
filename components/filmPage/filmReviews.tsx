@@ -4,18 +4,18 @@ import CommentsList from "../comments/commentsList";
 import { countComments } from "../../functions/countComments";
 import { Box } from "@mui/material";
 
-import data from '../../public/temporaryFiles/data.json';
 import { modalStore } from "@/store/modalStore";
 
-const FilmReviews = () => {
+const FilmReviews = ({comments}:any) => {
 
-    const count = countComments(data.comments)
+    const count = countComments(comments)
 
     const openModal = () => {
         modalStore.showReviews();
         modalStore.openModal();
     }
 
+    
 
     return(
         <>
@@ -29,7 +29,7 @@ const FilmReviews = () => {
                 <MyText text={'О фильме '} align={'left'}/>
             </Box>
             
-            <CommentsList showChildComments={false} />
+            <CommentsList showChildComments={false} comments={comments}/>
             
         </>
     )

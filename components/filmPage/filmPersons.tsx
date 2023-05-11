@@ -1,7 +1,6 @@
-import { Box, Stack, Button, Typography } from "@mui/material";
+import { Box, Stack, Button} from "@mui/material";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useState } from "react";
+
 import Image from "next/image";
 import MyText from "../content/myText";
 import FilmModal from "./filmModal";
@@ -16,8 +15,6 @@ const FilmPersons = observer(({persons}:any) => {
         modalStore.showCreators()
         modalStore.openModal();
     }
-
-
 
     return (
         <Box>
@@ -54,7 +51,7 @@ const FilmPersons = observer(({persons}:any) => {
             <Button sx={{width:'88px', height:'88px', borderRadius:'50%', backgroundColor:'#1f1b2e', color:'#fff', textTransform:'uppercase'}} onClick={openModal}>Еще</Button>
         </Box>
 
-        <FilmModal persons={persons}/>
+        
    
         </Stack>
 

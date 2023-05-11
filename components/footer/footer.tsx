@@ -14,73 +14,45 @@ import Hr from '../hr';
 
 import { useTranslation } from 'react-i18next';
 import '../translate/i18next';
+import MyList from '../content/myList';
 
 const Footer = () => {
     const { t } = useTranslation();
+
+    const firstColumnContent = [
+        { link: 'https://corp.ivi.ru/', content: t('О компании') },
+        { link: 'https://corp.ivi.ru/career/#career-vacancy-block', content: t('Вакансии') },
+        { link: 'https://www.ivi.tv/pages/beta/', content: t('Программа бета-тестирования') },
+        { link: 'https://www.ivi.tv/info/partners', content: t('Информация для партнёров') },
+        { link: 'https://corp.ivi.ru/advertisers/', content: t('Размещение рекламы') },
+        { link: 'https://www.ivi.tv/info/agreement', content: t('Пользовательское соглашение') },
+        { link: 'https://www.ivi.tv/info/confidential', content: t('Политика конфиденциальности') },
+        { link: 'https://www.ivi.tv/info/goryachaya-liniya-komplaens', content: t('Комплаенс') }
+      ];
+      const secondColumnContent = [
+        { link: 'https://www.ivi.tv/', content: t('Мой Иви') },
+        { link: 'https://www.ivi.tv/new', content: t('Что нового') },
+        { link: 'https://www.ivi.tv/movies', content: t('Фильмы') },
+        { link: 'https://www.ivi.tv/series', content: t('Сериалы') },
+        { link: 'https://www.ivi.tv/animation', content: t('Мультфильмы') },
+        { link: 'https://www.ivi.tv/tvplus', content: 'TV+' },
+        { link: 'https://www.ivi.tv/goodmovies', content: t('Что посмотреть') },
+        { link: 'https://www.ivi.tv/cert', content: t('Активация сертификата') }
+      ];
+
     
     return(
         <Container maxWidth={false} sx={{ width: '1240px', mb:'1rem' }}>
+            
 
         <Box component="footer" sx={{ flex:1,'@media (max-width: 1200px)': { display: 'none' } }}>
             <Hr/>
             <Grid container justifyContent="space-between" sx={{ mt: '48px', mb:'48px'}}>
                 <Grid item>
-                    <FooterTitle text={t('О нас')}/>    
-                    <List>
-                        <ListItem disablePadding>
-                            <MyLink link={'https://corp.ivi.ru/'} content={t('О компании')} fontSize={'15px'} fontWeight={400}/>
-                        </ListItem>
-                        <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://corp.ivi.ru/career/#career-vacancy-block'} content={t('Вакансии')} fontSize={'15px'} fontWeight={400}/>
-                        </ListItem>
-                        <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/pages/beta/'} content={t('Программа бета-тестирования')} fontSize={'15px'} fontWeight={400}/>
-                        </ListItem>
-                        <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/info/partners'} content={t('Информация для партнёров')} fontSize={'15px'} fontWeight={400}/>
-                        </ListItem>
-                        <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://corp.ivi.ru/advertisers/'} content={t('Размещение рекламы')} fontSize={'15px'} fontWeight={400}/>
-                        </ListItem>
-                        <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/info/agreement'} content={t('Пользовательское соглашение')} fontSize={'15px'} fontWeight={400}/>
-                        </ListItem>
-                        <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/info/confidential'} content={t('Политика конфиденциальности')} fontSize={'15px'} fontWeight={400}/>
-                        </ListItem>
-                        <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/info/goryachaya-liniya-komplaens'} content={t('Комплаенс')} fontSize={'15px'} fontWeight={400}/>
-                        </ListItem> 
-                    </List>
+                    <MyList title={t('О нас')} content={firstColumnContent}/>
                 </Grid>
                 <Grid item>
-                    <FooterTitle text={t('Разделы')}/>    
-                    <List>
-                        <ListItem disablePadding>
-                            <MyLink link={'https://www.ivi.tv/'} content={t('Мой Иви')} fontSize={'15px'} fontWeight={400}/>
-                        </ListItem>
-                        <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/new'} content={t('Что нового')} fontSize={'15px'} fontWeight={400}/>
-                        </ListItem>
-                        <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/movies'} content={t('Фильмы')} fontSize={'15px'} fontWeight={400}/>
-                        </ListItem>
-                        <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/series'} content={t('Сериалы')} fontSize={'15px'} fontWeight={400}/>
-                        </ListItem>
-                        <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/animation'} content={t('Мультфильмы')} fontSize={'15px'} fontWeight={400}/>
-                        </ListItem>
-                        <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/tvplus'} content={'TV+'} fontSize={'15px'} fontWeight={400}/>
-                        </ListItem>
-                        <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/goodmovies'} content={t('Что посмотреть')} fontSize={'15px'} fontWeight={400}/>
-                        </ListItem>
-                        <ListItem disablePadding  sx={{marginTop:1}}>
-                            <MyLink link={'https://www.ivi.tv/cert'} content={t('Активация сертификата')} gradient={true} fontSize={'15px'} fontWeight={400}/>
-                        </ListItem>           
-                    </List>
+                    <MyList title={t('Разделы')} content={secondColumnContent}/>
                 </Grid>
                 <Grid item>
                     <Grid container direction="column" spacing={2}>

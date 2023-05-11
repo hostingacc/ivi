@@ -7,7 +7,11 @@ import DropdownSlider from './DropdownSlider';
 import DropdownSliderToRight from './DropdownSliderToRight';
 import Link from 'next/link';
 
+import DropDownContent from '../header/dropDownContent';
+
 const FilmsDropdown = observer(() => {
+
+
 
     return (
         <Box
@@ -32,18 +36,20 @@ const FilmsDropdown = observer(() => {
                     justifyContent: "flex-start",
                     gap: "6vw"
                 }}>
-                    <Box>
+    {/*                 <Box>
                         <Typography sx={{ fontSize: "15px", fontWeight: "700", color: "white", marginBottom: "10px" }}>Жанры</Typography>
                         <Stack direction={'row'} gap={"5vw"}>
                             <List disablePadding>
                                 {dropdown.genres.map((g, i, a) => {
                                     if (i < a.length / 2)
                                         return <ListItem key={i} disablePadding sx={{ marginBottom: "10px" }}>
-                                            <Typography sx={{
+                                      <Typography sx={{
                                                 color: "rgba(255,255,255,.48)", fontSize: "12px", fontWeight: "700", ":hover": {
                                                     color: "white"
                                                 }
-                                            }}>{g}</Typography>
+                                            }}>{g}</Typography> 
+
+
                                         </ListItem>
                                 })}
                             </List>
@@ -51,11 +57,11 @@ const FilmsDropdown = observer(() => {
                                 {dropdown.genres.map((g, i, a) => {
                                     if (i >= a.length / 2)
                                         return <ListItem key={i} disablePadding sx={{ marginBottom: "10px" }}>
-                                            <Typography sx={{
+                                        <Typography sx={{
                                                 color: "rgba(255,255,255,.48)", fontSize: "12px", fontWeight: "700", ":hover": {
                                                     color: "white"
                                                 }
-                                            }}>{g}</Typography>
+                                            }}>{g}</Typography> 
                                         </ListItem>
                                 })}
                             </List>
@@ -90,9 +96,9 @@ const FilmsDropdown = observer(() => {
                                 })}
                             </List>
                         </Box>
-                    </Box>
+                    </Box> */}
                 </Box >
-                <Box sx={{
+      {/*           <Box sx={{
                     display: "flex",
                     gap: "4vw"
                 }}>
@@ -139,7 +145,9 @@ const FilmsDropdown = observer(() => {
                         <DropdownSliderToRight />
                         <DropdownSlider />
                     </Box>
-                </Box>
+                </Box> */}
+
+                <DropDownContent/>
             </Stack >
         </Box >
     )

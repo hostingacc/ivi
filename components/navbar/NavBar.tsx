@@ -19,9 +19,16 @@ import { useTranslation } from 'react-i18next';
 import '../translate/i18next';
 import MyLink from '../navigation/myLink';
 import MyButton from '../buttons/myButton';
+import { filmStore } from '@/store/moviesStore';
 
 export const NavBar = observer(() => {
     const { t } = useTranslation();
+
+
+    //console.log(filmStore.genres)
+    let genres = filmStore.genres
+
+    console.log(genres)
 
     return (
         <>
@@ -74,9 +81,10 @@ export const NavBar = observer(() => {
                         </Typography>
                     </ListItem>
                     <ListItem onMouseEnter={() => { dropdown.changeHandler(true) }}>
-                        <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
+              {/*           <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
                         {t('Фильмы')}
-                        </Typography>
+                        </Typography> */}
+                        <MyLink link={'/movies'} content={t('Фильмы')}/>
                     </ListItem>
                     <ListItem onMouseEnter={() => { dropdown.changeHandler(true) }}>
                         <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>

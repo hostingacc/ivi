@@ -14,7 +14,7 @@ const FilmDevices = ({nameRu,nameEn, poster}:any) => {
             <Box>
                 <Stack direction='row' alignItems='center'>
                     <MyTitle text={`Смотреть «`}  isButton={false}/>
-                    <FilmName nameRu={nameRu} nameEn={nameEn} color={"#fff"} weight={700} size={24}/>
+                    <FilmName nameRu={nameRu} nameEn={nameEn} color={"#fff"} weight={700} size={'1.5rem'}/>
                     <MyTitle text={'» на всех устройствах'} isButton={false}/>
                 </Stack>
               

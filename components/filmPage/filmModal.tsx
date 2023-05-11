@@ -7,7 +7,8 @@ import { observer } from 'mobx-react-lite';
 import MyTitle from '../content/myTitle';
 
 
-const FilmModal = observer(({ persons }: any) => {
+const FilmModal = observer(({filmId ,persons, comments }: any) => {
+
 
 
   return (
@@ -35,7 +36,7 @@ const FilmModal = observer(({ persons }: any) => {
           <Box>{modalStore.content}</Box>
           <Container maxWidth={false} sx={{ width: '1203px', position: 'absolute' }}>
             {modalStore.content === 'Отзывы' ? (
-              <CommentsList showChildComments={true} />
+              <CommentsList /* showChildComments={true} */ filmId={filmId} comments={comments}/>
             ) : null}
             {modalStore.content === 'Создатели' ? <PersonsList persons={persons} /> : null}
           </Container>

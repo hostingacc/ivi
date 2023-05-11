@@ -6,9 +6,15 @@ import { useTranslation } from 'react-i18next'
 import '../components/translate/i18next'
 import FilmList from '@/components/filmList';
 import Subscribe from '@/components/header/Subscribe'
-import DropdownSlider from '@/components/navbar/DropdownSlider'
+import useRequest from '@/hooks/useRequest';
+import Hero from '@/components/hero';
 
 export default function Home() {
+
+  const url = 'http://localhost:3003/info';
+
+  const films:any = useRequest(url);
+
   return (
     <>
       <Head>
@@ -19,11 +25,11 @@ export default function Home() {
       </Head>
       <Suspense fallback={<div>Loading...</div>}>
       <main>
-        <Header />
+        <Hero />
+        <Subscribe /> 
 
-
-        <FilmList/>
-        <Subscribe />        
+        <FilmList films = {films}/>
+              
       </main>
       </Suspense>
     </>

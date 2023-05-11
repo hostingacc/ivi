@@ -6,7 +6,7 @@ import { cutText } from '../functions/cutText';
 interface ShowMoreTextProps {
   text: string;
   length: number;
-  buttonText: string;
+  buttonText?: string;
   color?: string,
   useDangerouslySetInnerHTML?: boolean;
   
@@ -32,11 +32,11 @@ const ShowMoreText = ({
   return (
     <>
       {useDangerouslySetInnerHTML ? (
-        <div dangerouslySetInnerHTML={{ __html: displayedText }}  style={{ color: 'rgba(255,255,255,.78)', textAlign: 'left' }}/>
+        <div dangerouslySetInnerHTML={{ __html: displayedText }}  style={{ color: 'rgba(255,255,255,.78)', textAlign: 'left',whiteSpace: 'normal'}}/>
       ) : (
         <MyText text={displayedText} align={'left'} color={color}/>
       )}
-      {!showFullText && text.length > length &&  (
+      {!showFullText && text.length > length &&  buttonText &&(
       <Button sx={{color:'grey'}} onClick={handleShowMore}>{buttonText}</Button>
       )}
     </>

@@ -17,55 +17,34 @@ import {
 import MyTooltip from "./content/MyTooltip";
 import MyTitle from "./content/myTitle";
 
+import Slider from "./features/slider";
+
 import FilmName from "./content/filmName";
+import Film from "./film";
 
-const FilmList = () => {
+const FilmList = ({films}) => {
 
-    const url = 'http://localhost:3003/info';
-
-    const films:any = useRequest(url);
+    const SliderContent = films?.rows.map((film) => <Film key={film.id} film={film} />);
+   
 
     return(
         <Container maxWidth={false} sx={{ width: '1240px' }}>
             <Box sx={{  mt: '10rem', mb:'10rem' }}>
                 <MyTitle text="Все фильмы"/>
 
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', mt:'1rem'}}>
-                    {films?.rows.map((film:any)=>{
-                        return(
-                            <Box key={film.id} sx={{width:'10.8rem'}}>
-                                <Link
-                                    href={{
-                                    pathname: `/filmPage/${film.id}`,
-                                    query: {
-                                        id:film.id,
-                                    },
-                                    }}>
-                                <Box className="hoverImage">
-                                    <Image
-                                        src={film.posterUrlPreview}
-                                        alt="постер фильма"
-                                        width={153}
-                                        height={235}
-                                    />
-                                    <Box className="hoverContent" sx={{width:'100%', height:'100%',padding:'1rem'}}>
-                                        <FormattedRating rating={film.ratingKinopoisk} smallDecimal={true}/>
+               {/*  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', mt:'1rem'}}>  */}
+                {/* <Container maxWidth={false} sx={{ width: '1240px', mb: '1rem', paddingLeft: '0 !important', height:'20rem', display:'flex', alignItems:'center', overflowX:'hidden'  }}> */}
+                    {/* <Slider  content={SliderContent} itemsCount={SliderContent?.length} itemsToShow={6} containerWidth={74.2} itemWidth={9.499}/> */}
+               {/*  </Container> */}
 
-                                        <Stack spacing={1} sx={{ right: '2rem', top: '1rem', position: 'absolute' }}>
-                                            <MyTooltip content={<BookmarkBorderOutlined />} text={'Смотреть позже'}/>
-                                            <MyTooltip content={<AutoFixHighOutlined />} text={'Похожее'}/>
-                                            <MyTooltip content={<StarBorderPurple500Outlined />} text={'Уже смотрел, оценить'}/>
-                                            <MyTooltip content={<DoNotDisturbAltOutlined />} text={'Не нравится такое'}/>                           
-                                        </Stack>
-                                        
-                                    </Box>
-                                </Box>
-                                <FilmName nameRu={film.nameRu} nameEn={film.nameEn} align="left"/>
-                            </Link>
-                        </Box>
-                        )
-                    })}
-            </Box>
+                <Stack direction='row' flexWrap='wrap'>
+                    {films?.rows.map((film) => (
+                        <Film key={film.id} film={film} />
+                    ))}
+                </Stack>
+             
+
+                {/* </Box> */}
         </Box>
     </Container>
     )
