@@ -71,7 +71,13 @@ const FiltersList = () => {
                 />
                 {showGenres && (
                 <Box sx={{ position: 'absolute', top: '100%', zIndex: 1 }}>
-                  <DropDown 
+                  <DropDown
+                      height='auto'
+                      padding={'1rem'}
+                      margin={'0.3rem'}
+                      borderRadius={0}
+                      backgroundColor="##312b45"
+                      onMouseLeave={true}
                    isOpen = {showGenres} 
                     content={
                     <DropDownFiltersContent 
@@ -96,7 +102,13 @@ const FiltersList = () => {
                 {showCountries && (
                     <Box sx={{ position: 'absolute', top: '100%', zIndex: 1 }}>
                       <DropDown 
+                        height='auto'
+                        padding={'1rem'}
+                        margin={'0.3rem'}
+                        borderRadius={0}
+                        backgroundColor="##312b45"
                         isOpen = {showCountries} 
+                        onMouseLeave={true}
                         content={
                         <DropDownFiltersContent 
                           content={moviesStore.countries}

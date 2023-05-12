@@ -1,4 +1,4 @@
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box,  Stack } from '@mui/material';
 import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import HistoryIcon from '@mui/icons-material/History';
@@ -6,16 +6,13 @@ import CelebrationIcon from '@mui/icons-material/Celebration';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import ResetTvIcon from '@mui/icons-material/ResetTv';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
-import { observer } from 'mobx-react-lite';
 import React from 'react'
-import Link from 'next/link';
 import MyLink from '../../navigation/myLink';
 import MyButton from '../../buttons/myButton';
+import TileItem from '../tileItem';
+import MyText from '@/components/content/myText';
 
-import { userStore } from '@/store/userStore';
-
-
-const ProfileDropDownContent = observer(() => {
+const ProfileDropDownContent = () => {
 
 
     return (
@@ -47,135 +44,15 @@ const ProfileDropDownContent = observer(() => {
                     gap: "20px",
                 }}>
                     <Stack direction={"row"} alignItems={"center"} gap={"20px"}>
-                        <Box sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "flex-start",
-                            justifyContent: "space-between",
-                            padding: "15px",
-                            background: "#312b45",
-                            width: "180px",
-                            height: "120px",
-                            borderRadius: "10px"
-                        }}>
-                            <SubscriptionsIcon sx={{ color: "rgba(255,255,255,.48)" }} />
-                            <Typography sx={{
-                                fontSize: "16px",
-                                color: "white",
-                                fontWeight: "700"
-                            }}>Покупки</Typography>
-                        </Box>
-                        <Box sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "flex-start",
-                            justifyContent: "space-between",
-                            padding: "15px",
-                            background: "#312b45",
-                            width: "180px",
-                            height: "120px",
-                            borderRadius: "10px"
-                        }}>
-                            <BookmarkIcon sx={{ color: "rgba(255,255,255,.48)" }} />
-                            <Typography sx={{
-                                fontSize: "16px",
-                                color: "white",
-                                fontWeight: "700"
-                            }}>Смотреть позже</Typography>
-                        </Box>
-                        <Box sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "flex-start",
-                            justifyContent: "space-between",
-                            padding: "15px",
-                            background: "#312b45",
-                            width: "180px",
-                            height: "120px",
-                            borderRadius: "10px"
-                        }}>
-                            <HistoryIcon sx={{ color: "rgba(255,255,255,.48)" }} />
-                            <Typography sx={{
-                                fontSize: "16px",
-                                color: "white",
-                                fontWeight: "700"
-                            }}>История Просмотров</Typography>
-                        </Box>
-                        <Box sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "flex-start",
-                            justifyContent: "space-between",
-                            padding: "15px",
-                            background: "#312b45",
-                            width: "180px",
-                            height: "120px",
-                            borderRadius: "10px"
-                        }}>
-                            <CelebrationIcon sx={{ color: "rgba(255,255,255,.48)" }} />
-                            <Typography sx={{
-                                fontSize: "16px",
-                                color: "white",
-                                fontWeight: "700"
-                            }}>Подписки</Typography>
-                        </Box>
+                        <TileItem text={'Покупки'} icon={<SubscriptionsIcon sx={{ color: "rgba(255,255,255,.48)" }} />}/>
+                        <TileItem text={'Смотреть позже'} icon={<BookmarkIcon sx={{ color: "rgba(255,255,255,.48)" }} />}/>
+                        <TileItem text={'История просмотров'} icon={<HistoryIcon sx={{ color: "rgba(255,255,255,.48)" }} />}/>
+                        <TileItem text={'Подписки'} icon={<CelebrationIcon sx={{ color: "rgba(255,255,255,.48)" }} />}/>
                     </Stack>
                     <Stack direction={"row"} alignItems={"center"} gap={"20px"}>
-                        <Box sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "flex-start",
-                            justifyContent: "space-between",
-                            padding: "15px",
-                            background: "#312b45",
-                            width: "180px",
-                            height: "120px",
-                            borderRadius: "10px"
-                        }}>
-                            <WorkspacePremiumIcon sx={{ color: "rgba(255,255,255,.48)" }} />
-                            <Typography sx={{
-                                fontSize: "16px",
-                                color: "white",
-                                fontWeight: "700"
-                            }}>Актвация <br />
-                                сертификата</Typography>
-                        </Box>
-                        <Box sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "flex-start",
-                            justifyContent: "space-between",
-                            padding: "15px",
-                            background: "#312b45",
-                            width: "180px",
-                            height: "120px",
-                            borderRadius: "10px"
-                        }}>
-                            <ResetTvIcon sx={{ color: "rgba(255,255,255,.48)" }} />
-                            <Typography sx={{
-                                fontSize: "16px",
-                                color: "white",
-                                fontWeight: "700"
-                            }}>Вход по коду</Typography>
-                        </Box>
-                        <Box sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "flex-start",
-                            justifyContent: "space-between",
-                            padding: "15px",
-                            background: "#312b45",
-                            width: "180px",
-                            height: "120px",
-                            borderRadius: "10px"
-                        }}>
-                            <CreditCardIcon sx={{ color: "rgba(255,255,255,.48)" }} />
-                            <Typography sx={{
-                                fontSize: "16px",
-                                color: "white",
-                                fontWeight: "700"
-                            }}>Способы оплаты</Typography>
-                        </Box>
+                        <TileItem text={'Активация сертификата'} icon={<WorkspacePremiumIcon sx={{ color: "rgba(255,255,255,.48)" }} />}/>
+                        <TileItem text={'Вход по коду'} icon={<ResetTvIcon sx={{ color: "rgba(255,255,255,.48)" }} />}/>
+                        <TileItem text={'Способы оплаты'} icon={<CreditCardIcon sx={{ color: "rgba(255,255,255,.48)" }} />}/>
                     </Stack>
                 </Box>
                 <Box sx={{
@@ -193,13 +70,17 @@ const ProfileDropDownContent = observer(() => {
                         gap: "10px",
                         bottom: "0"
                     }}>
-                        <Link href="https://www.ivi.ru/profile/settings" style={{ color: "white" }}>Настройки</Link>
-                        <Link href="https://ask.ivi.ru/?_gl=1*e80bdd*_ga*MTc1MTU2NTg0LjE2ODEzODYwOTI.*_ga_GETQ4387MJ*MTY4Mjk0OTcwNS4yMi4xLjE2ODI5NjgwMjQuNTguMC4w" style={{ color: "white" }}>Помощь</Link>
+                        <MyLink link={'https://www.ivi.ru/profile/settings'} content={
+                            <MyText text={'Настройки'}/>
+                        }/>
+                        <MyLink link={'https://ask.ivi.ru/?_gl=1*e80bdd*_ga*MTc1MTU2NTg0LjE2ODEzODYwOTI.*_ga_GETQ4387MJ*MTY4Mjk0OTcwNS4yMi4xLjE2ODI5NjgwMjQuNTguMC4w'} content={
+                            <MyText text={'Помощь'}/>
+                        }/>
                     </Box>
                 </Box>
             </Box>
 
         </Box>
     )
-})
+}
 export default ProfileDropDownContent;

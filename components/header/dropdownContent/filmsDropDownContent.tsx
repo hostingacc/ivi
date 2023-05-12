@@ -36,7 +36,7 @@ const FilmsDropDownContent = () => {
 
     
     return(
-        <Box>
+        <Box sx={{p:'0 1rem'}}>
             <Box sx={{mt:'0.1rem'}}>
                 <Hr/>
             </Box>

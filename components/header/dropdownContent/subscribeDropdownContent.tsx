@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { observer } from 'mobx-react-lite';
 import MyLink from '../../navigation/myLink';
 import MyButton from '../../buttons/myButton';
+import TileItem from '../tileItem';
 
 const SubscribeDropdownContent = observer(() => {
     return (
@@ -19,7 +20,7 @@ const SubscribeDropdownContent = observer(() => {
             zIndex: "1000",
 
             margin: "0 auto",
-          
+            
             background: "#1f1b2e",
             top: "84px",
             borderTop: "1px solid rgba(255,255,255,.2)",
@@ -47,108 +48,34 @@ const SubscribeDropdownContent = observer(() => {
                     margin: "30px 0 30px 0"
                 }}>
                     <Stack direction={"row"} alignItems={"center"} gap={"20px"}>
-                        <Box sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "flex-start",
-                            justifyContent: "space-between",
-                            padding: "15px",
-                            background: "#312b45",
-                            width: "220px",
-                            height: "130px",
-                            borderRadius: "10px"
-                        }}>
-                            <VideocamIcon sx={{ color: "rgba(255,255,255,.48)" }} />
-                            <Typography sx={{
-                                fontSize: "18px",
-                                color: "white",
-                                fontWeight: "700"
-                            }}>Новинки сериалов<br />
-                                и фильмов</Typography>
-                        </Box>
-                        <Box
-                            sx={{
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "flex-start",
-                                justifyContent: "space-between",
-                                padding: "15px",
-                                background: "#312b45",
-                                width: "460px",
-                                height: "130px",
-                                borderRadius: "10px"
-                            }}>
-                            <CreateNewFolderIcon sx={{ color: "rgba(255,255,255,.48)" }} />
-                            <Typography sx={{
-                                fontSize: "18px",
-                                color: "white",
-                                fontWeight: "700"
-                            }}>Еженедельное пополнение каталога<br />
-                                фильмами и сериалами со всего мира</Typography>
-                        </Box>
+                        <TileItem 
+                            text={'Новинки сериалов и фильмов'}
+                            icon={<VideocamIcon sx={{ color: "rgba(255,255,255,.48)" }} /> }
+                            width={'13.75rem'}
+                        />
+                        <TileItem  
+                            text={'Еженедельное пополнение каталога фильмами и сериалами со всего мира'}
+                            icon={<VideocamIcon sx={{ color: "rgba(255,255,255,.48)" }} /> }
+                            width={'28.75rem'}
+                        />
                     </Stack>
                     <Stack direction={"row"} alignItems={"center"} gap={"20px"}>
-                        <Box
-                            sx={{
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "flex-start",
-                                justifyContent: "space-between",
-                                padding: "15px",
-                                background: "#312b45",
-                                width: "220px",
-                                height: "130px",
-                                borderRadius: "10px"
-                            }}>
-                            <ExtensionOffIcon sx={{ color: "rgba(255,255,255,.48)" }} />
-                            <Typography sx={{
-                                fontSize: "18px",
-                                color: "white",
-                                fontWeight: "700"
-                            }}>Фильмы и сериалы<br />
-                                без рекламы</Typography>
-                        </Box>
-                        <Box
-                            sx={{
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "flex-start",
-                                justifyContent: "space-between",
-                                padding: "15px",
-                                background: "#312b45",
-                                width: "220px",
-                                height: "130px",
-                                borderRadius: "10px"
-                            }}>
-                            <DevicesIcon sx={{ color: "rgba(255,255,255,.48)" }} />
-                            <Typography sx={{
-                                fontSize: "18px",
-                                color: "white",
-                                fontWeight: "700"
-                            }}>Семейный аккаунт<br />
-                                на 5 устройствах</Typography>
-                        </Box>
-                        <Box
-                            sx={{
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "flex-start",
-                                justifyContent: "space-between",
-                                padding: "15px",
-                                background: "#312b45",
-                                width: "220px",
-                                height: "130px",
-                                borderRadius: "10px"
-                            }}>
-                            <FileDownloadIcon sx={{ color: "rgba(255,255,255,.48)" }} />
-                            <Typography sx={{
-                                fontSize: "18px",
-                                color: "white",
-                                fontWeight: "700"
-                            }}>Загрузка на<br />
-                                мобильные<br />
-                                устройства</Typography>
-                        </Box>
+                        <TileItem 
+                            text={'Фильмы и сериалы без рекламы'}
+                            icon={<ExtensionOffIcon sx={{ color: "rgba(255,255,255,.48)" }} />}
+                            width={'13.75rem'}
+                        />
+                        <TileItem 
+                            text={'Семейный аккаунт на 5 устройствах'}
+                            icon={<DevicesIcon sx={{ color: "rgba(255,255,255,.48)" }} />}
+                            width={'13.75rem'}
+                        
+                        />
+                        <TileItem 
+                            text={'Загрузка на мобильные устройства'}
+                            icon={<FileDownloadIcon sx={{ color: "rgba(255,255,255,.48)" }} />}
+                            width={'13.75rem'}
+                        />
                     </Stack>
                 </Box>
                 <Box sx={{

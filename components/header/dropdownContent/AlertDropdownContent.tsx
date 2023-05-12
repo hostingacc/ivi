@@ -1,15 +1,14 @@
 import { Box, Typography } from '@mui/material'
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import React from 'react'
-import dropdown from '@/store/Dropdown';
 import { observer } from 'mobx-react-lite';
 
-const AlertDropdown = observer(() => {
+const AlertDropdownContent = observer(() => {
     return (
         <Box sx={{
             position: "absolute",
             zIndex: "1000",
-            width: "1220px",
+            width:'75rem',
             margin: "0 auto",
             height: "280px",
             background: "#1f1b2e",
@@ -22,7 +21,6 @@ const AlertDropdown = observer(() => {
             justifyContent: "center"
 
         }}
-            onMouseLeave={() => { dropdown.changeHandlerAlert(false) }}
         >
             <Box sx={{
                 display: "flex",
@@ -38,4 +36,4 @@ const AlertDropdown = observer(() => {
     )
 })
 
-export default AlertDropdown
+export default AlertDropdownContent;

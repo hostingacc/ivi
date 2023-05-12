@@ -5,6 +5,7 @@ import { FilmProps } from "@/pages/filmPage/[id]";
 const useRequest = (url: string | undefined, method: string = 'GET', body: any = null) => {
   const [data, setData] = useState<any | null>(null);
 
+
   useEffect(() => {
     if (!url) {
       return;
@@ -23,7 +24,6 @@ const useRequest = (url: string | undefined, method: string = 'GET', body: any =
         const result = await response.json();
 
         if (response.ok) {
-
           setData(result);
         } else {
           // handle error

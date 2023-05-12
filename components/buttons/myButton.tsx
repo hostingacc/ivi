@@ -12,14 +12,17 @@ interface ButtonProps{
     width?:string;
     size?: string;
     id?:any;
+    fontColor?:string;
+    startIcon?:any
 }
 
 
-const MyButton = ({id ,color = '#1f1b2e', hoverColor = color, text, smallText, size = '0.93rem', icon, func, width = '196px'}:ButtonProps) => {
+const MyButton = ({id ,color = '#1f1b2e', hoverColor = color, fontColor='#fff', text, smallText, size = '0.93rem', icon, func, width = '196px', startIcon}:ButtonProps) => {
 
     
     return(
         <Button
+            startIcon={startIcon}
             id={id}
             onClick={func}
             variant="contained"
@@ -29,10 +32,11 @@ const MyButton = ({id ,color = '#1f1b2e', hoverColor = color, text, smallText, s
                         textTransform: 'none',
                         backgroundColor: color,
                         borderColor: color,
-                        borderWidth: '1px',
+                        borderWidth: color === 'transparent' ? 0 : '1px',
                         borderRadius: '0.5rem',
                         height:'40px',
-                        width: icon ? undefined : width,
+                        width,
+                        boxShadow: color === 'transparent' ? 0 : undefined,
                         paddingLeft: icon ? '1rem' : 0,
                         paddingRight: icon ? '1rem' : 0,
                         '&:hover':  {
@@ -61,7 +65,7 @@ const MyButton = ({id ,color = '#1f1b2e', hoverColor = color, text, smallText, s
                             {smallText}
                         </Typography>
                         )}
-                    <MyText id={id} text={text} color='#fff' size={size}/>
+                    <MyText id={id} text={text} color={fontColor} size={size} hover={'#fff'}/>
                     </Box>
         </Button> 
     )

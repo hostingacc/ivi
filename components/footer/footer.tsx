@@ -1,9 +1,9 @@
-import { Box, Grid, List, Button, Typography, Link, SvgIcon, ListItem, Container } from '@mui/material';
+import { Box, Grid,  Button, Link,  Container } from '@mui/material';
 import { Mail, Phone} from "@mui/icons-material";
+import MyLink from '../navigation/myLink';
 
 import FooterLine from './footerLine';
 import FooterTitle from './footerTitle';
-import MyLink from '../navigation/myLink';
 import SmallButton from '../buttons/smallButton';
 import MyButton from '../buttons/myButton';
 import MyText from '../content/myText';
@@ -15,6 +15,7 @@ import Hr from '../content/hr';
 import { useTranslation } from 'react-i18next';
 import '../translate/i18next';
 import MyList from '../content/myList';
+import TranslateButton from '../translateButton/translateButton';
 
 const Footer = () => {
     const { t } = useTranslation();
@@ -125,6 +126,8 @@ const Footer = () => {
                         <Box width={252} marginTop={'20px'}>
                             <MyText text={t('Смотрите фильмы, сериалы и мультфильмы без рекламы')} align={'center'}/>
                         </Box>
+                        <TranslateButton />
+                        <MyLink link={'/admin'} fontWeight={700} content={'Админка'}/>
                     </Box>
                 </Grid>    
             </Grid>

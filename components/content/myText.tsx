@@ -5,9 +5,10 @@ import { TextProps } from '../interfaces/textProps';
 interface MyTextProps extends TextProps{
   text: string | number | null;
   id?:any;
+  hover?:string;
 }
 
-const MyText = ({ id,text, align, color = 'rgba(255,255,255,.48)', weight = 400, size = '0.91rem', line = '20px' }: MyTextProps) => {
+const MyText = ({ id,text, align, color = 'rgba(255,255,255,.48)', weight = 400, size = '0.91rem', line = '20px', hover= 'none' }: MyTextProps) => {
 
   return (
     <Typography
@@ -19,6 +20,10 @@ const MyText = ({ id,text, align, color = 'rgba(255,255,255,.48)', weight = 400,
         fontSize: size,
         lineHeight: line,
         fontStyle: 'normal',
+        '&:hover':  {
+          color:hover
+          
+      },
     }}
   >
     {text}
