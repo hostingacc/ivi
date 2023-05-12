@@ -6,7 +6,7 @@ import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { observer } from 'mobx-react-lite';
-import navbar from "./../../store/MobileNavBar"
+import navbar from "../../store/MobileNavBar"
 import Link from 'next/link';
 
 const MobileNavBar = observer(() => {

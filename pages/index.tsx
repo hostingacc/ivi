@@ -1,8 +1,6 @@
 import Head from 'next/head';
-import { Header } from '@/components/header/Header';
-import Footer from '@/components/footer/footer';
 import React, {Suspense} from 'react'
-import { useTranslation } from 'react-i18next'
+
 import '../components/translate/i18next'
 import FilmList from '@/components/filmList';
 import Subscribe from '@/components/header/Subscribe'
@@ -12,7 +10,6 @@ import Hero from '@/components/hero';
 export default function Home() {
 
   const url = 'http://localhost:3003/info';
-
   const films:any = useRequest(url);
 
   return (

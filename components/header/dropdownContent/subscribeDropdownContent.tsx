@@ -5,22 +5,21 @@ import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import DevicesIcon from '@mui/icons-material/Devices';
 import ExtensionOffIcon from '@mui/icons-material/ExtensionOff';
 import React from 'react'
-import DropdownSlider from './DropdownSlider';
-import DropdownSliderToRight from './DropdownSliderToRight';
+import DropdownSlider from '../../navbar/DropdownSlider';
+import DropdownSliderToRight from '../../navbar/DropdownSliderToRight';
 import Link from 'next/link';
-import dropdown from '@/store/Dropdown';
 import { observer } from 'mobx-react-lite';
-import MyLink from '../navigation/myLink';
-import MyButton from '../buttons/myButton';
+import MyLink from '../../navigation/myLink';
+import MyButton from '../../buttons/myButton';
 
-const SubscribeDropdown = observer(() => {
+const SubscribeDropdownContent = observer(() => {
     return (
         <Box sx={{
             position: "absolute",
             zIndex: "1000",
-            width: "1220px",
+
             margin: "0 auto",
-            height: "520px",
+          
             background: "#1f1b2e",
             top: "84px",
             borderTop: "1px solid rgba(255,255,255,.2)",
@@ -29,7 +28,6 @@ const SubscribeDropdown = observer(() => {
             display: "flex",
             gap: "100px"
         }}
-            onMouseLeave={() => { dropdown.changeHandlerSubscribe(false) }}
         >
             <Box>
                 <Typography sx={{
@@ -182,4 +180,4 @@ const SubscribeDropdown = observer(() => {
         </Box>
     )
 })
-export default SubscribeDropdown
+export default SubscribeDropdownContent;

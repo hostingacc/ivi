@@ -1,5 +1,5 @@
 import Footer from "../footer/footer";
-import MobileNavBar from "../navbar/MobileNavBar";
+import MobileNavBar from "../navigation/MobileNavBar";
 import Header from "../header/Header";
 import { ReactNode } from 'react'
 

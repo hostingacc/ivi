@@ -4,7 +4,7 @@ import useRequest from "@/hooks/useRequest";
 import { Box, Container, Stack } from "@mui/material";
 import { useRouter } from "next/router";
 import MyText from "@/components/content/myText";
-import Hr from "@/components/hr";
+import Hr from "@/components/content/hr";
 import FilmName from "@/components/content/filmName";
 import FormattedRating from "@/components/content/formattedRating";
 import MyButton from "@/components/buttons/myButton";

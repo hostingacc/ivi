@@ -1,32 +1,8 @@
 import { makeAutoObservable } from 'mobx';
 import { runInAction } from 'mobx';
-import router, { useRouter } from 'next/router';
+import router from 'next/router';
 
-interface UniqueValue {
-    id: number;
-    nameRu: string;
-    nameEn: string | null;
-  }
 
-interface Film {
-    id: number;
-    kinopoiskId: number;
-    nameRu: string;
-    nameEn: string;
-    ratingKinopoiskVoteCount: number;
-    ratingKinopoisk: number;
-    year: number;
-    type: string;
-    filmLength: number;
-    posterUrl: string;
-    posterUrlPreview: string;
-    genres: UniqueValue[];
-    countries: UniqueValue[];
-  }
-  
-  interface Films {
-    rows: Film[];
-  }
   interface Filter {
     id: string;
     nameRu: string;
@@ -59,7 +35,6 @@ interface Film {
       this.fetchData();
       this.fetchFilters(this.genresUrl, 'genres');
       this.fetchFilters(this.countriesUrl, 'countries');
-      /* this.fetchFilters(this.actorsUrl, 'actors'); */
     }
 
     resetFilters() {
@@ -108,7 +83,6 @@ interface Film {
       if (hasFilters || this.selectedFilters.minRating) {
         const filterStrings = Object.keys(this.selectedFilters)
           .map((key) => {
-            // Handle minRating separately
             if (key === 'minRating') {
               return `${key}=${this.selectedFilters[key]}`;
             }

@@ -10,7 +10,7 @@ import MyText from '../content/myText';
 
 import React from 'react';
 import mouthpiece from '../../public/icons/mouthpiece.svg'
-import Hr from '../hr';
+import Hr from '../content/hr';
 
 import { useTranslation } from 'react-i18next';
 import '../translate/i18next';

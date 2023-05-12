@@ -13,15 +13,19 @@ import { useTranslation } from 'react-i18next';
 import '../translate/i18next';
 import MyLink from '../navigation/myLink';
 import MyButton from '../buttons/myButton';
-import Link from 'next/link';
 import DropDown from '../features/dropDown';
-import DropDownContent from './dropDownContent';
+
+import ProfileDropDownContent from './dropdownContent/profileDropDownContent';
+import SubscribeDropdownContent from './dropdownContent/subscribeDropdownContent';
+import FilmsDropDownContent from './dropdownContent/filmsDropDownContent';
 
 
 const Header = observer(() => {
     const { t } = useTranslation();
 
-    const [showDropdown, setShowDropdown] = useState(false); 
+    const [showFilmsDropdown, setShowFilmsDropdown] = useState(true);
+    const [showProfileDropDown, setShowProfileDropDown] = useState(false);
+    const [showSubscribeDropDown, setShowSubscribeDropdown] = useState(false); 
 
     return (
         <Container maxWidth={false} sx={{ width: '1240px', mb:'1rem' }}>
@@ -64,15 +68,13 @@ const Header = observer(() => {
                     justifyContent: "center",
                     position: "relative",
                 }}>
-                
                     <MyLink link={'/'} content={logo()}/>
-                   
                 </Box>
                 <List
                     sx={{
                         display: "flex",
                         alignItems: "center",
-                        marginLeft: "60px",
+                        marginLeft: "1.6rem",
                         "& .css-1p823my-MuiListItem-root": {
                             width: "auto",
                             padding: "8px 8px",
@@ -82,44 +84,38 @@ const Header = observer(() => {
                             display: "none"
                         }
                     }}>
-                    <ListItem  onMouseOver={() => { setShowDropdown(false) }}> 
-                        <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
-                        {t('Что нового')}
-                        </Typography>
+                    <ListItem  onMouseOver={() => { setShowFilmsDropdown(false) }}> 
+                        <MyLink link={'/movies/all'} fontWeight={700} content={t('Что нового')}/>   
                     </ListItem>
-                    <ListItem onMouseEnter={() => { setShowDropdown(true) }}>
-                        <MyLink link={'/movies/all'} fontWeight={700} content={t('Фильмы')}/> 
-
-            
+                    <ListItem onMouseEnter={() => { setShowFilmsDropdown(true) }}>
+                        <MyLink link={'/movies/all'} fontWeight={700} content={t('Фильмы')}/>   
                     </ListItem>
-                    <ListItem onMouseEnter={() => { setShowDropdown(false) }}>
-                        <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
-                        {t('Сериалы')}
-                        </Typography>
+                    <ListItem onMouseEnter={() => { setShowFilmsDropdown(false) }}>
+                        <MyLink link={'/movies/all'} fontWeight={700} content={t('Сериалы')}/>   
                     </ListItem>
                     <ListItem onMouseEnter={() => { dropdown.changeHandler(true) }}>
-                        <Typography sx={{ color: "rgba(255,255,255,.48)", fontSize: "15px", fontWeight: "700" }}>
-                        {t('Мультфильмы')}
-                        </Typography>
+                        <MyLink link={'/movies/all'} fontWeight={700} content={t('Мультфильмы')}/> 
                     </ListItem>
                     <ListItem
                             onMouseOver={() => { dropdown.changeHandler(false) }}
                             onMouseEnter={() => { dropdown.changeHandlerSubscribe(false) }}
                         >
-
-
                         <MyLink link={'/admin'} fontWeight={700} content={'Админка'}/>
                     </ListItem>
                 </List>
             </Stack>
             <Stack direction={"row"} alignItems={"center"} justifyContent={"center"}  gap={"1vw"}>
 
-                <MyLink 
-                    link='/subscribe'
-                    content={
+                <Box  
+                    onMouseEnter={() => { setShowSubscribeDropdown(true) }}>
+                    <MyLink 
+                        link='/subscribe'
+                        content={
                         <MyButton text={'Смотреть 30 дней бесплатно'} width={'13.3rem'} size={'0.83rem'} color={'#ea003d'}/>
-                    }
-                />
+                            }
+                    />
+                </Box>
+             
 
                 <Button
                     startIcon={<SearchIcon sx={{ color: "rgba(255,255,255,.48)" }} />}
@@ -144,9 +140,12 @@ const Header = observer(() => {
                         }
                     }}
                 >
-                    <NotificationsIcon sx={{ color: "rgba(255,255,255,.48)" }} />
+                    <NotificationsIcon
+                        sx={{ color: "rgba(255,255,255,.48)" }}
+                    />
                 </IconButton>
                 <Button
+                    onMouseEnter={() => { setShowProfileDropDown(true) }}
                     variant="outlined"
                     sx={{
                         width: "48px",
@@ -166,13 +165,41 @@ const Header = observer(() => {
                 <TranslateButton />
             </Stack>
             </Box>
-            {showDropdown && (
+            {showProfileDropDown && (
                 <Box sx={{ position: 'absolute', width:'100%',top: 0, zIndex: 1}}>
                     <DropDown
-                        content={<DropDownContent/>}
-                        isOpen={showDropdown}
-                        setIsOpen={setShowDropdown}
+                        content={<ProfileDropDownContent/>}
+                        isOpen={showProfileDropDown}
+                        setIsOpen={setShowProfileDropDown}
                         height='28rem'
+                        padding={'5rem 1rem'}
+                        margin={0}
+                        borderRadius='1rem'
+                        backgroundColor="#1f1b2e"
+                        onMouseLeave={true}
+                    />
+            </Box>)}
+            {showFilmsDropdown && (
+                <Box sx={{ position: 'absolute', width:'100%',top: 0, zIndex: 1}}>
+                    <DropDown
+                        content={<FilmsDropDownContent/>}
+                        isOpen={showFilmsDropdown}
+                        setIsOpen={setShowFilmsDropdown}
+                        height='28rem'
+                        padding={'5rem 1rem'}
+                        margin={0}
+                        borderRadius='1rem'
+                        backgroundColor="#1f1b2e"
+                        onMouseLeave={true}
+                    />
+            </Box>)}
+            {showSubscribeDropDown && (
+                <Box sx={{ position: 'absolute', width:'100%',top: 0, zIndex: 1}}>
+                    <DropDown
+                        content={<SubscribeDropdownContent/>}
+                        isOpen={showSubscribeDropDown}
+                        setIsOpen={setShowSubscribeDropdown}
+                        height='32.5rem'
                         padding={'5rem 1rem'}
                         margin={0}
                         borderRadius='1rem'

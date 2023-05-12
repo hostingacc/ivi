@@ -8,8 +8,6 @@ import { observer } from "mobx-react-lite";
 import { moviesStore } from "@/store/moviesStore";
 import { useRouter } from "next/router";
 
-import { toJS } from 'mobx';
-import MyButton from "@/components/buttons/myButton";
 
 
 
@@ -19,7 +17,6 @@ const Movies = observer(() => {
   const router = useRouter();
   const genreName  = router.query;
 
-/*   console.log(genreName.slug) */
   
 useEffect(() => {
   if (genreName.slug) {
@@ -37,7 +34,6 @@ useEffect(() => {
       }
     }
   }
-  console.log(toJS(moviesStore.selectedFilters));
 }, [genreName]);
 
 

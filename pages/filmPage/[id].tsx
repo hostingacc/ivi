@@ -5,7 +5,7 @@ import { Container, Box } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import FilmPersons from "@/components/filmPage/filmPersons";
-import MyBreadcrumbs from "@/components/myBreadcrumbs";
+import MyBreadcrumbs from "@/components/navigation/myBreadcrumbs";
 import FilmDevices from "@/components/filmPage/filmDevices";
 import FilmReviews from "@/components/filmPage/filmReviews";
 import FilmModal from "@/components/filmPage/filmModal";
@@ -50,11 +50,8 @@ const FilmCard = () => {
     
   
     const film = useRequest(url);
-    const video = useRequest(videoUrl);
     const comments = useRequest(commentsUrl);
     const persons = useRequest(personsUrl);
-
-/*     const [modalIsOpen, setModalIsOpen] = useState(false); */
 
     return(
       <>

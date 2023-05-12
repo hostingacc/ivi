@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import { Box, Divider } from '@mui/material';
 import CommentInfo from './commentInfo';
-import ShowMoreText from '../showMoreText';
+import ShowMoreText from '../features/showMoreText';
 import CommentAddForm from './commentAddForm';
 import { cutText } from '../../functions/cutText';
 import MyText from '../content/myText';

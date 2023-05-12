@@ -7,17 +7,22 @@ import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import ResetTvIcon from '@mui/icons-material/ResetTv';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import { observer } from 'mobx-react-lite';
-import dropdown from '@/store/Dropdown';
 import React from 'react'
 import Link from 'next/link';
+import MyLink from '../../navigation/myLink';
+import MyButton from '../../buttons/myButton';
 
-const UserDropdown = observer(() => {
+import { userStore } from '@/store/userStore';
+
+
+const ProfileDropDownContent = observer(() => {
+
+
     return (
         <Box
             sx={{
                 position: "absolute",
                 zIndex: "1000",
-                width: "1220px",
                 margin: "0 auto",
                 height: "340px",
                 background: "#1f1b2e",
@@ -28,7 +33,7 @@ const UserDropdown = observer(() => {
                 display: "flex",
                 gap: "100px"
             }}
-            onMouseLeave={() => { dropdown.changeHandlerUser(false) }}
+     
         >
             <Box sx={{
                 display: "flex",
@@ -178,21 +183,9 @@ const UserDropdown = observer(() => {
                     padding: "20px",
                     position: "relative"
                 }}>
-                    <Link href="/profile"> <Button
-                        sx={{
-                            color: "white",
-                            fontSize: "14px",
-                            background: "#00b0ff",
-                            textTransform: "capitalize",
-                            height: "36px",
-                            width: "300px",
-                            borderRadius: "8px",
-                            fontWeight: "600"
-                        }}
-                    >
-                        Войти или зарегистрироваться
-                    </Button>
-                    </Link>
+                    <MyLink link='/profile' content={
+                        <MyButton color='#ea003d' text='Войти или зарегистрироваться' width='18rem'/>
+                    }/>
                     <Box sx={{
                         position: "absolute",
                         display: "flex",
@@ -209,4 +202,4 @@ const UserDropdown = observer(() => {
         </Box>
     )
 })
-export default UserDropdown;
+export default ProfileDropDownContent;

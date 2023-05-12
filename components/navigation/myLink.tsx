@@ -1,5 +1,6 @@
 import NextLink from 'next/link';
 import MuiLink from '@mui/material/Link';
+import { Typography } from '@mui/material';
 
 interface MyLinkProps {
   color?: string;
@@ -44,16 +45,20 @@ const MyLink = ({
         },
       };
 
-  const LinkContent = (
+/*   const LinkContent = (
     <MuiLink sx={linkStyles}>{content}</MuiLink>
-  );
+  ); */
 
   return isInternal ? (
     <NextLink href={link} passHref>
-      {LinkContent}
+      <Typography sx={linkStyles}>
+        {content}
+      </Typography> 
     </NextLink>
   ) : (
-    <MuiLink href={link}>{LinkContent}</MuiLink>
+    <MuiLink href={link} sx={linkStyles}>
+      {content}
+    </MuiLink>
   );
 };
 

@@ -27,6 +27,7 @@ const FilmList = ({films}) => {
     const SliderContent = films?.rows.map((film) => <Film key={film.id} film={film} />);
    
 
+
     return(
         <Container maxWidth={false} sx={{ width: '1240px' }}>
             <Box sx={{  mt: '10rem', mb:'10rem' }}>

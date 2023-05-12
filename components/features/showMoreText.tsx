@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import { useState } from 'react';
-import MyText from './content/myText';
-import { cutText } from '../functions/cutText';
+import MyText from '../content/myText';
+import { cutText } from '../../functions/cutText';
 
 interface ShowMoreTextProps {
   text: string;
