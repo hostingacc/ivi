@@ -22,15 +22,10 @@ const CommentsList = ({filmId ,comments, showChildComments = true, setModalIsOpe
           <Box sx={{
             display: showChildComments ? 'block' : 'flex',
             flexDirection: 'row',
-            gap: showChildComments ? 0 : '2rem',
-            
-            }}>
-
+            gap: showChildComments ? 0 : '1rem',    
+          }}>
             {!showChildComments ? (
-           
-                                                                            /* А может сделать 100%, там же есть контейнер, а увеличивать слайд и делать 200 */
-                <Slider itemsCount={SliderContent?.length} itemsToShow={4} content={SliderContent} containerWidth={75.99875} itemWidth={17.8} />
-       
+                <Slider itemsCount={SliderContent?.length} itemsToShow={4} content={SliderContent} containerWidth={75.99875} itemWidth={17.8} />      
             ) : (
               topLevelComments?.map((comment: any) => (
                 <Comment
@@ -43,7 +38,6 @@ const CommentsList = ({filmId ,comments, showChildComments = true, setModalIsOpe
                 />
               ))
             )}
-          {/* ПОПРАВИТЬ, УБРАТЬ ПОВТОРЕНИЕ*/}
           </Box>
 
         </Box>

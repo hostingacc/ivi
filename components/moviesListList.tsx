@@ -19,17 +19,17 @@ import MyTitle from "./content/myTitle";
 
 import Slider from "./features/slider";
 
-import FilmName from "./content/filmName";
-import Film from "./film";
+import FilmName from "./content/translationDynamicData";
+import Film from "./movie";
 
-const FilmList = ({films}) => {
+const MoviesList = ({films}) => {
 
     const SliderContent = films?.rows.map((film) => <Film key={film.id} film={film} />);
    
 
 
     return(
-        <Container maxWidth={false} sx={{ width: '1240px' }}>
+
             <Box sx={{  mt: '10rem', mb:'10rem' }}>
                 <MyTitle text="Все фильмы"/>
 
@@ -38,7 +38,7 @@ const FilmList = ({films}) => {
                     {/* <Slider  content={SliderContent} itemsCount={SliderContent?.length} itemsToShow={6} containerWidth={74.2} itemWidth={9.499}/> */}
                {/*  </Container> */}
 
-                <Stack direction='row' flexWrap='wrap'>
+                <Stack direction='row' flexWrap='wrap' justifyContent='flex-start' gap={2.5} sx={{mt:'1rem'}}>
                     {films?.rows.map((film) => (
                         <Film key={film.id} film={film} />
                     ))}
@@ -47,8 +47,8 @@ const FilmList = ({films}) => {
 
                 {/* </Box> */}
         </Box>
-    </Container>
+
     )
 };
 
-export default FilmList;
+export default MoviesList;

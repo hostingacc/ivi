@@ -4,7 +4,6 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { observer } from 'mobx-react-lite';
 import logo from '../../public/logo/reposition_iviLogoPlateRounded.svg'
-import TranslateButton from '../translateButton/translateButton';
 import { useTranslation } from 'react-i18next';
 import '../translate/i18next';
 import MyLink from '../navigation/myLink';
@@ -95,9 +94,6 @@ const Header = observer(() => {
                             }
                     />
                 </Box>
-
-             
-
                 <Button
                     startIcon={<SearchIcon sx={{ color: "rgba(255,255,255,.48)" }} />}
                     sx={{

@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 
 import { modalStore } from "@/store/modalStore";
 
-const FilmReviews = ({comments}:any) => {
+const MovieReviews = ({comments}:any) => {
 
     const count = countComments(comments)
 
@@ -35,4 +35,4 @@ const FilmReviews = ({comments}:any) => {
     )
 }
 
-export default FilmReviews;
+export default MovieReviews;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FilmProps } from "@/pages/filmPage/[id]";
+import { MovieProps } from "@/pages/movie/[id]";
 
 
 const useRequest = (url: string | undefined, method: string = 'GET', body: any = null) => {

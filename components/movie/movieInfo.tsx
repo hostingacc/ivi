@@ -1,11 +1,11 @@
 import { Box, Typography, Stack, Button } from "@mui/material";
-import FilmTime from "./filmTime";
-import FilmAgeLimit from "./filmAgeLimit";
+import FilmTime from "./movieTime";
+import FilmAgeLimit from "./movieAgeLimit";
 import ShowMoreText from "../features/showMoreText";
 import MyText from "../content/myText";
-import GenresAndCountriesList from "./filmGenresAndCountriesList";
-import FilmLanguageInfo from "./filmLanguageInfo";
-import FilmName from "../content/filmName";
+import GenresAndCountriesList from "./GenresAndCountriesList";
+import FilmLanguageInfo from "./movieLanguageInfo";
+import FilmName from "../content/translationDynamicData";
 import Medallion from "../content/medallion";
 import MyButton from "../buttons/myButton";
 
@@ -24,7 +24,7 @@ interface FilmInfoProps {
     rating:number;
   }
 
-const FilmInfo = ({  
+const MovieInfo = ({  
     nameRu,
     nameEn,
     year,
@@ -97,4 +97,4 @@ const FilmInfo = ({
       </Box>
     )
 }
-export default FilmInfo;
+export default MovieInfo;

@@ -6,7 +6,7 @@ interface FilmTimeProps {
   minutes: number;
 }
 
-const FilmTime = ({ minutes }:FilmTimeProps) => {
+const MovieTime = ({ minutes }:FilmTimeProps) => {
 
   const hours = Math.floor(minutes / 60);
   const remainingMinutes = minutes % 60;
@@ -16,4 +16,4 @@ const FilmTime = ({ minutes }:FilmTimeProps) => {
   );
 };
 
-export default FilmTime;
+export default MovieTime;

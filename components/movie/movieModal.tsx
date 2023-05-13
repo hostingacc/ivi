@@ -1,13 +1,13 @@
 import {Button, Modal, Box, Container, Divider, Stack} from '@mui/material';
 import { useState } from 'react';
 import CommentsList from '../comments/commentsList';
-import PersonsList from './filmPersonsList';
+import PersonsList from './moviePersonsList';
 import { modalStore } from '@/store/modalStore';
 import { observer } from 'mobx-react-lite';
 import MyTitle from '../content/myTitle';
 
 
-const FilmModal = observer(({filmId ,persons, comments }: any) => {
+const MovieModal = observer(({filmId ,persons, comments }: any) => {
 
 
 
@@ -58,4 +58,4 @@ const FilmModal = observer(({filmId ,persons, comments }: any) => {
   );
 });
 
-export default FilmModal;
+export default MovieModal;

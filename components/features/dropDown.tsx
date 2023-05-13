@@ -1,6 +1,5 @@
 import { Box, Fade } from "@mui/material";
-import MyButton from "../buttons/myButton";
-import { moviesStore } from "@/store/moviesStore";
+
 import { useEffect, useRef } from "react";
 import { dropdownStore } from '@/store/DropdownStore';
 import { observer } from "mobx-react-lite";
@@ -41,8 +40,8 @@ const DropDown = observer(({
       if (
         dropDownRef.current &&
         !dropDownRef.current.contains(event.target) &&
-        event.target.id !== 'genresButton' &&
-        event.target.id !== 'countriesButton'
+        !event.target.closest('#Жанры') &&
+        !event.target.closest('#Страны')
       ) {
         close();
       }
@@ -68,6 +67,7 @@ const DropDown = observer(({
           left:'50%',
           transform: 'translateX(-50%)',
           height,
+          zIndex:100
         }}
       >
         {content}

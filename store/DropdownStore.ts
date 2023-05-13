@@ -6,6 +6,9 @@ class DropdownStore {
       profile: false,
       subscribe: false,
       alert: false,
+      genres:false,
+      countries:false,
+      actors:false,
     };
   
     constructor() {
@@ -17,6 +20,9 @@ class DropdownStore {
         this.closeAllDropdowns();
       }
       this.dropdowns[name] = value;
+    }
+    toggleShowDropdown(name) {
+      this.dropdowns[name] = !this.dropdowns[name];
     }
   
     closeAllDropdowns() {

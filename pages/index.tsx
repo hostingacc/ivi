@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import React, {Suspense} from 'react'
-
+import { Container } from '@mui/material';
 import '../components/translate/i18next'
-import FilmList from '@/components/filmList';
+import FilmList from '@/components/moviesListList';
 import Subscribe from '@/components/header/Subscribe'
 import useRequest from '@/hooks/useRequest';
 import Hero from '@/components/hero';
@@ -23,9 +23,11 @@ export default function Home() {
       <Suspense fallback={<div>Loading...</div>}>
       <main>
         <Hero />
-        <Subscribe /> 
+        <Container maxWidth={false} sx={{ width: '1240px', mb:'1rem' }}>
+          <Subscribe /> 
+          <FilmList films = {films}/>
+        </Container>
 
-        <FilmList films = {films}/>
               
       </main>
       </Suspense>

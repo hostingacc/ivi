@@ -4,7 +4,7 @@ import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import SubtitlesIcon from '@mui/icons-material/Subtitles';
 import MyText from "../content/myText";
 
-const FilmLanguageInfo = () => {
+const MovieLanguageInfo = () => {
     return (
       <Stack direction='row' spacing={1} justifyContent="center" alignItems="center" sx={{mt:'1rem'}}>
    
@@ -23,4 +23,4 @@ const FilmLanguageInfo = () => {
     );
 };
 
-export default FilmLanguageInfo;
+export default MovieLanguageInfo;

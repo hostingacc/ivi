@@ -1,10 +1,8 @@
-import useRequest from "@/hooks/useRequest";
-
 
 import Image from "next/image";
 import Link from "next/link";
 import FormattedRating from "./content/formattedRating";
-import { Box, Container, Stack} from '@mui/material';
+import { Box, Stack} from '@mui/material';
 
 import {
     BookmarkBorderOutlined,
@@ -13,28 +11,28 @@ import {
     DoNotDisturbAltOutlined,
   } from '@mui/icons-material';
 import MyTooltip from "./content/MyTooltip";
-import FilmName from "./content/filmName";
+import TranslationDynamicData from "./content/translationDynamicData";
 
-const Film = ({film}) => {
+const Movie = ({film}) => {
 
     return(
         <Box key={film.id} sx={{width:'9.5rem', }}>
                     <Link
                         href={{
-                        pathname: `/filmPage/${film.id}`,
+                        pathname: `/movie/${film.id}`,
                         query: {
                             id:film.id,
                         },
                         }}>
-                    <Box className="hoverImage" sx={{position:'relative', width:'100%', height:'14.5rem'}}>
+                    <Box className="hoverImage" sx={{position:'relative', width:'100%', height:'14.5rem', borderRadius:'0.5rem', overflow:'hidden'}}>
                         <Image
                             src={film.posterUrlPreview}
                             alt="постер фильма"
                             fill
                         />
                         <Box className="hoverContent" sx={{width:'100%', height:'100%',padding:'1rem'}}>
-                            <FormattedRating rating={film.ratingKinopoisk} smallDecimal={true}/>
-                            <Stack spacing={1} sx={{ right: '2rem', top: '1rem', position: 'absolute' }}>
+                            <FormattedRating rating={film.ratingKinopoisk} smallDecimal={true} color="#fff"/>
+                            <Stack spacing={1} sx={{ right: '1rem', top: '1rem', position: 'absolute' }}>
                                 <MyTooltip content={<BookmarkBorderOutlined />} text={'Смотреть позже'}/>
                                 <MyTooltip content={<AutoFixHighOutlined />} text={'Похожее'}/>
                                 <MyTooltip content={<StarBorderPurple500Outlined />} text={'Уже смотрел, оценить'}/>
@@ -42,10 +40,12 @@ const Film = ({film}) => {
                             </Stack>   
                         </Box>
                     </Box>
-                <FilmName nameRu={film.nameRu} nameEn={film.nameEn} align="left"/>
+                
+                <TranslationDynamicData nameRu={film.nameRu} nameEn={film.nameEn} weight={700} color="#fff" align="left"/>
+                {/* Здесь должен быть компонент showmoretext, но нужно его поправить, чтобы он мог принимать английский текст */}
             </Link>
         </Box>   
     )
 }
 
-export default Film;
+export default Movie;

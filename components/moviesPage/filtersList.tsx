@@ -1,26 +1,10 @@
 import { Box, Stack, Slider } from "@mui/material";
-import MyButton from "../buttons/myButton";
 import { moviesStore } from "@/store/moviesStore";
-import { useEffect, useState, useRef } from "react";
-import DropDown from "../features/dropDown";
-import DropDownFiltersContent from "./dropDownFiltersContent";
-import MyInput from "../features/myInput";
-import MyText from "../content/myText";
+import { useState, useRef } from "react";
 
-
-
-
-
+import MoviesDropDownList from "./moviesDropDownList";
 
 const FiltersList = () => {
-    const [showGenres, setShowGenres] = useState(false);
-    const [showCountries, setShowCountries] = useState(false);
-
-    const [actorsInput, setActorsIpnut] = useState('');
-    const [showActors, setShowActors] = useState(false);
-
-    const [isLoading, setIsLoading] = useState(false);
-
     const [value, setValue] = useState(0);
 
     const sliderRef = useRef<HTMLSpanElement>(null);
@@ -33,20 +17,6 @@ const FiltersList = () => {
       moviesStore.handleMinRatingChange(value, 'minRating')
     }
 
-
-    /* Аналогично сделать слайдер компонентом и добавить количество голосов */
-
-    useEffect(() => {
-      if (actorsInput) {
-        setIsLoading(true);
-        moviesStore.fetchPersons(actorsInput).then(() => {
-          setIsLoading(false);
-          setShowActors(true);
-        });
-      } else {
-        setShowActors(false);
-      }
-    }, [actorsInput]);
   
     return (
         <>
@@ -59,84 +29,7 @@ const FiltersList = () => {
             }}
           >
             <Stack direction="row" gap={2}>
-            <Box sx={{ position: 'relative' }}>
-                <MyButton
-                    id={'genresButton'}
-                    text="Жанры"
-                    color="#312b45"
-                    func={() => {
-                      setShowGenres(!showGenres);
-                      setShowCountries(false);
-                    }}
-                />
-                {showGenres && (
-                <Box sx={{ position: 'absolute', top: '100%', zIndex: 1 }}>
-                  <DropDown
-                      height='auto'
-                      padding={'1rem'}
-                      margin={'0.3rem'}
-                      borderRadius={0}
-                      backgroundColor="##312b45"
-                      onMouseLeave={true}
-                   isOpen = {showGenres} 
-                    content={
-                    <DropDownFiltersContent 
-                      content={moviesStore.genres}
-                      type={'genres'}
-                    />}
-                    setIsOpen={setShowGenres}
-                  />
-                  </Box>
-                )}
-              </Box>
-              <Box sx={{ position: 'relative' }}>
-                <MyButton
-                id={'countriesButton'}
-                  text="Страны"
-                  color="#312b45"
-                  func={() => {
-                    setShowCountries(!showCountries);
-                    setShowGenres(false);
-                  }}
-                />
-                {showCountries && (
-                    <Box sx={{ position: 'absolute', top: '100%', zIndex: 1 }}>
-                      <DropDown 
-                        height='auto'
-                        padding={'1rem'}
-                        margin={'0.3rem'}
-                        borderRadius={0}
-                        backgroundColor="##312b45"
-                        isOpen = {showCountries} 
-                        onMouseLeave={true}
-                        content={
-                        <DropDownFiltersContent 
-                          content={moviesStore.countries}
-                          type={'countries'}
-                        />}
-                      setIsOpen={setShowCountries}
-                  />
-                     </Box>
-                )}
-             
-              </Box>
-              <Box sx={{ position: 'relative' }}>
-                <MyInput label="фильтр по Актерам" setState={setActorsIpnut}/>
-                {isLoading && <MyText text={'загрузка'}/>}
-                  {showActors && (
-                            <Box sx={{ position: 'absolute', top: '100%', zIndex: 1 }}>
-                            <DropDown 
-                              isOpen = {showActors} 
-                              content={
-                              <DropDownFiltersContent 
-                                content={moviesStore.actors}
-                                type={'actors'}
-                              />}
-                            setIsOpen={setShowActors}
-                        />
-                          </Box>
-                  )}
-                </Box>
+              <MoviesDropDownList/>
                 <Box sx={{width:'10rem'}}>
                   <Slider
                     ref={sliderRef}

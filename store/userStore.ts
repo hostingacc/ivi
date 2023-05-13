@@ -21,7 +21,6 @@ class UserStore{
     setUser(user: User){
         this.user = user
 
-        console.log(this.user)
     }
 
     async login(login, email:string, password: string) {

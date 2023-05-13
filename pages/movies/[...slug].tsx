@@ -1,4 +1,4 @@
-import FilmList from "@/components/filmList";
+import FilmList from "@/components/moviesListList";
 import { Box, Container } from "@mui/material";
 
 import FiltersList from "@/components/moviesPage/filtersList";
@@ -40,12 +40,11 @@ useEffect(() => {
 
 
     return(
-        <Box>
             <Container maxWidth={false} sx={{ width: '1240px', mb:'1rem' }}>
                 <FiltersList/>
                 <FilmList films = {moviesStore.films}/> 
             </Container>
-        </Box>
+        
     )
 });
 

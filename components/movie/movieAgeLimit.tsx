@@ -1,11 +1,11 @@
 import React from 'react';
 import MyText from '../content/myText';
 
-interface FilmAgeLimitProps {
+interface AgeLimitProps {
   text: string;
 }
 
-const FilmAgeLimit = ({ text }:FilmAgeLimitProps) => {
+const AgeLimit = ({ text }:AgeLimitProps) => {
 
   const numberOnly = text.replace(/\D/g, '');
 
@@ -14,4 +14,4 @@ const FilmAgeLimit = ({ text }:FilmAgeLimitProps) => {
   ) 
 };
 
-export default FilmAgeLimit;
+export default AgeLimit;

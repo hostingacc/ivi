@@ -12,10 +12,7 @@ interface CommentInfoProps{
 }
 
 const CommentInfo = ({name,time,id, showChildComments}:CommentInfoProps) => {
-
     //id нужен для того, чтобы сделать ссылку
-
-   
     return(
         <Box
           sx={{

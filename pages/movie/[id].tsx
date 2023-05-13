@@ -1,17 +1,17 @@
-import FilmInfo from "@/components/filmPage/filmInfo";
-import FilmTrailer from "@/components/filmPage/filmTrailer";
+import MovieInfo from "@/components/movie/movieInfo";
+import MovieTrailer from "@/components/movie/movieTrailer";
 import useRequest from "@/hooks/useRequest";
 import { Container, Box } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import FilmPersons from "@/components/filmPage/filmPersons";
+import MoviePersons from "@/components/movie/moviePersons";
 import MyBreadcrumbs from "@/components/navigation/myBreadcrumbs";
-import FilmDevices from "@/components/filmPage/filmDevices";
-import FilmReviews from "@/components/filmPage/filmReviews";
-import FilmModal from "@/components/filmPage/filmModal";
+import MovieDevices from "@/components/movie/devices";
+import MovieReviews from "@/components/movie/movieReviews";
+import MovieModal from "@/components/movie/movieModal";
 
 
-export interface FilmProps {
+export interface MovieProps {
     movies: any;
     person: any;
     ratingKinopoisk: number;
@@ -73,9 +73,9 @@ const FilmCard = () => {
       {film && (
         <>
         <Box sx={{display:'flex', position:"relative"}}>
-          <FilmTrailer />
+          <MovieTrailer />
     
-          <FilmInfo
+          <MovieInfo
             nameRu={film.nameRu}
             nameEn={film.nameEn}
             year={film.year}
@@ -90,7 +90,7 @@ const FilmCard = () => {
             
           /> 
         </Box>
-        <FilmPersons
+        <MoviePersons
             persons={persons}
             nameRu={film.nameRu}
             nameEn={film.nameEn}
@@ -100,8 +100,8 @@ const FilmCard = () => {
             id={film.id}
            
           /> 
-          <FilmReviews comments={comments}/>
-          <FilmDevices 
+          <MovieReviews comments={comments}/>
+          <MovieDevices 
             nameRu={film.nameRu}
             nameEn={film.nameEn}
             poster={film.posterUrlPreview}
@@ -110,7 +110,7 @@ const FilmCard = () => {
         </>
       )}
     </>
-    <FilmModal persons={persons} comments={comments} filmId={id}/>
+    <MovieModal persons={persons} comments={comments} filmId={id}/>
     </Container>
     
     </>

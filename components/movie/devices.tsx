@@ -3,26 +3,29 @@ import MyText from "../content/myText";
 import MyTitle from "../content/myTitle";
 import MyButton from "../buttons/myButton";
 import Image from "next/image";
-import FilmName from "../content/filmName";
+import TranslationDynamicData from "../content/translationDynamicData";
 
+interface DevicesProps{
+    nameRu:string;
+    nameEn:string;
+    poster:string;
+}
 
-const FilmDevices = ({nameRu,nameEn, poster}:any) => {
+const Devices = ({nameRu,nameEn, poster}:DevicesProps) => {
 
 
     return(
         <Box sx={{display:'flex',justifyContent:'space-between', mt:'6rem', mb:'6rem'}}>
             <Box>
                 <Stack direction='row' alignItems='center'>
-                    <MyTitle text={`Смотреть «`}  isButton={false}/>
-                    <FilmName nameRu={nameRu} nameEn={nameEn} color={"#fff"} weight={700} size={'1.5rem'}/>
-                    <MyTitle text={'» на всех устройствах'} isButton={false}/>
+                    <TranslationDynamicData nameRu={`Смотреть «${nameRu}» на всех устройствах`} nameEn={`Смотреть «${nameEn}» на всех устройствах`} color={"#fff"} weight={700} line={"28px"} align={'left'} size={'1.5rem'}/>
                 </Stack>
-              
-              {/* Расширить mytext, добавив возможность использовать заголовки */}
-
+                <Box sx={{mt:'1rem'}}>
                 <MyText
                     text={'Приложение доступно для скачивания на iOS, Android, SmartTV и приставках'}
                     align={"left"}/>
+                </Box>
+ 
                     
                 <Box sx={{mt:'2rem'}}>
                     <MyButton color={'#c10032'} text="Подключить устройство"/>
@@ -68,4 +71,4 @@ const FilmDevices = ({nameRu,nameEn, poster}:any) => {
     )
 }
 
-export default FilmDevices;
+export default Devices;

@@ -4,7 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import MyButton from "../buttons/myButton";
 import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
 
-const FilmTrailer = () => {
+const MovieTrailer = () => {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -102,5 +102,5 @@ const FilmTrailer = () => {
     )
 }
 
-export default FilmTrailer;
+export default MovieTrailer;
 

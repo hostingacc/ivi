@@ -3,17 +3,17 @@ import { ReactElement } from "react";
 import MyText from '../content/myText';
 
 interface ButtonProps{
-    color?:string;
-    hoverColor?:string;
-    text:string;
-    smallText?:string;
+    color?: string;
+    hoverColor?: string;
+    text: string;
+    smallText?: string;
     icon?: ReactElement;
-    func?:any;
-    width?:string;
+    func?: () => void;
+    width?: string;
     size?: string;
-    id?:any;
-    fontColor?:string;
-    startIcon?:any
+    id?: string;
+    fontColor?: string;
+    startIcon?: ReactElement;
 }
 
 

@@ -5,7 +5,7 @@ import { Box, Container, Stack } from "@mui/material";
 import { useRouter } from "next/router";
 import MyText from "@/components/content/myText";
 import Hr from "@/components/content/hr";
-import FilmName from "@/components/content/filmName";
+import FilmName from "@/components/content/translationDynamicData";
 import FormattedRating from "@/components/content/formattedRating";
 import MyButton from "@/components/buttons/myButton";
 import BackButton from "@/components/navigation/backButton";

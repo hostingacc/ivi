@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import Image from "next/image";
 import MyText from "../content/myText";
-import FilmModal from "./filmModal";
+import FilmModal from "./movieModal";
 import MyTitle from "../content/myTitle";
 
 import { observer } from "mobx-react-lite";
