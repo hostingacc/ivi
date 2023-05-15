@@ -6,6 +6,7 @@ import { useState} from "react";
 
 import MyText from "@/components/content/myText";
 import MyInput from "@/components/features/myInput";
+import { Movies } from "@/components/interfaces/movie";
 
 const Admin = () => {
 
@@ -14,7 +15,7 @@ const Admin = () => {
   
     const url = 'http://localhost:3003/info?&keywords=';
     const [keywords, setKeywords] = useState('');
-    const [data, setData] = useState<any | null>(null);
+    const [data, setData] = useState<Movies | null>(null);
   
     const result = useRequest(`${url}${keywords}`);
   
@@ -34,11 +35,11 @@ const Admin = () => {
             <MyInput label={"Введите название фильма"} setState={setKeywords}/>
             <MyButton func={submit} text="Найти"/>
             
-            {data?.rows.map(film=>{
+            {data?.rows.map(movie=>{
                 return(
-                    <Box key={film.id}>
-                        <MyText text={film.nameRu}/>
-                        <MyText text={film.nameEn}/>
+                    <Box key={movie.id}>
+                        <MyText text={movie.nameRu}/>
+                        <MyText text={movie.nameEn}/>
                     </Box>
                 )
             })}

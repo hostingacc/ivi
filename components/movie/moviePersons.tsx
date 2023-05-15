@@ -3,13 +3,27 @@ import Link from "next/link";
 
 import Image from "next/image";
 import MyText from "../content/myText";
-import FilmModal from "./movieModal";
 import MyTitle from "../content/myTitle";
 
 import { observer } from "mobx-react-lite";
 import { modalStore } from "@/store/modalStore";
+import { Person } from "../interfaces/persons";
 
-const FilmPersons = observer(({persons}:any) => {
+
+interface moviePersonsProps {
+    persons: Person[];
+    nameRu: string;
+    nameEn: string;
+    year: number;
+    countries: string[];
+    comments: Comment[];
+    id: number;
+}
+
+const moviePersons = observer(({persons}:moviePersonsProps) => {
+
+    console.log(persons)
+
 
     const openModal = () => {
         modalStore.showCreators()
@@ -20,7 +34,7 @@ const FilmPersons = observer(({persons}:any) => {
         <Box>
             <MyTitle text={"Актёры и создатели"} isButton={true} onClick={openModal}/>
             <Stack direction='row' justifyContent='space-between' sx={{mt:'2rem', mb:'2rem'}}>
-            {persons?.slice(0, 10).map((person:any) => {
+            {persons?.slice(0, 10).map((person) => {
                 return(
                     <Box key={person.id} sx={{display:'flex', flexDirection:'column',alignItems:'center'}}>
                         <Link
@@ -59,4 +73,4 @@ const FilmPersons = observer(({persons}:any) => {
     );
 });
 
-export default FilmPersons;
+export default moviePersons;

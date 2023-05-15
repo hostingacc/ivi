@@ -1,11 +1,12 @@
 import NextLink from 'next/link';
 import MuiLink from '@mui/material/Link';
 import { Typography } from '@mui/material';
+import React from 'react';
 
 interface MyLinkProps {
   color?: string;
   link: string;
-  content: any;
+  content: React.ReactElement | string;
   fontSize?: string;
   fontWeight?: number;
   gradient?: boolean;

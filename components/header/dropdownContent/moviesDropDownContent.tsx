@@ -7,12 +7,12 @@ import DropdownSliderToRight from "../../navbar/DropdownSliderToRight";
 
 
 
-const FilmsDropDownContent = () => {
+const MoviesDropDownContent = () => {
     const genresUrl = 'http://localhost:3001/movies/filters/genres';
     const countriesUrl = 'http://localhost:3001/movies/filters/countries';
 
-    const genres:any = useRequest(genresUrl);
-    const countries:any = useRequest(countriesUrl);
+    const genres = useRequest(genresUrl);
+    const countries = useRequest(countriesUrl);
     const features = [
         {nameRu: "Подборки"},
         {nameRu:"Рейтинг"},
@@ -61,4 +61,4 @@ const FilmsDropDownContent = () => {
     )
 }
 
-export default FilmsDropDownContent;
+export default MoviesDropDownContent;

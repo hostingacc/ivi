@@ -1,15 +1,19 @@
-import {Button, Modal, Box, Container, Divider, Stack} from '@mui/material';
-import { useState } from 'react';
+import { Modal, Box, Container, Divider, Stack} from '@mui/material';
 import CommentsList from '../comments/commentsList';
-import PersonsList from './moviePersonsList';
+import MoviePersonsList from './moviePersonsList';
 import { modalStore } from '@/store/modalStore';
 import { observer } from 'mobx-react-lite';
 import MyTitle from '../content/myTitle';
+import { Person } from '../interfaces/persons';
+import { Comment } from '../interfaces/comment';
 
+interface MovieModalProps{
+  movieId:number;
+  persons:Person[];
+  comments:Comment[]
+}
 
-const MovieModal = observer(({filmId ,persons, comments }: any) => {
-
-
+const MovieModal = observer(({movieId ,persons, comments }: MovieModalProps) => {
 
   return (
     <>
@@ -36,9 +40,9 @@ const MovieModal = observer(({filmId ,persons, comments }: any) => {
           <Box>{modalStore.content}</Box>
           <Container maxWidth={false} sx={{ width: '1203px', position: 'absolute' }}>
             {modalStore.content === 'Отзывы' ? (
-              <CommentsList /* showChildComments={true} */ filmId={filmId} comments={comments}/>
+              <CommentsList  movieId={movieId} comments={comments}/>
             ) : null}
-            {modalStore.content === 'Создатели' ? <PersonsList persons={persons} /> : null}
+            {modalStore.content === 'Создатели' ? <MoviePersonsList persons={persons} /> : null}
           </Container>
         </Box>
       </Modal>

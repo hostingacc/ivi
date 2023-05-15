@@ -70,13 +70,13 @@ const Header = observer(() => {
                             display: "none"
                         }
                     }}>
-                    <ListItem  onMouseOver={() => { dropdownStore.setShowDropdown('films', true)}}> 
+                    <ListItem  onMouseOver={() => { dropdownStore.setShowDropdown('movies', true)}}> 
                         <MyLink link={'/movies/all'} fontWeight={700} content={t('Что нового')}/>   
                     </ListItem>
-                    <ListItem onMouseOver={() => { dropdownStore.setShowDropdown('films', true)}}>
+                    <ListItem onMouseOver={() => { dropdownStore.setShowDropdown('movies', true)}}>
                         <MyLink link={'/movies/all'} fontWeight={700} content={t('Фильмы')}/>   
                     </ListItem>
-                    <ListItem onMouseOver={() => { dropdownStore.setShowDropdown('films', true)}}>
+                    <ListItem onMouseOver={() => { dropdownStore.setShowDropdown('movies', true)}}>
                         <MyLink link={'/movies/all'} fontWeight={700} content={t('Сериалы')}/>   
                     </ListItem>
                     <ListItem>

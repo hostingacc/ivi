@@ -9,7 +9,7 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import React from 'react'
 import MyLink from '../../navigation/myLink';
 import MyButton from '../../buttons/myButton';
-import TileItem from '../tileItem';
+import TileItem from '../../content/tileItem';
 import MyText from '@/components/content/myText';
 
 const ProfileDropDownContent = () => {

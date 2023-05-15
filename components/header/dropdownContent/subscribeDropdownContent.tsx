@@ -11,7 +11,7 @@ import Link from 'next/link';
 import { observer } from 'mobx-react-lite';
 import MyLink from '../../navigation/myLink';
 import MyButton from '../../buttons/myButton';
-import TileItem from '../tileItem';
+import TileItem from '../../content/tileItem';
 
 const SubscribeDropdownContent = observer(() => {
     return (

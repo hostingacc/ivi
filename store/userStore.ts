@@ -27,6 +27,7 @@ class UserStore{
         try{
             const response = await AuthService.login(login, email, password);
             localStorage.setItem('token', response.data.accessToken)
+            localStorage.setItem('refreshToken', response.data.refreshToken)
             this.setAuth(true);
             this.setUser(response.data.user)
 
@@ -38,6 +39,7 @@ class UserStore{
         try{
             const response = await AuthService.registration(login, email, password);
             localStorage.setItem('token', response.data.accessToken)
+            localStorage.setItem('refreshToken', response.data.refreshToken)
             this.setAuth(true);
             this.setUser(response.data.user)
         } catch (e:any) {
@@ -56,13 +58,23 @@ class UserStore{
     }
 
     async checkAuth() {
+        const token = localStorage.getItem('refreshToken');
         try{
-            const response = await axios.get<AuthResponce>('localhost:3006/auth/refresh', {withCredentials:true})
+            const response = await axios.get<AuthResponce>('http://localhost:3006/auth/refresh', {
+            withCredentials:true,
+            
+            headers: {
+                Authorization: `Bearer ${token}`
+            }},
+            )
 
+   
+            
             localStorage.setItem('token', response.data.accessToken)
             this.setAuth(true);
             this.setUser(response.data.user)
         } catch (e:any) {
+            console.log('fffff')
             console.log(e.response?.data?.message)
         }
     }

@@ -5,7 +5,9 @@ import { dropdownStore } from "@/store/DropdownStore";
 
 const MoviesDropDownList = () => {
     const [isLoading, setIsLoading] = useState(false);
+
     const [actorsInput, setActorsIpnut] = useState('');
+    const [directorsInput, setDirectorsInput] = useState('');
 
 
     useEffect(() => {
@@ -19,7 +21,18 @@ const MoviesDropDownList = () => {
         dropdownStore.setShowDropdown('actors', false)
       }
     }, [actorsInput]);
-  
+    useEffect(() => {
+      if (directorsInput) {
+        setIsLoading(true);
+        moviesStore.fetchDirectors(directorsInput).then(() => {
+          setIsLoading(false);
+          dropdownStore.setShowDropdown('directors', true)
+        });
+      } else {
+        dropdownStore.setShowDropdown('directors', false)
+      }
+    }, [directorsInput]);
+    /* вместо этого здесь будет кастомный хук  для директоров/ актеров*/
 
 
     return(
@@ -29,7 +42,6 @@ const MoviesDropDownList = () => {
                 id="genresButton"
                 text="Жанры"
                 name="genres"
-                type="genres"
                 content={moviesStore.genres}
                 height='auto'
                 padding='1rem'
@@ -42,7 +54,6 @@ const MoviesDropDownList = () => {
                 id="countriesButton"
                 text="Страны"
                 name="countries"
-                type="countries"
                 content={moviesStore.countries}
                 height='auto'
                 padding='1rem'
@@ -54,9 +65,16 @@ const MoviesDropDownList = () => {
                 input
                 text="фильтр по Актерам"
                 name="actors"
-                type="actors"
                 content={moviesStore.actors}
                 setState={setActorsIpnut}
+                isLoading={isLoading}
+            />
+            <DropDownItem
+                input
+                text="фильтр по Режисерам"
+                name="directors"
+                content={moviesStore.directors}
+                setState={setDirectorsInput}
                 isLoading={isLoading}
             />
         </>

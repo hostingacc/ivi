@@ -13,11 +13,14 @@ const theme = createTheme({
     },
   });
 
+interface CommentAddFormProps{
+  id:number;
+  movieId:number;
+}
 
-
-const CommentAddForm = ({filmId,id}:any) => {
+const CommentAddForm = ({id, movieId}:CommentAddFormProps) => {
     const [isCommentOpen, setIsCommentOpen] = useState(false);
-  /*   const [text, setText] = useState<string>(''); */
+
 
     const [commentsData, setCommentsData] = useState({
       type: 'POSITIVE',
@@ -26,9 +29,8 @@ const CommentAddForm = ({filmId,id}:any) => {
       repliedOnComment:id
     })
 
-    console.log(filmId)
 
-    const commentClassToggle = (e:any) => {
+    const commentClassToggle = (e: { preventDefault: () => void; }) => {
 
         e.preventDefault();
         setIsCommentOpen((prev) => !prev);
@@ -59,7 +61,6 @@ const CommentAddForm = ({filmId,id}:any) => {
                         variant="outlined"
                         placeholder='введите комментарий'
                         onChange={(e)=>setCommentsData({...commentsData, description: e.target.value})}
-                        /* label="text"  убрал, потому что по какой-то причине флоат не работает */
                     />
 
                     <Box>

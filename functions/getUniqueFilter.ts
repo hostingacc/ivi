@@ -1,5 +1,5 @@
-export const getUniqueFilter = (films, property) => {
-    const unique = films?.rows
+export const getUniqueFilter = (movies, property) => {
+    const unique = movies?.rows
     .reduce(
       (acc, row) =>
         acc.concat(

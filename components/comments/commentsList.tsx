@@ -2,16 +2,24 @@ import { Box, Container} from '@mui/material';
 import Comment from './comment'
 import Slider from '../features/slider';
 
-const CommentsList = ({filmId ,comments, showChildComments = true, setModalIsOpen}:any) => {
-  const topLevelComments = comments?.filter((c:any) => c.repliedOnComment === null);
 
- const SliderContent = topLevelComments?.map((comment: any) => (
+
+interface CommentsListProps {
+  movieId?: number;
+  comments: Comment[];
+  showChildComments?: boolean;
+}
+
+const CommentsList = ({movieId = 0 ,comments, showChildComments = true}:CommentsListProps) => {
+  const topLevelComments = comments?.filter((c) => c.repliedOnComment === null);
+
+ const SliderContent = topLevelComments?.map((comment) => (
     <Comment
-      key={comment.id}
-      comment={comment}
-      allComments={comments}
-      showChildComments={false}
-      setModalIsOpen={setModalIsOpen}
+     key={comment.id}
+     comment={comment}
+     allComments={comments}
+     showChildComments={false} 
+     movieId={comment.movieId}     
     />
   ));
  
@@ -27,14 +35,13 @@ const CommentsList = ({filmId ,comments, showChildComments = true, setModalIsOpe
             {!showChildComments ? (
                 <Slider itemsCount={SliderContent?.length} itemsToShow={4} content={SliderContent} containerWidth={75.99875} itemWidth={17.8} />      
             ) : (
-              topLevelComments?.map((comment: any) => (
+              topLevelComments?.map((comment) => (
                 <Comment
-                  filmId={filmId}
+                  movieId={movieId}
                   key={comment.id}
                   comment={comment}
                   allComments={comments}
                   showChildComments={true}
-                  setModalIsOpen={setModalIsOpen}
                 />
               ))
             )}

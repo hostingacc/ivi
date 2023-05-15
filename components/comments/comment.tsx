@@ -3,26 +3,32 @@ import { Box, Divider } from '@mui/material';
 import CommentInfo from './commentInfo';
 import ShowMoreText from '../features/showMoreText';
 import CommentAddForm from './commentAddForm';
-import { cutText } from '../../functions/cutText';
-import MyText from '../content/myText';
 import Time from '../content/time';
 import { modalStore } from '@/store/modalStore';
+import { Comment } from '../interfaces/comment';
 
-
+interface CommentProps {
+    movieId: number;
+    comment: Comment;
+    allComments: Comment[]
+    depth?: number;
+    showChildComments?: boolean;
+  }
 
 const MAX_DEPTH = 15;
 
-const Comment = ({ filmId,comment, allComments, depth = 1, showChildComments = true}: any) => {
+const Comment = ({ movieId,comment, allComments, depth = 1, showChildComments = true}: CommentProps) => {
+    
     const childComments = allComments.filter(
-        (c: any) => c.repliedOnComment === comment.id
+        (c) => c.repliedOnComment === comment.id
     );
 
-    const commentRef = useRef(null);
+    const commentRef = useRef<HTMLElement | null>(null);
 
-    const moveToComment = (e:any) => {
+    const moveToComment = (e) => {
         e.stopPropagation();
         if (commentRef.current) {
-            (commentRef.current as any).scrollIntoView({ behavior: 'smooth' });
+            (commentRef.current).scrollIntoView({ behavior: 'smooth' });
         }
     };
 
@@ -76,7 +82,7 @@ const Comment = ({ filmId,comment, allComments, depth = 1, showChildComments = t
                 <Time time={comment.createdAt}/>
 
                 {showChildComments && 
-                    <CommentAddForm id={comment.id} filmId={filmId}/>
+                    <CommentAddForm id={comment.id} movieId={movieId}/>
                 }
                 
             </Box>
@@ -110,13 +116,12 @@ const Comment = ({ filmId,comment, allComments, depth = 1, showChildComments = t
                             }}/>
                             
                           
-                            {childComments.map((childComment: any) => (
+                            {childComments.map((childComment:Comment) => (
                                 <Comment
                                     key={childComment.id}
                                     comment={childComment}
                                     allComments={allComments}
-                                    depth={depth + 1}
-                                    /* showChildComments={showChildComments} */
+                                    depth={depth + 1} movieId={childComment.movieId} 
                                 />
                             ))}
                         </Box>

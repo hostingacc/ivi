@@ -3,10 +3,11 @@ import MyTitle from "../content/myTitle";
 import CommentsList from "../comments/commentsList";
 import { countComments } from "../../functions/countComments";
 import { Box } from "@mui/material";
-
 import { modalStore } from "@/store/modalStore";
 
-const MovieReviews = ({comments}:any) => {
+const MovieReviews = ({comments}) => {
+
+    console.log(comments)
 
     const count = countComments(comments)
 
@@ -15,7 +16,6 @@ const MovieReviews = ({comments}:any) => {
         modalStore.openModal();
     }
 
-    
 
     return(
         <>

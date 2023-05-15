@@ -77,7 +77,7 @@ const Hero = () => {
                                 left:'6.25rem'
                             }}>
                                 <MyLink 
-                                    link='/films'
+                                    link='/movies'
                                     content={
                                         <MyButton text='Смотреть бесплатно' color='#ea003d'/>
                                     }/>

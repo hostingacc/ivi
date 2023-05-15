@@ -1,6 +1,6 @@
 import {Box} from '@mui/material';
 import ProfileDropDownContent from './dropdownContent/profileDropDownContent';
-import FilmsDropDownContent from './dropdownContent/filmsDropDownContent';
+import MoviesDropDownContent from './dropdownContent/moviesDropDownContent';
 import SubscribeDropdownContent from './dropdownContent/subscribeDropdownContent';
 import DropDown from '../features/dropDown';
 import { dropdownStore } from '@/store/DropdownStore';
@@ -18,11 +18,11 @@ const DropDownsList = observer(() => {
                 name={'profile'}
             />
             <DropDown
-                content={<FilmsDropDownContent/>}
-                isOpen={dropdownStore.dropdowns.films}
-                setIsOpen={(value) => dropdownStore.setShowDropdown('films', value)}
+                content={<MoviesDropDownContent/>}
+                isOpen={dropdownStore.dropdowns.movies}
+                setIsOpen={(value) => dropdownStore.setShowDropdown('movies', value)}
                 onMouseLeave={true}
-                name={'films'}
+                name={'movies'}
             />
             <DropDown
                 content={<SubscribeDropdownContent/>}

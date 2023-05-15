@@ -2,26 +2,27 @@ import { makeAutoObservable } from 'mobx';
 
 class DropdownStore {
     dropdowns = {
-      films: false,
+      movies: false,
       profile: false,
       subscribe: false,
       alert: false,
       genres:false,
       countries:false,
       actors:false,
+      directors:false
     };
   
     constructor() {
       makeAutoObservable(this);
     }
   
-    setShowDropdown(name, value) {
+    setShowDropdown(name:string, value:boolean) {
       if (value) {
         this.closeAllDropdowns();
       }
       this.dropdowns[name] = value;
     }
-    toggleShowDropdown(name) {
+    toggleShowDropdown(name:string) {
       this.dropdowns[name] = !this.dropdowns[name];
     }
   

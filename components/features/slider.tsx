@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Box, IconButton,Container } from '@mui/material';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 
@@ -22,8 +22,11 @@ interface SliderProps {
     itemsToShow = 1,
   }:SliderProps) => {
     const [currentSlide, setCurrentSlide] = useState(0);
-    
-    
+    const SliderContainer = useRef(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
+
     const handlePrevClick = () => {
 
       setRemainingCount((prev) => prev + itemsToShow)
@@ -32,16 +35,11 @@ interface SliderProps {
       setCurrentSlide(currentSlide - 1)
     };
 
-
-
     const [remainingCount, setRemainingCount] = useState(itemsCount);
-    
-
-
     const [translateXValue, setTranslateXValue] = useState(`translateX(-${(currentSlide * (containerWidth - itemWidth - 1.22))}rem)`);
 
-
     useEffect(()=>{
+      console.log(remainingCount)
       setRemainingCount((prev) => prev - itemsToShow)
     },[])
 
@@ -49,33 +47,25 @@ interface SliderProps {
 
       setRemainingCount((prev) => prev - itemsToShow)
   
-      
+
       if((remainingCount + 1) < itemsToShow){
         setTranslateXValue(`translateX(-${((currentSlide ) * (containerWidth - itemWidth - 1.22)) + remainingCount * itemWidth / 2}rem)`)
-          setCurrentSlide(currentSlide  + 1);
-         
-
-         
+          setCurrentSlide(currentSlide  + 1);     
       } else {
           setCurrentSlide(currentSlide + 1);
           setTranslateXValue(`translateX(-${((currentSlide + 1) * (containerWidth - itemWidth - 1.22))}rem)`)
       }
   };
-  useEffect(()=>{
-    console.log(translateXValue)
-   },[translateXValue])
-   useEffect(()=>{
-    console.log(remainingCount)
-   },[remainingCount])
+
 
 
     return (
 
-        <Box sx={{position:'relative'}}>
+        <Box ref={SliderContainer} sx={{position:'relative'}}>
           {showArrows && (
         <IconButton
           onClick={handlePrevClick}
-          disabled={currentSlide === 0}
+     /*      disabled={currentSlide === 0} */
           sx={{
             position: 'absolute',
             top: '50%',
@@ -86,7 +76,18 @@ interface SliderProps {
           <ArrowBackIos />
         </IconButton>
       )}
-          <Container maxWidth={false} sx={{ width: `${containerWidth}rem`, mb: '1rem', paddingLeft: '0.2rem !important', paddingRight: '0.2rem !important',paddingTop:'2rem', display:'flex', alignItems:'center', overflowX:'hidden'  }}> 
+          <Container 
+          maxWidth={false}
+          sx={{
+            width: `${containerWidth}rem`,
+            mb: '1rem',
+            paddingLeft: '0.2rem !important',
+            paddingRight: '0.2rem !important',
+            paddingTop:'2rem',
+            display:'flex',
+            alignItems:'center',
+            overflowX:'hidden'  
+          }}> 
     
             <Box
               style={{

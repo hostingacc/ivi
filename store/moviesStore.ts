@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import { runInAction } from 'mobx';
 import router from 'next/router';
-
+import { Movies } from '@/components/interfaces/movie';
 
   interface Filter {
     id: string;
@@ -14,19 +14,22 @@ import router from 'next/router';
       genres: [],
       countries: [],
       actors:[],
+      directors:[],
       minRating:[],
       voteCount:[]
     };
     baseUrl = 'http://localhost:3003/info';
     genresUrl = 'http://localhost:3001/movies/filters/genres'
     countriesUrl = 'http://localhost:3001/movies/filters/countries'
-    actorsUrl = 'http://localhost:3005/persons/all?keywords='
+    actorsUrl = 'http://localhost:3005/persons/actors?keywords='
+    directorsUrl = 'http://localhost:3005/persons/directors?keywords='
 
     url = this.baseUrl;
-    films = null;
-    genres:Filter[] = [];
-    countries:Filter[] = [];
-    actors:Filter[] = [];
+    movies: Movies = {count: 0 , rows: []};
+    genres: Filter[] = [];
+    countries: Filter[] = [];
+    actors: Filter[] = [];
+    directors:Filter[] = [];
     minRating = [];
     voteCount= [];
   
@@ -42,6 +45,7 @@ import router from 'next/router';
         genres: [],
         countries: [],
         actors:[],
+        directors:[],
         minRating:[],
         voteCount:[]
       };
@@ -127,7 +131,7 @@ import router from 'next/router';
       const data = await response.json();
 
       runInAction(() => {
-        this.films = data;
+        this.movies = data;
       });
     }
 
@@ -139,6 +143,15 @@ import router from 'next/router';
 
       runInAction(() => {
         this.actors = data;
+      });
+    }
+    async fetchDirectors(keywords) {
+
+      const response = await fetch(`${this.directorsUrl}${keywords}`);
+      const data = await response.json();
+
+      runInAction(() => {
+        this.directors = data;
       });
     }
 

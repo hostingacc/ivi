@@ -4,7 +4,7 @@ import { TextProps } from '../interfaces/textProps';
 
 interface MyTextProps extends TextProps{
   text: string | number | null;
-  id?:any;
+  id?:string;
   hover?:string;
 }
 

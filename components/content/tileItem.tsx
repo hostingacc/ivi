@@ -1,14 +1,13 @@
 import { Box } from "@mui/material";
-import MyText from "../content/myText";
+import MyText from "./myText";
 
 interface TileItemProps{
-    text:any;
-    icon:any;
-    width?:any
+    text:string;
+    icon: React.ReactElement;
+    width?:string;
 }
 
 const TileItem = ({text, icon, width = '11.25rem'}:TileItemProps) => {
-
 
     return(
         <Box sx={{

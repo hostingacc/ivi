@@ -13,25 +13,25 @@ import {
 import MyTooltip from "./content/MyTooltip";
 import TranslationDynamicData from "./content/translationDynamicData";
 
-const Movie = ({film}) => {
+const Movie = ({movie}) => {
 
     return(
-        <Box key={film.id} sx={{width:'9.5rem', }}>
+        <Box key={movie.id} sx={{width:'9.5rem', }}>
                     <Link
                         href={{
-                        pathname: `/movie/${film.id}`,
+                        pathname: `/movie/${movie.id}`,
                         query: {
-                            id:film.id,
+                            id:movie.id,
                         },
                         }}>
                     <Box className="hoverImage" sx={{position:'relative', width:'100%', height:'14.5rem', borderRadius:'0.5rem', overflow:'hidden'}}>
                         <Image
-                            src={film.posterUrlPreview}
+                            src={movie.posterUrlPreview}
                             alt="постер фильма"
                             fill
                         />
                         <Box className="hoverContent" sx={{width:'100%', height:'100%',padding:'1rem'}}>
-                            <FormattedRating rating={film.ratingKinopoisk} smallDecimal={true} color="#fff"/>
+                            <FormattedRating rating={movie.ratingKinopoisk} smallDecimal={true} color="#fff"/>
                             <Stack spacing={1} sx={{ right: '1rem', top: '1rem', position: 'absolute' }}>
                                 <MyTooltip content={<BookmarkBorderOutlined />} text={'Смотреть позже'}/>
                                 <MyTooltip content={<AutoFixHighOutlined />} text={'Похожее'}/>
@@ -41,7 +41,7 @@ const Movie = ({film}) => {
                         </Box>
                     </Box>
                 
-                <TranslationDynamicData nameRu={film.nameRu} nameEn={film.nameEn} weight={700} color="#fff" align="left"/>
+                <TranslationDynamicData nameRu={movie.nameRu} nameEn={movie.nameEn} weight={700} color="#fff" align="left"/>
                 {/* Здесь должен быть компонент showmoretext, но нужно его поправить, чтобы он мог принимать английский текст */}
             </Link>
         </Box>   

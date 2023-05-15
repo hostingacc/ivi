@@ -1,13 +1,21 @@
 import { Button, Grid, Stack, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import { toJS } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import MyText from '../content/myText';
+import  { Filter } from '../interfaces/filter'
 
-const DropDownButton = observer(({ name, filters, isOpen, onClick }:any) => {
-    console.log(toJS(filters.map(e=>e.name)))
-    console.log(name)
+
+interface DropDownButtonProps{
+  name:string;
+  filters:Filter[];
+  isOpen:boolean;
+  onClick: any;
+}
+
+const DropDownButton = observer(({ name, filters, isOpen, onClick }:DropDownButtonProps) => {
+
+  
   return (
     <Button id={name} onClick={onClick} sx={{height:'8rem', width:'18rem', textTransform:'capitalize'}}>
       <Grid container>
@@ -20,7 +28,7 @@ const DropDownButton = observer(({ name, filters, isOpen, onClick }:any) => {
             <Stack direction='row' gap={1} flexWrap='wrap'>
                 {filters.map(e=>{
                     return(
-                        <MyText text={e.name}/>
+                        <MyText text={e.nameRu}/>
                     )
                 })}
                  </Stack>

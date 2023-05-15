@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MovieProps } from "@/pages/movie/[id]";
+
 
 
 const useRequest = (url: string | undefined, method: string = 'GET', body: any = null) => {
@@ -10,13 +10,16 @@ const useRequest = (url: string | undefined, method: string = 'GET', body: any =
     if (!url) {
       return;
     }
+  
 
 
-    const fetchData = async () => {
+    const fetchData = async () => {  
+      const token = localStorage.getItem('token');
       try {
         const response = await fetch(url, {
           method,
           headers: {
+            Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
           },
           body: body ? JSON.stringify(body) : null

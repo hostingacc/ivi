@@ -7,13 +7,29 @@ import { dropdownStore } from "@/store/DropdownStore";
 import DropDownButton from "../buttons/dropDownButton";
 import { moviesStore } from "@/store/moviesStore";
 import { observer } from "mobx-react-lite";
+import { Filter } from "../interfaces/filter";
+import { Dispatch, SetStateAction } from "react";
 
+interface DropDownItemProps {
+  id?: string;
+  text: string;
+  name: string;
+  content: Filter[];
+  setState?: Dispatch<SetStateAction<string>> | undefined
+  isLoading?: boolean;
+  input?: boolean;
+  button?: boolean;
+  height?: string | undefined;
+  padding?: string | number;
+  margin?: string | number;
+  borderRadius?: string | number;
+  backgroundColor?: string;
+}
 
 const DropDownItem = observer(({
     id,
     text,
     name,
-    type,
     content,
     setState,
     isLoading,
@@ -24,7 +40,7 @@ const DropDownItem = observer(({
     margin,
     borderRadius,
     backgroundColor
-  }:any) => {
+  }:DropDownItemProps) => {
     return (
       <Box sx={{ position: 'relative', zIndex:'2' }}>
         {button && (
@@ -48,7 +64,7 @@ const DropDownItem = observer(({
             content={
               <DropDownFiltersContent
                 content={content}
-                type={type}
+                type={name}
               />
             }
             setIsOpen={(value) => dropdownStore.setShowDropdown(name, value)}

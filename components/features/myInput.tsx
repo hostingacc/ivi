@@ -1,15 +1,17 @@
 import {TextField} from "@mui/material";
+import { Dispatch, SetStateAction } from "react";
+
 
 interface MyInputProps{
     label:string;
-    setState: (value:string) => void;
+    setState:  Dispatch<SetStateAction<string>> | undefined
 }
 
 const MyInput = ({label, setState}:MyInputProps) => {
 
     return(
         <TextField
-        onChange={(e) => setState(e.target.value)}
+        onChange={(e) => setState ? setState(e.target.value) : undefined}
         sx={{
             '& .MuiOutlinedInput-root': {
             '& fieldset': {

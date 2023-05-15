@@ -3,7 +3,6 @@ import MovieTrailer from "@/components/movie/movieTrailer";
 import useRequest from "@/hooks/useRequest";
 import { Container, Box } from "@mui/material";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import MoviePersons from "@/components/movie/moviePersons";
 import MyBreadcrumbs from "@/components/navigation/myBreadcrumbs";
 import MovieDevices from "@/components/movie/devices";
@@ -11,35 +10,10 @@ import MovieReviews from "@/components/movie/movieReviews";
 import MovieModal from "@/components/movie/movieModal";
 
 
-export interface MovieProps {
-    movies: any;
-    person: any;
-    ratingKinopoisk: number;
-    nameRu: string;
-    nameEn: string;
-    year: number;
-    filmLength: string;
-    ratingAgeLimits: string;
-    genres: string[];
-    countries: string[];
-    type: string;
-    description: string;
-    id:number;
-    posterUrlPreview:string;
-
-  }
-  interface Props{
-    film: any;
-    comments?: any;
-    persons?: any;
-  }
-
-
-const FilmCard = () => {
+const movieCard = () => {
 
     const router = useRouter()
-    const { id } = router.query;
- 
+    const id = Array.isArray(router.query.id) ? Number(router.query.id[0]) : Number(router.query.id);
   
     const url = id ? 'http://localhost:3001/movies/' + id : undefined;
     const videoUrl = id ? url + '/videos' : undefined;
@@ -47,11 +21,10 @@ const FilmCard = () => {
 
     const personsUrl = id ? 'http://localhost:3005/persons/' + id : undefined;
   
-    
-  
-    const film = useRequest(url);
+    const movie = useRequest(url);
     const comments = useRequest(commentsUrl);
     const persons = useRequest(personsUrl);
+
 
     return(
       <>
@@ -70,54 +43,55 @@ const FilmCard = () => {
         <MyBreadcrumbs/>
      
         <>
-      {film && (
+      {movie && (
         <>
         <Box sx={{display:'flex', position:"relative"}}>
           <MovieTrailer />
     
           <MovieInfo
-            nameRu={film.nameRu}
-            nameEn={film.nameEn}
-            year={film.year}
-            filmLength={film.filmLength}
-            ratingAgeLimits={film.ratingAgeLimits}
-            genres={film.genres}
-            countries={film.countries}
-            type={film.type}
-            description={film.description}
-            rating={film.ratingKinopoisk}
+            nameRu={movie.nameRu}
+            nameEn={movie.nameEn}
+            year={movie.year}
+            movieLength={movie.movieLength}
+            ratingAgeLimits={movie.ratingAgeLimits}
+            genres={movie.genres}
+            countries={movie.countries}
+            type={movie.type}
+            description={movie.description}
+            rating={movie.ratingKinopoisk}
+            ratingVoteCount={movie.ratingKinopoiskVoteCount}
             persons={persons}
             
           /> 
         </Box>
         <MoviePersons
             persons={persons}
-            nameRu={film.nameRu}
-            nameEn={film.nameEn}
-            year={film.year}
-            countries={film.countries}
+            nameRu={movie.nameRu}
+            nameEn={movie.nameEn}
+            year={movie.year}
+            countries={movie.countries}
             comments={comments}
-            id={film.id}
+            id={movie.id}
            
           /> 
           <MovieReviews comments={comments}/>
           <MovieDevices 
-            nameRu={film.nameRu}
-            nameEn={film.nameEn}
-            poster={film.posterUrlPreview}
+            nameRu={movie.nameRu}
+            nameEn={movie.nameEn}
+            poster={movie.posterUrlPreview}
 
           />
         </>
       )}
     </>
-    <MovieModal persons={persons} comments={comments} filmId={id}/>
+    <MovieModal persons={persons} comments={comments} movieId={id || 0}/>
     </Container>
     
     </>
     )
 }
 
-export default FilmCard;
+export default movieCard;
 
 
 

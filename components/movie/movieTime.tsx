@@ -2,11 +2,11 @@ import { Typography } from '@mui/material';
 import MyText from '../content/myText';
 
 
-interface FilmTimeProps {
+interface movieTimeProps {
   minutes: number;
 }
 
-const MovieTime = ({ minutes }:FilmTimeProps) => {
+const MovieTime = ({ minutes }:movieTimeProps) => {
 
   const hours = Math.floor(minutes / 60);
   const remainingMinutes = minutes % 60;

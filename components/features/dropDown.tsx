@@ -5,9 +5,9 @@ import { dropdownStore } from '@/store/DropdownStore';
 import { observer } from "mobx-react-lite";
 
 interface DropDownProps{
-  content:any;
-  type?:any;
-  setIsOpen:any;
+  content:React.ReactElement;
+  type?:string;
+  setIsOpen: any;
   height?:string;
   padding?:string | number;
   margin?:string | number;

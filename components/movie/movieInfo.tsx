@@ -1,64 +1,67 @@
-import { Box, Typography, Stack, Button } from "@mui/material";
-import FilmTime from "./movieTime";
-import FilmAgeLimit from "./movieAgeLimit";
+import { Box, Stack} from "@mui/material";
+import movieTime from "./movieTime";
+import movieAgeLimit from "./movieAgeLimit";
 import ShowMoreText from "../features/showMoreText";
 import MyText from "../content/myText";
 import GenresAndCountriesList from "./GenresAndCountriesList";
-import FilmLanguageInfo from "./movieLanguageInfo";
-import FilmName from "../content/translationDynamicData";
+import MovieLanguageInfo from "./movieLanguageInfo";
+import MovieName from "../content/translationDynamicData";
 import Medallion from "../content/medallion";
 import MyButton from "../buttons/myButton";
+import { GenresAndCountries } from "../interfaces/genresAndCountries";
+import { Person } from "../interfaces/persons";
 
 
-interface FilmInfoProps {
+interface MovieInfoProps {
     nameRu: string;
     nameEn: string;
     year: number;
-    filmLength: string;
+    movieLength: string;
     ratingAgeLimits: string;
-    genres: string[];
-    countries: string[];
+    genres: GenresAndCountries[];
+    countries: GenresAndCountries[];
     type: string;
     description: string;
-    persons:any;
+    persons:Person[];
     rating:number;
+    ratingVoteCount:number;
   }
 
 const MovieInfo = ({  
     nameRu,
     nameEn,
     year,
-    filmLength,
+    movieLength,
     ratingAgeLimits,
     genres,
     countries,
+    ratingVoteCount,
     type,
     persons,
     description,
-    rating}:FilmInfoProps) => {
-
-      
+    rating}:MovieInfoProps) => {
+          
     return(
         <Box sx={{color:'#fff', width:'439px', ml:'auto'}}>
           <Box sx={{mb:'2rem'}}>
-            <FilmName nameRu={nameRu} nameEn={nameEn} weight={600} size={'3.75rem'} color={'#fff'} line={'2.9rem'}/>
+            <MovieName nameRu={nameRu} nameEn={nameEn} weight={600} size={'3.75rem'} color={'#fff'} line={'2.9rem'}/>
           </Box>
 
 
         <Stack direction="row" sx={{ justifyContent: "center" }} spacing={1}>
           <MyText text={year} align={'center'} color="rgba(255,255,255,.72)"/>
-          <FilmTime minutes={+filmLength} />
-          <FilmAgeLimit text={ratingAgeLimits} />
+          <movieTime minutes={+movieLength} />
+          <movieAgeLimit text={ratingAgeLimits} />
         </Stack>
         <GenresAndCountriesList genres={genres} countries={countries}/>
-        <FilmLanguageInfo/>
+        <MovieLanguageInfo/>
 
         <Stack direction="row" sx={{ justifyContent: "center" ,mt:'2rem'}} spacing={2}>
           <Box sx={{height:'3.5rem', width:'3.5rem'}}>
             <Medallion rating={rating}/>
           </Box>
         
-        {persons?.filter((e:any) => e.roles.some((el:any) => el.nameRu.includes('Актеры'))).slice(0, 4).map((e:any)=>{
+        {persons?.filter((e) => e.roles.some((el) => el.nameRu.includes('Актеры'))).slice(0, 4).map((e)=>{
           return(
             <Box key={e.id} 
               sx={{
@@ -87,7 +90,7 @@ const MovieInfo = ({
           <Box sx={{ flexGrow: 3, ml:'1rem'}}>
               <MyText text={'Рейтинг Киноман'} color="#fff" align="left" weight={500}/>
               <MyText text={'Интересный сюжет'} color="rgba(255,255,255,.72)" align="left" weight={400}/>
-              <MyText text={'26620 оценок'} color="rgba(255,255,255,.72)" align="left" size={'0.81rem'} weight={400}/>
+              <MyText text={`${ratingVoteCount} оценок`} color="rgba(255,255,255,.72)" align="left" size={'0.81rem'} weight={400}/>
           </Box>
           <Box sx={{ flexGrow: 1, }}>
             <MyButton color={'transparent'} text={'Оценить'} width="3.4rem"/>

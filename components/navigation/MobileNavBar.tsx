@@ -43,7 +43,7 @@ const MobileNavBar = observer(() => {
             <BottomNavigationAction
                 label="Каталог"
                 value="каталог"
-                icon={<Link href="/films" style={{ color: "rgba(255,255,255,.48)" }}><OndemandVideoIcon /></Link>}
+                icon={<Link href="/movies" style={{ color: "rgba(255,255,255,.48)" }}><OndemandVideoIcon /></Link>}
             />
             <BottomNavigationAction
                 label="Поиск"

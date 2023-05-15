@@ -2,15 +2,19 @@ import Head from 'next/head';
 import React, {Suspense} from 'react'
 import { Container } from '@mui/material';
 import '../components/translate/i18next'
-import FilmList from '@/components/moviesListList';
+import MoviesList from '@/components/moviesList';
 import Subscribe from '@/components/header/Subscribe'
 import useRequest from '@/hooks/useRequest';
 import Hero from '@/components/hero';
+import { Movies } from '@/components/interfaces/movie';
 
 export default function Home() {
 
-  const url = 'http://localhost:3003/info';
-  const films:any = useRequest(url);
+  const url = 'http://localhost:3003/info?genres=4&limit=15';
+  const urlCom = 'http://localhost:3003/info?genres=8&limit=15';
+
+  const movies:Movies = useRequest(url);
+  const moviesCom:Movies = useRequest(urlCom);
 
   return (
     <>
@@ -25,7 +29,9 @@ export default function Home() {
         <Hero />
         <Container maxWidth={false} sx={{ width: '1240px', mb:'1rem' }}>
           <Subscribe /> 
-          <FilmList films = {films}/>
+          <MoviesList movies = {movies} title={'Драмы'} />
+          <MoviesList movies = {moviesCom} title={'Комедии'} />
+
         </Container>
 
               
