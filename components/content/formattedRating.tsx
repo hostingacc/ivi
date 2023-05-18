@@ -14,7 +14,7 @@ const FormattedRating = ({ rating, smallDecimal, color = "#000"}: FormattedRatin
 
   let [whole, decimal] = rating.toString().split(".");
   return (
-    <Typography sx={{ color }}>
+    <Typography sx={{ color, fontSize:'1.5rem' }}>
       {whole}
       {decimal && (
         <>
