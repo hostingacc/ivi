@@ -1,5 +1,5 @@
 import { Button, Typography } from "@mui/material";
-import { modalStore } from "@/store/modalStore";
+import { modalStore } from "../../store/modalStore";
 
 interface MyTitleProps {
   isButton?: boolean;

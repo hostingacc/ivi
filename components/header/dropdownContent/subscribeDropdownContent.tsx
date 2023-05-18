@@ -35,7 +35,7 @@ const SubscribeDropdownContent = observer(() => {
                     fontSize: "32px",
                     color: "white",
                     fontWeight: "700"
-                }}>Подписка КиноМан</Typography>
+                }}>Подписка иви</Typography>
                 <Typography sx={{
                     fontSize: "16px",
                     color: "rgba(255,255,255,.48)"

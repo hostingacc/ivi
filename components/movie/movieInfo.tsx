@@ -88,7 +88,7 @@ const MovieInfo = ({
             <Medallion rating={rating}/>
           </Box>
           <Box sx={{ flexGrow: 3, ml:'1rem'}}>
-              <MyText text={'Рейтинг Киноман'} color="#fff" align="left" weight={500}/>
+              <MyText text={'Рейтинг иви'} color="#fff" align="left" weight={500}/>
               <MyText text={'Интересный сюжет'} color="rgba(255,255,255,.72)" align="left" weight={400}/>
               <MyText text={`${ratingVoteCount} оценок`} color="rgba(255,255,255,.72)" align="left" size={'0.81rem'} weight={400}/>
           </Box>

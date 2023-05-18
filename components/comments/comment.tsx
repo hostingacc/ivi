@@ -125,7 +125,6 @@ const Comment = ({ movieId,comment, allComments, depth = 1, showChildComments = 
                                 />
                             ))}
                         </Box>
-                  
                 </>
             )}
         </Box>

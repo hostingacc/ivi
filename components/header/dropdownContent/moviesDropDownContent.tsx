@@ -19,7 +19,7 @@ const MoviesDropDownContent = () => {
         {nameRu: "Трейлеры"},
         {nameRu:"Что посмотреть"},
         {nameRu:"Фильмы в HD"},
-        {nameRu:"Выбор КиноМан"},
+        {nameRu:"Выбор иви"},
         {nameRu:"Новинки подписки"},
 ]
 
