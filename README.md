@@ -1,38 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Иви
+Проект представляет собой копию Иви (но без возможности смотреть фильмы), с данными взятыми с кинопоиска.
+Для бекенда используется nest + postgres https://github.com/Zagarazhi/movies-backend
 
-## Getting Started
 
-First, run the development server:
+Мы используем следующие технологии:
+- **Next.js** для использования из коробки таких функций, как маршрутизация и оптимизация изображений, а также для решения и применения различных видов предварительного рендеринга.
+- **TypeScript** для упрощения командной работы и повышения надежности кода.
+- **Material-UI (MUI)** для создания красивого и функционального пользовательского интерфейса.
+- **MobX** для управления состоянием приложения, а также для мемоизации компонентов.
+- **Swiper** для создания слайдеров.
+- **i18n** для локализации.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Проект еще находится в разработке, но основная работа уже сделана:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Общее:
+- Авторизация с помощью jwt токенов, по почте и паролю;
+- Написано много мелких компонентов, а также storybook к ним;
+- Подвал и шапка + локализация;
+- Дропдаун для шапки с осписком жанров и стран. Ссылки ведут на страницу списка фильмов. К списку применяется выбранный  фильтр;
+- К функциям и компонентам пишутся тесты, планируется покрытие по максимуму.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Cтраница списка фильмов:
+- Фильтрация фильмов по жанрам, странам, актёрам, режисерам, по оценке на кинопоиске.
+- Выбранный фильтр отображается в адресной строке браузера.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Страница конкретного фильма:
+- Информация о фильме;
+- Список актёров и создателей фильма, переход на страницу этих персон;
+- Древовидные комментарии с возможностью ответить на комментарий авторизованным пользователем;
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Страница персоны:
+- Информация о персоне и список фильмов, с возможнностью перейти к конкретному фильму.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Инструкции по установке
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Клонируйте репозиторий с помощью команды `gh repo clone hamedor/ivi`.
+2. Перейдите в папку проекта и установите зависимости с помощью команды `npm install`.
+3. Запустите проект локально с помощью команды `npm run dev`, для запуске в режиме разработчика.

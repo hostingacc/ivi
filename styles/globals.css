@@ -8,6 +8,17 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  background-color: #100e19;
+
+}
+
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main{
+  flex: 1;
 }
 
 body {
@@ -16,5 +27,69 @@ body {
 
 a {
   text-decoration: none;
+}
+
+.borderRadiusImage{
+  border-radius: 12px;
+}
+.hoverImage {
+  transition: transform 0.2s;
+  transform-origin: bottom;
+  position: relative;
+  
+}
+.hoverImage:hover {
+  transform: scale(1.04);
+
+}
+.hoverImage:hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; 
+  background-color: rgba(0,0,0,0.8);
+}
+.hoverContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  opacity: 0;
+  z-index: 1;
+}
+
+.hoverImage:hover .hoverContent {
+  opacity: 1;
+}
+.coverImage{
+  object-fit: cover;
+}
+#video {
+  transition: all 0.5s ease-in-out;
+  position: sticky;
+}
+.swiper-button-next,
+.swiper-button-prev{
+  color: rgba(255,255,255, .35) !important;
+}
+.swiper-button-next:hover,
+.swiper-button-prev:hover{
+  color: rgba(255,255,255, 1) !important;
+}
+
+
+@media(max-width:1237px){
+  html{
+    font-size: 15px;
+  }
+}
+
+@media(max-width:1145px){
+  html{
+    font-size: 14px;
+  }
 }
 
