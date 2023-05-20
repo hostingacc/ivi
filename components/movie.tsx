@@ -19,8 +19,6 @@ const Movie = ({movie}) => {
 
     const [progress, setProgress] = useState([70, 60, 80, 90]);
 
-    console.log(movie)
-
     return(
         <Box key={movie.id} sx={{width:'9.5rem', }}>
                     <Link

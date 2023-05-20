@@ -1,6 +1,6 @@
 import { Box, Stack} from "@mui/material";
-import movieTime from "./movieTime";
-import movieAgeLimit from "./movieAgeLimit";
+import MovieTime from "./movieTime";
+import MovieAgeLimit from "./movieAgeLimit";
 import ShowMoreText from "../features/showMoreText";
 import MyText from "../content/myText";
 import GenresAndCountriesList from "./GenresAndCountriesList";
@@ -40,6 +40,7 @@ const MovieInfo = ({
     persons,
     description,
     rating}:MovieInfoProps) => {
+
           
     return(
         <Box sx={{color:'#fff', width:'439px', ml:'auto'}}>
@@ -50,8 +51,8 @@ const MovieInfo = ({
 
         <Stack direction="row" sx={{ justifyContent: "center" }} spacing={1}>
           <MyText text={year} align={'center'} color="rgba(255,255,255,.72)"/>
-          <movieTime minutes={+movieLength} />
-          <movieAgeLimit text={ratingAgeLimits} />
+          <MovieTime minutes={+movieLength} />
+          <MovieAgeLimit text={ratingAgeLimits} />
         </Stack>
         <GenresAndCountriesList genres={genres} countries={countries}/>
         <MovieLanguageInfo/>

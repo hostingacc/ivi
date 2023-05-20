@@ -22,6 +22,7 @@ const GenresAndCountriesList = ({
   return (
     <Stack
       direction="row"
+      flexWrap='wrap'
       sx={{ 
         justifyContent: showOnlyFirst ? "flex-start" : "center",
         mt: showOnlyFirst ? 0 : "0.5rem",

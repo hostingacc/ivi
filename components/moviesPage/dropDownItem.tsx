@@ -52,7 +52,7 @@ const DropDownItem = observer(({
             {isLoading && <MyText text={'загрузка'} />}
           </>
         )}
-        <Box sx={{ position: 'absolute', top: '100%', zIndex: 1 }}>
+        <Box sx={{ position: 'absolute', top: '100%', zIndex: 1, width:'39.3rem'}}>
           <DropDown
             name={name}
             height={height}

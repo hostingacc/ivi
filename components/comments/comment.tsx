@@ -1,11 +1,12 @@
 import React, {useRef} from 'react';
-import { Box, Divider } from '@mui/material';
+import { Box, Divider, Stack } from '@mui/material';
 import CommentInfo from './commentInfo';
 import ShowMoreText from '../features/showMoreText';
 import CommentAddForm from './commentAddForm';
 import Time from '../content/time';
 import { modalStore } from '@/store/modalStore';
 import { Comment } from '../interfaces/comment';
+import CommentLikes from './commentLikes';
 
 interface CommentProps {
     movieId: number;
@@ -47,10 +48,10 @@ const Comment = ({ movieId,comment, allComments, depth = 1, showChildComments = 
             sx={{  
                 padding: showChildComments? 'unset' : '1rem',
                 width: showChildComments ? 'auto' : '17.8rem',
-                height: showChildComments ? 'auto' : '161.97px',
+                height: showChildComments ? 'auto' : '10.1rem',
                 backgroundColor: showChildComments ? 'transparent' : '#1f1b2e',
                 borderRadius: showChildComments ? 'unset' : '0.8rem',
-                marginTop: showChildComments ? 'unset' : '2rem',
+                marginTop: showChildComments ? 'unset' : '0',
                 cursor: showChildComments ? 'unset' : 'pointer',
                 transition: 'all 0.3s ease-in-out',
               
@@ -58,7 +59,7 @@ const Comment = ({ movieId,comment, allComments, depth = 1, showChildComments = 
                     backgroundColor: showChildComments ? 'unset':'#3e3659',
                   },
                 }}>
-            <Box>
+            <Box sx={{display:'flex', flexDirection:'column', height:'100%'}}>
                 <CommentInfo
                     name={comment.author}
                     time={comment.createdAt}
@@ -79,7 +80,11 @@ const Comment = ({ movieId,comment, allComments, depth = 1, showChildComments = 
                     <ShowMoreText text={comment.description} length={70} useDangerouslySetInnerHTML={true} />
                 )}
                 </Box>
-                <Time time={comment.createdAt}/>
+                <Stack direction='row' width='100%' justifyContent='space-between' marginTop='auto'>
+                    <Time time={comment.createdAt}/>
+                    <CommentLikes/>
+                </Stack>
+
 
                 {showChildComments && 
                     <CommentAddForm id={comment.id} movieId={movieId}/>

@@ -17,7 +17,7 @@ interface ButtonProps{
 }
 
 
-const MyButton = ({id ,color = '#1f1b2e', hoverColor = color, fontColor='#fff', text, smallText, size = '0.93rem', icon, func, width = '196px', startIcon}:ButtonProps) => {
+const MyButton = ({id ,color = '#1f1b2e', hoverColor = color, fontColor='#fff', text, smallText, size = '0.93rem', icon, func, width = '12.25rem', startIcon}:ButtonProps) => {
 
     
     return(
@@ -34,7 +34,7 @@ const MyButton = ({id ,color = '#1f1b2e', hoverColor = color, fontColor='#fff', 
                         borderColor: color,
                         borderWidth: color === 'transparent' ? 0 : '1px',
                         borderRadius: '0.5rem',
-                        height:'40px',
+                        height:'2.5rem',
                         width,
                         boxShadow: color === 'transparent' ? 0 : undefined,
                         paddingLeft: icon ? '1rem' : 0,
@@ -58,7 +58,7 @@ const MyButton = ({id ,color = '#1f1b2e', hoverColor = color, fontColor='#fff', 
                             variant="caption"
                             sx={{
                             color: 'rgba(255,255,255,.72)',
-                            fontSize: '10px',
+                            fontSize: '0.625rem',
                             marginBottom: '-0.2rem',
                             }}
                         >

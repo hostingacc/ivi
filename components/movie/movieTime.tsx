@@ -8,6 +8,9 @@ interface movieTimeProps {
 
 const MovieTime = ({ minutes }:movieTimeProps) => {
 
+  console.log(minutes)
+
+
   const hours = Math.floor(minutes / 60);
   const remainingMinutes = minutes % 60;
 

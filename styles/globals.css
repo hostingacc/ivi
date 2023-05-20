@@ -79,3 +79,17 @@ a {
 .swiper-button-prev:hover{
   color: rgba(255,255,255, 1) !important;
 }
+
+
+@media(max-width:1237px){
+  html{
+    font-size: 15px;
+  }
+}
+
+@media(max-width:1145px){
+  html{
+    font-size: 14px;
+  }
+}
+

@@ -69,7 +69,7 @@ interface SliderProps {
           sx={{
             position: 'absolute',
             top: '50%',
-            left: '-25px',
+            left: '-1.56rem',
             color: 'white',
           }}
         >
@@ -119,7 +119,7 @@ interface SliderProps {
                 sx={{
                     position: 'absolute',
                     top: '50%',
-                    right: '-25px',
+                    right: '-1.56rem',
                     color: 'white',
                 }}
                 >

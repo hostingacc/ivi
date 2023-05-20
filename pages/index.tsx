@@ -27,7 +27,7 @@ export default function Home() {
       <Suspense fallback={<div>Loading...</div>}>
       <main>
         <Hero />
-        <Container maxWidth={false} sx={{ width: '1240px', mb:'1rem' }}>
+        <Container maxWidth={false} sx={{ width: '77.5rem', mb:'1rem' }}>
           <Subscribe /> 
           <MoviesList movies = {movies} title={'Драмы'} />
           <MoviesList movies = {moviesCom} title={'Комедии'} />

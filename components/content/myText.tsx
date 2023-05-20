@@ -8,7 +8,7 @@ interface MyTextProps extends TextProps{
   hover?:string;
 }
 
-const MyText = ({ id,text, align, color = 'rgba(255,255,255,.48)', weight = 400, size = '0.91rem', line = '20px', hover= 'none' }: MyTextProps) => {
+const MyText = ({ id,text, align, color = 'rgba(255,255,255,.48)', weight = 400, size = '0.91rem', line = '1.25rem', hover= 'none' }: MyTextProps) => {
 
   return (
     <Typography

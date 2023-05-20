@@ -3,6 +3,7 @@ import { moviesStore } from "@/store/moviesStore";
 import { useState, useRef } from "react";
 
 import MoviesDropDownList from "./moviesDropDownList";
+import MyText from "../content/myText";
 
 const FiltersList = () => {
     const [value, setValue] = useState(0);
@@ -28,9 +29,12 @@ const FiltersList = () => {
               p: '1rem',
             }}
           >
-            <Stack direction="row" gap={2}>
+            <Stack direction="row" gap={2} justifyContent={'space-around'}>
               <MoviesDropDownList/>
-                <Box sx={{width:'10rem'}}>
+            </Stack>
+            <Stack direction="row" gap={2} justifyContent={'space-around'} sx={{mt:'2rem'}}>
+            <Box sx={{width:'14rem'}}>
+              <MyText text={'по рейтингу'} color={'#fff'}/>{/*  #312b45 */}
                   <Slider
                     ref={sliderRef}
                     onMouseUp={sendRequest}
@@ -42,11 +46,27 @@ const FiltersList = () => {
                     value={value}
                     onChange={handleSliderChange}
                     valueLabelDisplay="auto"
+                    color="secondary"
                   />
                 </Box>
-                
-          
+                <Box sx={{width:'14em'}}>
+                <MyText text={'по количеству голосов'} color={'#fff'}/>
+                  <Slider
+                    ref={sliderRef}
+                    onMouseUp={sendRequest}
+                    aria-label="Small steps"
+                    step={0.1}
+                    marks
+                    min={0}
+                    max={10}
+                    value={value}
+                    onChange={handleSliderChange}
+                    valueLabelDisplay="auto"
+                    color="secondary"
+                  />
+                </Box>
             </Stack>
+
           </Box>
         </>
       );

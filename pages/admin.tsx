@@ -27,7 +27,7 @@ const Admin = () => {
 
 
     return(
-        <Container maxWidth={false} sx={{ width: '1240px', mb:'1rem' }}>
+        <Container maxWidth={false} sx={{ width: '77.5rem', mb:'1rem' }}>
 
 
             <GenresList genres={genres}/>

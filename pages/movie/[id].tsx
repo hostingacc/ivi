@@ -25,6 +25,7 @@ const movieCard = () => {
     const comments = useRequest(commentsUrl);
     const persons = useRequest(personsUrl);
 
+    console.log(movie)
 
     return(
       <>
@@ -38,7 +39,7 @@ const movieCard = () => {
         }} >
       </Box>
      
-      <Container maxWidth={false} sx={{ width: '1240px',
+      <Container maxWidth={false} sx={{ width: '77.5rem',
     }}>
         <MyBreadcrumbs/>
      
@@ -52,7 +53,7 @@ const movieCard = () => {
             nameRu={movie.nameRu}
             nameEn={movie.nameEn}
             year={movie.year}
-            movieLength={movie.movieLength}
+            movieLength={movie.filmLength}
             ratingAgeLimits={movie.ratingAgeLimits}
             genres={movie.genres}
             countries={movie.countries}

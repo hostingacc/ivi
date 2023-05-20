@@ -28,7 +28,7 @@ const MoviesDropDownContent = () => {
         link: `/movies/${e.nameRu}`,
         content: e.nameRu,
         }));
-       }
+    }
        
     const genresContent = generateContent(genres);
     const countriesContent = generateContent(countries);
