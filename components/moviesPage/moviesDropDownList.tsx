@@ -34,7 +34,6 @@ const MoviesDropDownList = () => {
     }, [directorsInput]);
     /* вместо этого здесь будет кастомный хук  для директоров/ актеров*/
 
-
     return(
         <>
             <DropDownItem

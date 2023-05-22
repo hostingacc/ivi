@@ -32,29 +32,36 @@ const GenresAndCountriesList = ({
     >
       {elements.map((e: GenresAndCountries, index: number) => (
         <React.Fragment key={e.nameRu}>
+          {showOnlyFirst ? (
+          <MyText
+            color="rgba(255,255,255,0.85)"
+            text={e.nameRu.charAt(0).toUpperCase() + e.nameRu.slice(1)}
+          />
+          ) : (
           <MyLink
-            color={showOnlyFirst ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,.72)"}
+            color="rgba(255,255,255,.72)"
             content={e.nameRu.charAt(0).toUpperCase() + e.nameRu.slice(1)}
             link={`/movies/${e.nameRu}`}
-            fontSize={showOnlyFirst ? "0.85rem" : "0.93rem"}
+            fontSize="0.93rem"
             fontWeight={400}
           />
-          {index < elements.length - 1 && (
-           <>
-           {showOnlyFirst ? (
-             <MyText color="rgba(255,255,255,0.85)" text={','}/>
-           ) : (
-             <Box
-               sx={{
-                 width: "1px",
-                 height: "1px",
-                 backgroundColor: "rgba(255,255,255,.48)",
-                 alignSelf: "center",
-               }}
-             />
-           )}
-         </>
           )}
+          {index < elements.length - 1 && (
+          <>
+          {showOnlyFirst ? (
+          <MyText color="rgba(255,255,255,0.85)" text={','}/>
+          ) : (
+          <Box
+            sx={{
+            width: "1px",
+            height: "1px",
+            backgroundColor: "rgba(255,255,255,.48)",
+            alignSelf: "center",
+          }}
+          />
+          )}
+          </>
+        )}
         </React.Fragment>
       ))}
     </Stack>

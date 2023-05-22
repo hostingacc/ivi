@@ -39,7 +39,7 @@ interface SliderProps {
     const [translateXValue, setTranslateXValue] = useState(`translateX(-${(currentSlide * (containerWidth - itemWidth - 1.22))}rem)`);
 
     useEffect(()=>{
-      console.log(remainingCount)
+
       setRemainingCount((prev) => prev - itemsToShow)
     },[])
 

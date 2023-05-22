@@ -7,15 +7,23 @@ import MyText from "../content/myText";
 
 const FiltersList = () => {
     const [value, setValue] = useState(0);
+    const [value2, setValue2] = useState(0);
 
     const sliderRef = useRef<HTMLSpanElement>(null);
+    const sliderRef2 = useRef<HTMLSpanElement>(null);
 
     const handleSliderChange = (event: Event, newValue: number | number[]) => {
       setValue(newValue as number);
     };
+    const handleSliderChange2 = (event: Event, newValue: number | number[]) => {
+      setValue2(newValue as number);
+    };
 
     const sendRequest = () => {
       moviesStore.handleMinRatingChange(value, 'minRating')
+    }
+    const sendRequest2 = () => {
+      moviesStore.handleMinRatingChange(value2, 'numRatings')
     }
 
   
@@ -34,7 +42,7 @@ const FiltersList = () => {
             </Stack>
             <Stack direction="row" gap={2} justifyContent={'space-around'} sx={{mt:'2rem'}}>
             <Box sx={{width:'14rem'}}>
-              <MyText text={'по рейтингу'} color={'#fff'}/>{/*  #312b45 */}
+              <MyText text={'по рейтингу'} color={'#fff'}/>
                   <Slider
                     ref={sliderRef}
                     onMouseUp={sendRequest}
@@ -51,22 +59,23 @@ const FiltersList = () => {
                 </Box>
                 <Box sx={{width:'14em'}}>
                 <MyText text={'по количеству голосов'} color={'#fff'}/>
+
                   <Slider
-                    ref={sliderRef}
-                    onMouseUp={sendRequest}
+                    ref={sliderRef2}
+                    onMouseUp={sendRequest2}
                     aria-label="Small steps"
-                    step={0.1}
+                    step={10000}
                     marks
                     min={0}
-                    max={10}
-                    value={value}
-                    onChange={handleSliderChange}
+                    max={10000000}
+                    value={value2}
+                    onChange={handleSliderChange2}
                     valueLabelDisplay="auto"
                     color="secondary"
                   />
                 </Box>
             </Stack>
-
+                {/* декомпозиция */}
           </Box>
         </>
       );

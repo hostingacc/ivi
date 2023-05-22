@@ -29,6 +29,9 @@ const SmallButton = ({icon, isCircle, backgroundColor = '#1f1b2e', hover = '#3e3
                             backgroundColor: hover,
                             borderColor: hover,
                         },
+                        '@media (max-width:1159px)': {
+                            width:'4.68rem',
+                         },
                     }}>
             <Link href="#"  sx={{ display: "flex", alignItems: "center" }}>
                     {React.isValidElement(icon) ? (

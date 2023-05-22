@@ -9,7 +9,8 @@ class DropdownStore {
       genres:false,
       countries:false,
       actors:false,
-      directors:false
+      directors:false,
+      sort:false
     };
   
     constructor() {

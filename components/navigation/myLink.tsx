@@ -6,7 +6,7 @@ import React from 'react';
 interface MyLinkProps {
   color?: string;
   link: string;
-  content: React.ReactElement | string;
+  content: React.ReactElement | string | null;
   fontSize?: string;
   fontWeight?: number;
   gradient?: boolean;
@@ -45,10 +45,6 @@ const MyLink = ({
           color: '#fff',
         },
       };
-
-/*   const LinkContent = (
-    <MuiLink sx={linkStyles}>{content}</MuiLink>
-  ); */
 
   return isInternal ? (
     <NextLink href={link} passHref>

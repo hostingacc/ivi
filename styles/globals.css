@@ -80,16 +80,51 @@ a {
   color: rgba(255,255,255, 1) !important;
 }
 
+.movieTrailer{
+  width:45rem;
+  height:25rem;
+}
+
+
 
 @media(max-width:1237px){
   html{
     font-size: 15px;
   }
 }
-
-@media(max-width:1145px){
+@media (max-width:1159px){
+  .movieTrailer{
+    width: 100%;
+    height: auto;
+  }
   html{
     font-size: 14px;
   }
 }
 
+/* @media(max-width:1145px){
+  html{
+    font-size: 14px;
+  }
+}
+ */
+@media (max-width:1059px){
+  html{
+    font-size: 13px;
+  }
+}
+@media (max-width:1005px){
+  html{
+    font-size: 12px;
+  }
+}
+@media (max-width:931px){
+  html{
+    font-size: 11px;
+  }
+}
+@media (max-width:845px){
+  html{
+    font-size: 10px;
+  }
+}

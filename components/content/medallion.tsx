@@ -30,8 +30,8 @@ const Medallion = ({image, rating}:MedallionProps) => {
 
             return(
                 <Image 
-                width={44}
-                height={44}
+                width={56}
+                height={56}
                 alt="фото актера"
                 src={image}
                 className="borderRadiusImage"

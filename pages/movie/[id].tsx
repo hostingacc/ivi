@@ -8,6 +8,10 @@ import MyBreadcrumbs from "@/components/navigation/myBreadcrumbs";
 import MovieDevices from "@/components/movie/devices";
 import MovieReviews from "@/components/movie/movieReviews";
 import MovieModal from "@/components/movie/movieModal";
+import ShowMoreText from "@/components/features/showMoreText";
+import MovieName from "../../components/content/translationDynamicData";
+import MovieInfoRating from "@/components/movie/movieInfoRating";
+
 
 
 const movieCard = () => {
@@ -25,19 +29,13 @@ const movieCard = () => {
     const comments = useRequest(commentsUrl);
     const persons = useRequest(personsUrl);
 
+
     console.log(movie)
+
 
     return(
       <>
-      <Box sx={{
-        background: 'linear-gradient(rgb(107, 104, 121) 0%, rgba(107, 104, 121, 0) 70%)',
-        height:'20rem',
-        width:'100%',
-        position:'absolute',
-        top:0,
-        opacity:'0.4'
-        }} >
-      </Box>
+
      
       <Container maxWidth={false} sx={{ width: '77.5rem',
     }}>
@@ -46,24 +44,58 @@ const movieCard = () => {
         <>
       {movie && (
         <>
-        <Box sx={{display:'flex', position:"relative"}}>
-          <MovieTrailer />
-    
-          <MovieInfo
-            nameRu={movie.nameRu}
-            nameEn={movie.nameEn}
-            year={movie.year}
-            movieLength={movie.filmLength}
-            ratingAgeLimits={movie.ratingAgeLimits}
-            genres={movie.genres}
-            countries={movie.countries}
-            type={movie.type}
-            description={movie.description}
-            rating={movie.ratingKinopoisk}
-            ratingVoteCount={movie.ratingKinopoiskVoteCount}
-            persons={persons}
-            
-          /> 
+        <Box sx={{
+            display:'flex',
+            position:"relative",
+            '@media (max-width:1159px)': {
+              flexDirection: 'column',
+            },
+          }}
+          >
+        <Box sx={{
+            mt:'2rem',
+            '@media (min-width:1159px)': {
+              display:'none',
+             
+            },}}>
+              <MovieName nameRu={movie.nameRu} nameEn={movie.nameEn} weight={600} size={'3.75rem'} color={'#fff'} line={'2.9rem'} align={'left'}/>
+        </Box>
+
+          <MovieTrailer rating={movie.ratingKinopoisk} persons={persons}/>
+
+        <Box sx={{
+            ml:'auto',
+            '@media (max-width:1159px)': {
+              display:'none',
+            },}}>
+            <MovieInfo
+              nameRu={movie.nameRu}
+              nameEn={movie.nameEn}
+              year={movie.year}
+              movieLength={movie.filmLength}
+              ratingAgeLimits={movie.ratingAgeLimits}
+              genres={movie.genres}
+              countries={movie.countries}
+              type={movie.type}
+              description={movie.description}
+              rating={movie.ratingKinopoisk}
+              ratingVoteCount={movie.ratingKinopoiskVoteCount}
+              persons={persons} 
+            /> 
+        </Box>
+        <Box sx={{
+            mb:'2rem',
+            '@media (min-width:1159px)': {
+              display:'none',
+
+            },}}>
+
+        <Box sx={{width:'42rem'}}>
+          <ShowMoreText text={movie.description} color="rgba(255,255,255,.78)" length={350} buttonText={'Детали о фильме'}/>
+          <MovieInfoRating rating={movie.ratingKinopoisk} voteCount={movie.ratingKinopoiskVoteCount}/>
+        </Box>
+        </Box>
+
         </Box>
         <MoviePersons
             persons={persons}

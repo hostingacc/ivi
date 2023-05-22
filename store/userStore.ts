@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import { User } from '@/components/interfaces/user';
 import AuthService from '@/components/services/auth';
 import axios from  'axios';
-import { AuthResponce } from '@/components/interfaces/AuthResponse';
+import { AuthResponse } from '@/components/interfaces/AuthResponse';
 
 class UserStore{
     user = {} as User;
@@ -35,6 +35,19 @@ class UserStore{
             console.log(e.response?.data?.message)
         }
     }
+    async googleLogin() {
+        try{
+            const response = await AuthService.googleLogin();
+/*             localStorage.setItem('token', response.data.accessToken)
+            localStorage.setItem('refreshToken', response.data.refreshToken)
+            this.setAuth(true);
+            this.setUser(response.data.user) */
+            console.log(response)
+
+        } catch (e:any) {
+            console.log(e.response?.data?.message)
+        }
+    }
     async register(login, email:string, password: string) {
         try{
             const response = await AuthService.registration(login, email, password);
@@ -60,7 +73,7 @@ class UserStore{
     async checkAuth() {
         const token = localStorage.getItem('refreshToken');
         try{
-            const response = await axios.get<AuthResponce>('http://localhost:3006/auth/refresh', {
+            const response = await axios.get<AuthResponse>('http://localhost:3006/auth/refresh', {
             withCredentials:true,
             
             headers: {
@@ -74,7 +87,7 @@ class UserStore{
             this.setAuth(true);
             this.setUser(response.data.user)
         } catch (e:any) {
-            console.log('fffff')
+
             console.log(e.response?.data?.message)
         }
     }

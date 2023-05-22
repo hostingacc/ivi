@@ -43,6 +43,9 @@ const MyButton = ({id ,color = '#1f1b2e', hoverColor = color, fontColor='#fff', 
                             backgroundColor: hoverColor,
                             borderColor: hoverColor,
                         },
+                        '@media (max-width:1159px)': {
+                            width:'15.4rem',
+                         },
                     }}>
                        {icon}
                        <Box
@@ -52,7 +55,7 @@ const MyButton = ({id ,color = '#1f1b2e', hoverColor = color, fontColor='#fff', 
                             flexDirection: 'column',
                             alignItems: 'flex-start',
                             marginLeft:'3px'
-                        }}>
+                        }}> 
                         {smallText && (
                         <Typography
                             variant="caption"

@@ -1,5 +1,5 @@
 export interface Filter{
-    name: string | number | null;
+    name?: string | number | null;
     nameRu:string;
     id:string;
 }

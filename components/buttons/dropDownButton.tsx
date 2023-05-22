@@ -6,26 +6,35 @@ import MyText from '../content/myText';
 import  { Filter } from '../interfaces/filter'
 import { cutText } from '@/functions/cutText';
 
+
 interface DropDownButtonProps{
   name:string;
-  filters:Filter[];
+  filters?:Filter[];
   isOpen:boolean;
   onClick: any;
+  isTransparent?:boolean;
 }
 
-const DropDownButton = observer(({ name, filters, isOpen, onClick }:DropDownButtonProps) => {
+const DropDownButton = observer(({ name, filters, isOpen, onClick, isTransparent = false }:DropDownButtonProps) => {
 
-  const filterString = filters.map(e => e.name).join(', ');
-  const cutted = cutText(filterString, 18, false);
+  let filterString;
+  if(Array.isArray(filters)){
+    filters?.map(e => e.name).join(', ');
+  }
+  let cutted;
+  if(filterString){
+    cutted = cutText(filterString, 18, false);
+  }
+
   
   return (
-    <Button id={name} onClick={onClick} 
+    <Box id={name} onClick={onClick} 
       sx={{
         height:'3.5rem',
         pl:'1rem',
         width:'14.18rem',
         textTransform:'capitalize',
-        backgroundColor:'#312b45'
+        backgroundColor: isTransparent ? 'transparent' : '#312b45'
       }}>
       <Grid container sx={{height: cutted ? 'unset' : '1.4rem'}}>
         <Grid item xs={10}>
@@ -44,7 +53,7 @@ const DropDownButton = observer(({ name, filters, isOpen, onClick }:DropDownButt
           {isOpen ? <ExpandLessIcon sx={{color:'#fff'}}/> : <ExpandMoreIcon sx={{color:'#fff'}}/>}
         </Grid>
       </Grid>
-    </Button>
+    </Box>
   )
 });
 

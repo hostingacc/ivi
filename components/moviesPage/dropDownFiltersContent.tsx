@@ -1,8 +1,10 @@
 import { Box } from "@mui/material";
 import MyButton from "../buttons/myButton";
 import { moviesStore } from "@/store/moviesStore";
+import { toJS } from "mobx";
 
 const DropDownFiltersContent = ({content, type}) => {
+
     return(
       <Box>
           {content?.map((e) => {

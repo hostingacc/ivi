@@ -26,8 +26,7 @@ const MyList = ({title, content, itemsPerColumn = 11}) => {
                 {columnContent?.map(item => (
                     <ListItem key={item.content} sx={{paddingLeft:'0', paddingTop:'0.3rem'}}>
                         <MyLink
-                        link={item.link}
-                        
+                        link={item.link}    
                         content={item.content}
                         fontSize="0.9375rem"
                         fontWeight={400}

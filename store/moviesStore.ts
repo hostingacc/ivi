@@ -16,7 +16,8 @@ import { Movies } from '@/components/interfaces/movie';
       actors:[],
       directors:[],
       minRating:[],
-      voteCount:[]
+      numRating:[],
+      order:[]
     };
     baseUrl = 'http://localhost:3003/info';
     genresUrl = 'http://localhost:3001/movies/filters/genres'
@@ -31,7 +32,8 @@ import { Movies } from '@/components/interfaces/movie';
     actors: Filter[] = [];
     directors:Filter[] = [];
     minRating = [];
-    voteCount= [];
+    numRating= [];
+    order = [];
   
     constructor() {
       makeAutoObservable(this);
@@ -47,7 +49,8 @@ import { Movies } from '@/components/interfaces/movie';
         actors:[],
         directors:[],
         minRating:[],
-        voteCount:[]
+        numRating:[],
+        order:[],
       };
     }
   
@@ -56,13 +59,17 @@ import { Movies } from '@/components/interfaces/movie';
       if (index !== -1) {
         this.selectedFilters[type].splice(index, 1);
       } else {
+      if (type === 'year') {
+        this.selectedFilters[type] = [{ id, name }];
+      } else {
         this.selectedFilters[type].push({ id, name });
+      }
       }
       
       this.updateUrl();
       this.fetchData();
       this.generateUrl();
-    }
+     }
 
     handleMinRatingChange(value: number, type: string) {
       this.selectedFilters[type] = value;
@@ -87,7 +94,8 @@ import { Movies } from '@/components/interfaces/movie';
       if (hasFilters || this.selectedFilters.minRating) {
         const filterStrings = Object.keys(this.selectedFilters)
           .map((key) => {
-            if (key === 'minRating') {
+            if (key === 'minRating' || key=== 'numRatings') {
+  
               return `${key}=${this.selectedFilters[key]}`;
             }
             const filterValues = this.selectedFilters[key]
@@ -109,9 +117,9 @@ import { Movies } from '@/components/interfaces/movie';
   
     generateRequest() {
       const filterStrings = Object.keys(this.selectedFilters)
-        .filter((key) => key === 'minRating' || this.selectedFilters[key].length > 0)
+        .filter((key) => key === 'minRating' || key === 'numRatings' || this.selectedFilters[key].length > 0)
         .map((key) => {
-          if (key === 'minRating') {
+          if (key === 'minRating' || key === 'numRatings') {
             return `${key}=${this.selectedFilters[key]}`;
           } else {
             const filterValues = this.selectedFilters[key].map((filter) => filter.id).join(",");

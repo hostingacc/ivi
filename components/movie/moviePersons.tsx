@@ -22,7 +22,7 @@ interface moviePersonsProps {
 
 const moviePersons = observer(({persons}:moviePersonsProps) => {
 
-    console.log(persons)
+
 
 
     const openModal = () => {

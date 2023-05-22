@@ -7,7 +7,6 @@ import { modalStore } from "@/store/modalStore";
 
 const MovieReviews = ({comments}) => {
 
-    console.log(comments)
 
     const count = countComments(comments)
 

@@ -33,14 +33,16 @@ const Movie = ({movie}) => {
                             src={movie.posterUrlPreview}
                             alt="постер фильма"
                             fill
+                            sizes="(max-width: 600px) 100vw, 50vw"
                         />
                         <Box className="hoverContent" sx={{width:'100%', height:'100%',padding:'1rem', display:'flex'}}>
                             <Box sx={{mt:'auto', mb:'1rem'}}>
                                 <Stack direction='row' alignItems='center'>
                                     <FormattedRating rating={movie.ratingKinopoisk} smallDecimal={true} color="#fff"/>
                                     <Box sx={{width:'1.5rem'}}>
-                                    {progress.map((value) => (
-                                        <LinearProgress 
+                                    {progress.map((value, i) => (
+                                        <LinearProgress
+                                        key={i} 
                                         variant="determinate" 
                                         value={value}
                                         sx={{

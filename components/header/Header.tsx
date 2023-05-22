@@ -25,11 +25,7 @@ const Header = observer(() => {
             position:'relative',
             width:'100%',
             zIndex:3,
-            "@media (max-width:1200px)": {
-                justifyContent: "space-between",
-                marginLeft: "40px",
-                marginRight: "60px"
-            },
+
             "@media (max-width:600px)": {
                 justifyContent: "space-between",
                 marginLeft: "10px",
@@ -128,6 +124,7 @@ const Header = observer(() => {
                     sx={{
                         width: "48px",
                         height: "48px",
+                        minWidth:'unset',
                         border: "1.5px solid rgba(255,255,255,.48)",
                         borderRadius: "10px",
                         ":hover": {
