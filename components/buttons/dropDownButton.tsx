@@ -5,6 +5,7 @@ import { observer } from 'mobx-react-lite';
 import MyText from '../content/myText';
 import  { Filter } from '../interfaces/filter'
 import { cutText } from '@/functions/cutText';
+import { toJS } from 'mobx';
 
 
 interface DropDownButtonProps{
@@ -19,13 +20,14 @@ const DropDownButton = observer(({ name, filters, isOpen, onClick, isTransparent
 
   let filterString;
   if(Array.isArray(filters)){
-    filters?.map(e => e.name).join(', ');
+    filterString = filters?.map(e => e.name).join(', ');
   }
   let cutted;
   if(filterString){
     cutted = cutText(filterString, 18, false);
   }
 
+  console.log(toJS(filters))
   
   return (
     <Box id={name} onClick={onClick} 
@@ -34,7 +36,9 @@ const DropDownButton = observer(({ name, filters, isOpen, onClick, isTransparent
         pl:'1rem',
         width:'14.18rem',
         textTransform:'capitalize',
-        backgroundColor: isTransparent ? 'transparent' : '#312b45'
+        backgroundColor: isTransparent ? 'transparent' : '#312b45',
+        display:'flex',
+        alignItems:'center'
       }}>
       <Grid container sx={{height: cutted ? 'unset' : '1.4rem'}}>
         <Grid item xs={10}>

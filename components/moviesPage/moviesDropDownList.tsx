@@ -9,6 +9,8 @@ const MoviesDropDownList = () => {
     const [actorsInput, setActorsIpnut] = useState('');
     const [directorsInput, setDirectorsInput] = useState('');
 
+    console.log(actorsInput)
+
 
     useEffect(() => {
       if (actorsInput) {
@@ -66,6 +68,7 @@ const MoviesDropDownList = () => {
                 name="actors"
                 content={moviesStore.actors}
                 setState={setActorsIpnut}
+                inputText={actorsInput}
                 isLoading={isLoading}
             />
             <DropDownItem

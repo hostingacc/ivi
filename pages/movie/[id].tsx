@@ -30,7 +30,7 @@ const movieCard = () => {
     const persons = useRequest(personsUrl);
 
 
-    console.log(movie)
+
 
 
     return(

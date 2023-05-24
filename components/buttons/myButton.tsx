@@ -1,6 +1,7 @@
 import { Button, Box, Typography } from '@mui/material';
-import { ReactElement } from "react";
+import { ReactElement, cloneElement, useState } from "react";
 import MyText from '../content/myText';
+
 
 interface ButtonProps{
     color?: string;
@@ -14,20 +15,35 @@ interface ButtonProps{
     id?: string;
     fontColor?: string;
     startIcon?: ReactElement;
+    endIcon?: ReactElement;
+    showEndIcon?:boolean;
+    inputText?:string;
 }
 
 
-const MyButton = ({id ,color = '#1f1b2e', hoverColor = color, fontColor='#fff', text, smallText, size = '0.93rem', icon, func, width = '12.25rem', startIcon}:ButtonProps) => {
+const MyButton = ({id ,color = '#1f1b2e', hoverColor = color, fontColor='#fff', text, smallText, size = '0.93rem', icon, func, width = '12.25rem', startIcon, endIcon, showEndIcon, inputText}:ButtonProps) => {
 
+    const [hover, setHover] = useState(false);
     
     return(
         <Button
             startIcon={startIcon}
+            endIcon={
+                showEndIcon
+                  ? endIcon
+                  : hover && endIcon
+                  ? cloneElement(endIcon, {
+                      style: { color: "grey" },
+                    })
+                  : null
+              }
             id={id}
             onClick={func}
             variant="contained"
             disableRipple
             disableTouchRipple
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
                     sx={{
                         textTransform: 'none',
                         backgroundColor: color,
@@ -39,6 +55,8 @@ const MyButton = ({id ,color = '#1f1b2e', hoverColor = color, fontColor='#fff', 
                         boxShadow: color === 'transparent' ? 0 : undefined,
                         paddingLeft: icon ? '1rem' : 0,
                         paddingRight: icon ? '1rem' : 0,
+                        display:'flex',
+                        justifyContent: endIcon ? 'space-between' : 'center',
                         '&:hover':  {
                             backgroundColor: hoverColor,
                             borderColor: hoverColor,
@@ -68,7 +86,7 @@ const MyButton = ({id ,color = '#1f1b2e', hoverColor = color, fontColor='#fff', 
                             {smallText}
                         </Typography>
                         )}
-                    <MyText id={id} text={text} color={fontColor} size={size} hover={'#fff'}/>
+                    <MyText id={id} text={text} inputText={inputText} color={fontColor} size={size} hover={'#fff'}/>
                     </Box>
         </Button> 
     )

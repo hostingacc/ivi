@@ -29,6 +29,7 @@ const MoviesDropDownContent = () => {
         content: e.nameRu,
         }));
     }
+    /* придумать как обойтись без generate content */
        
     const genresContent = generateContent(genres);
     const countriesContent = generateContent(countries);

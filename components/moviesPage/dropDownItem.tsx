@@ -15,7 +15,8 @@ interface DropDownItemProps {
   text: string;
   name: string;
   content: Filter[];
-  setState?: Dispatch<SetStateAction<string>> | undefined
+  inputText?:string;
+  setState?: Dispatch<SetStateAction<string>> | undefined;
   isLoading?: boolean;
   input?: boolean;
   button?: boolean;
@@ -34,6 +35,7 @@ const DropDownItem = observer(({
     name,
     content,
     setState,
+    inputText,
     isLoading,
     input,
     button,
@@ -68,6 +70,7 @@ const DropDownItem = observer(({
               <DropDownFiltersContent
                 content={content}
                 type={name}
+                inputText={inputText}
               />
             }
             setIsOpen={(value) => dropdownStore.setShowDropdown(name, value)}

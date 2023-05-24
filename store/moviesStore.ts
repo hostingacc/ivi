@@ -55,6 +55,7 @@ import { Movies } from '@/components/interfaces/movie';
     }
   
     handleButtonClick(name, id, type) {
+
       const index = this.selectedFilters[type].findIndex((filter) => filter.id === id);
       if (index !== -1) {
         this.selectedFilters[type].splice(index, 1);

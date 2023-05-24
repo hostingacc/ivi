@@ -82,3 +82,4 @@ const FiltersList = () => {
   };
 
   export default FiltersList;
+

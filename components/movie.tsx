@@ -73,9 +73,9 @@ const Movie = ({movie}) => {
                             </Stack>   
                         </Box>
                     </Box>
-                
-                <TranslationDynamicData nameRu={movie.nameRu} nameEn={movie.nameEn} weight={700} color="#fff" align="left"/>
-                {/* Здесь должен быть компонент showmoretext, но нужно его поправить, чтобы он мог принимать английский текст */}
+                <Box sx={{mt:'0.4rem'}}>
+                    <TranslationDynamicData nameRu={movie.nameRu} nameEn={movie.nameEn} weight={700} color="#fff" align="left" shouldCut={true}/>
+                </Box>
             </Link>
         </Box>   
     )
