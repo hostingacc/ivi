@@ -4,7 +4,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { observer } from 'mobx-react-lite';
 import MyText from '../content/myText';
 import  { Filter } from '../interfaces/filter'
-import { cutText } from '@/functions/cutText';
+import { cutText } from '../../functions/cutText';
 import { toJS } from 'mobx';
 
 
@@ -27,7 +27,6 @@ const DropDownButton = observer(({ name, filters, isOpen, onClick, isTransparent
     cutted = cutText(filterString, 18, false);
   }
 
-  console.log(toJS(filters))
   
   return (
     <Box id={name} onClick={onClick} 

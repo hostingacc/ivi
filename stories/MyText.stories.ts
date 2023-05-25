@@ -42,3 +42,33 @@ export const Colored: Story = {
         color:'red'
     },
 };
+export const Bolded: Story = {
+    args: {
+      text: 'Мы всегда готовы вам помочь. Наши операторы онлайн 24/7',
+      align: 'left',
+      weight: 700
+    },
+  };
+  
+  export const LargerText: Story = {
+    args: {
+      text: 'Мы всегда готовы вам помочь. Наши операторы онлайн 24/7',
+      align: 'left',
+      size: '1.5rem'
+    },
+  };
+  
+  export const HoverColorChange: Story = {
+    args: {
+      text: 'Мы всегда готовы вам помочь. Наши операторы онлайн 24/7',
+      align: 'left',
+      hover: '#fff'
+    },
+  };
+  export const Highlighted: Story = {
+    args: {
+      text: 'Мы всегда готовы вам помочь. Наши операторы онлайн 24/7',
+      align: 'left',
+      inputText: 'операторы'
+    },
+  };

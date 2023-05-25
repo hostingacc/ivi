@@ -2,7 +2,7 @@ import { Box, Button, TextField, FormControl } from '@mui/material';
 import { useEffect, useState } from "react";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MyButton from '../buttons/myButton';
-import useRequest from '@/hooks/useRequest';
+import useRequest from '../../hooks/useRequest';
 
 const theme = createTheme({
     palette: {

@@ -4,14 +4,14 @@ import CommentInfo from './commentInfo';
 import ShowMoreText from '../features/showMoreText';
 import CommentAddForm from './commentAddForm';
 import Time from '../content/time';
-import { modalStore } from '@/store/modalStore';
-import { Comment } from '../interfaces/comment';
+import { modalStore } from '../../store/modalStore';
+import { CommentI } from '../interfaces/comment';
 import CommentLikes from './commentLikes';
 
 interface CommentProps {
     movieId: number;
-    comment: Comment;
-    allComments: Comment[]
+    comment: CommentI;
+    allComments: CommentI[];
     depth?: number;
     showChildComments?: boolean;
   }
@@ -20,6 +20,9 @@ const MAX_DEPTH = 15;
 
 const Comment = ({ movieId,comment, allComments, depth = 1, showChildComments = true}: CommentProps) => {
     
+    console.log(comment)
+
+
     const childComments = allComments.filter(
         (c) => c.repliedOnComment === comment.id
     );
@@ -37,8 +40,7 @@ const Comment = ({ movieId,comment, allComments, depth = 1, showChildComments = 
         if (!showChildComments) {
             modalStore.openModal();
             modalStore.showReviews();
-        }
-       
+        } 
     }
 
 
@@ -121,7 +123,7 @@ const Comment = ({ movieId,comment, allComments, depth = 1, showChildComments = 
                             }}/>
                             
                           
-                            {childComments.map((childComment:Comment) => (
+                            {childComments.map((childComment:CommentI) => (
                                 <Comment
                                     key={childComment.id}
                                     comment={childComment}
