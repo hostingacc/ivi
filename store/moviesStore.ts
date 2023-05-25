@@ -1,6 +1,6 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, toJS } from 'mobx';
 import { runInAction } from 'mobx';
-import router from 'next/router';
+import router, { useRouter } from 'next/router';
 import { Movies } from '@/components/interfaces/movie';
 
   interface Filter {
@@ -10,6 +10,8 @@ import { Movies } from '@/components/interfaces/movie';
 
 
   class MoviesStore {
+    limit=5;
+    page=1;
     selectedFilters = {
       genres: [],
       countries: [],
@@ -19,7 +21,7 @@ import { Movies } from '@/components/interfaces/movie';
       numRating:[],
       order:[]
     };
-    baseUrl = 'http://localhost:3003/info';
+    baseUrl = `http://localhost:3003/info?limit=${this.limit}&page=${this.page}`;
     genresUrl = 'http://localhost:3001/movies/filters/genres'
     countriesUrl = 'http://localhost:3001/movies/filters/countries'
     actorsUrl = 'http://localhost:3005/persons/actors?keywords='
@@ -40,7 +42,15 @@ import { Movies } from '@/components/interfaces/movie';
       this.fetchData();
       this.fetchFilters(this.genresUrl, 'genres');
       this.fetchFilters(this.countriesUrl, 'countries');
+      /* this.updateSelectedFiltersFromUrl(); */
+      this.fetchFilters(this.genresUrl, 'genres');
     }
+
+/*     async loadFilters(urlArray){
+      await this.fetchFilters(this.genresUrl, 'genres');
+      this.updateSelectedFiltersFromUrl(urlArray);
+
+    } */
 
     resetFilters() {
       this.selectedFilters = {
@@ -53,6 +63,38 @@ import { Movies } from '@/components/interfaces/movie';
         order:[],
       };
     }
+
+    pagination = () => {
+    /*   this.limit = this.limit + 5; */
+      this.page = this.page + 1;
+      this.url = `http://localhost:3003/info?limit=${this.limit}&page=${this.page}`;
+      console.log(this.baseUrl)
+      this.fetchData();
+
+    }
+
+/*     updateSelectedFiltersFromUrl(urlArray) {
+      console.log(urlArray.slug)
+      const separatedArray = urlArray?.slug?.map(element => element.split('+')).flat();
+
+      console.log(toJS(this.genres))
+  
+      separatedArray?.forEach((element:any) => {
+        const matchingGenre = this.genres.find(genre => genre.nameRu === element);
+        if (matchingGenre) {
+          this.selectedFilters.genres.push({
+            nameRu: matchingGenre.nameRu,
+            nameEn: matchingGenre.nameEn,
+            id: matchingGenre.id
+          });
+        }
+      })
+      console.log(toJS(this.selectedFilters))
+      this.fetchData();
+      
+      console.log(toJS(this.movies))
+
+    } */
   
     handleButtonClick(name, id, type) {
 
@@ -88,6 +130,7 @@ import { Movies } from '@/components/interfaces/movie';
     }
   
     generateUrl() {
+      console.log(toJS(this.selectedFilters))
       let path = 'all';
       const hasFilters = Object.values(this.selectedFilters).some(
         (filters) => filters.length > 0
@@ -95,8 +138,7 @@ import { Movies } from '@/components/interfaces/movie';
       if (hasFilters || this.selectedFilters.minRating) {
         const filterStrings = Object.keys(this.selectedFilters)
           .map((key) => {
-            if (key === 'minRating' || key=== 'numRatings') {
-  
+            if (/* key === 'minRating' || */ key=== 'numRatings') {
               return `${key}=${this.selectedFilters[key]}`;
             }
             const filterValues = this.selectedFilters[key]
@@ -118,9 +160,9 @@ import { Movies } from '@/components/interfaces/movie';
   
     generateRequest() {
       const filterStrings = Object.keys(this.selectedFilters)
-        .filter((key) => key === 'minRating' || key === 'numRatings' || this.selectedFilters[key].length > 0)
+        .filter((key) =>/*  key === 'minRating' || */ key === 'numRatings' || this.selectedFilters[key].length > 0)
         .map((key) => {
-          if (key === 'minRating' || key === 'numRatings') {
+          if (/* key === 'minRating' ||  */key === 'numRatings') {
             return `${key}=${this.selectedFilters[key]}`;
           } else {
             const filterValues = this.selectedFilters[key].map((filter) => filter.id).join(",");
@@ -140,7 +182,9 @@ import { Movies } from '@/components/interfaces/movie';
       const data = await response.json();
 
       runInAction(() => {
-        this.movies = data;
+        this.movies.count = data.count;
+        this.movies.rows = [...this.movies.rows, ...data.rows];
+        console.log(toJS(this.movies))
       });
     }
 

@@ -9,9 +9,6 @@ const MoviesDropDownList = () => {
     const [actorsInput, setActorsIpnut] = useState('');
     const [directorsInput, setDirectorsInput] = useState('');
 
-    console.log(actorsInput)
-
-
     useEffect(() => {
       if (actorsInput) {
         setIsLoading(true);

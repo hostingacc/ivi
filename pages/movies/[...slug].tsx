@@ -1,5 +1,5 @@
 import MoviesList from "@/components/moviesList";
-import { Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 
 import FiltersList from "@/components/moviesPage/filtersList";
 import { useEffect, useState} from "react";
@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import SortIcon from '@mui/icons-material/Sort';
 import DropDownItem from "@/components/moviesPage/dropDownItem";
 import { toJS } from "mobx";
+import MyButton from "@/components/buttons/myButton";
 
 interface Filter {
   id: number;
@@ -18,17 +19,19 @@ interface Filter {
 const Movies = observer(() => {
     
   const router = useRouter();
-  const genreName  = router.query;
+  const urlQueries  = router.query;
   const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
     setIsHydrated(true);
+
   }, []);
 
   useEffect(() => {
-    if (genreName.slug) {
+    
+    if (urlQueries.slug) {
       const genre = moviesStore.genres.find(
-        (genre) => genre.nameRu === genreName.slug?.toString()
+        (genre) => genre.nameRu === urlQueries.slug?.toString()
       );
   
       if (genre) {
@@ -41,7 +44,9 @@ const Movies = observer(() => {
         }
       }
     }
-  }, [genreName]);
+
+   
+  }, [urlQueries]);
 
   if (!isHydrated) {
     return null;
@@ -49,25 +54,29 @@ const Movies = observer(() => {
   
 
 
+ /*  console.log(toJS(moviesStore.movies)) */
 
-  console.log(toJS(moviesStore.order[0]))
 
   const sortTypes = [{nameRu:'По количеству оценок', name:null, id:'1'},{nameRu:'По рейтингу', name:null, id:'2'},{nameRu:'По дате выхода', name:null ,id:'year-ASC'}, {nameRu:'По алфавиту', name:null ,id:'4'}];
 
 
     return(
             <Container maxWidth={false} sx={{ width: '77.5rem', mb:'1rem' }}>
-                <DropDownItem 
+              <Box id="sortButton" sx={{position:'relative',zIndex:'3', display:'flex', alignItems:'center'}}>
+              <SortIcon sx={{color:'#fff'}}/>
+              <DropDownItem 
                   button
-                  id="sortButton"
                   text={moviesStore.order[0] || 'Сортировка'} /* Здесь должна быть выбранная сортировка */
                   name="order"
                   content={sortTypes}
                   isTransparent={true}
                 />
-                <SortIcon sx={{color:'#fff'}}/>
+              </Box>
+
                 <FiltersList/>
-                <MoviesList movies = {moviesStore.movies} title="Все"/> 
+                <MoviesList movies = {moviesStore.movies} title="Все"/>
+
+                <MyButton text="Показать еще" func={moviesStore.pagination}/> 
             </Container>
         
     )

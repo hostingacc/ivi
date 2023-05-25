@@ -20,8 +20,6 @@ const MAX_DEPTH = 15;
 
 const Comment = ({ movieId,comment, allComments, depth = 1, showChildComments = true}: CommentProps) => {
     
-    console.log(comment)
-
 
     const childComments = allComments.filter(
         (c) => c.repliedOnComment === comment.id

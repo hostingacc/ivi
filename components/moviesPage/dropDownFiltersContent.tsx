@@ -13,9 +13,6 @@ interface DropDownFiltersContentProps{
 
 const DropDownFiltersContent = ({content, type, inputText}:DropDownFiltersContentProps) => {
 
-
-  console.log(inputText)
-
   const generateContent = () => {
     return content?.map((e) => ({
     link: `/movies/${e.nameRu}`,

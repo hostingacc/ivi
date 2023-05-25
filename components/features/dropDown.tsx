@@ -41,7 +41,8 @@ const DropDown = observer(({
         dropDownRef.current &&
         !dropDownRef.current.contains(event.target) &&
         !event.target.closest('#Жанры') &&
-        !event.target.closest('#Страны')
+        !event.target.closest('#Страны') &&
+        !event.target.closest('#sortButton') 
       ) {
         close();
       }
@@ -67,7 +68,7 @@ const DropDown = observer(({
           left:'50%',
           transform: 'translateX(-50%)',
           height,
-          zIndex:100
+          zIndex:'100'
         }}
       >
         {content}

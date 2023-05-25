@@ -4,21 +4,23 @@ import { Box,  Stack } from '@mui/material';
 import Movie from "./movie";
 import {Movies} from "./interfaces/movie";
 import MyLink from "./navigation/myLink";
-
+import { toJS } from "mobx";
+import { observer } from "mobx-react-lite";
 
 interface MoviesListProps {
     movies: Movies;
     title: string;
 }
 
-const MoviesList = ({movies, title}:MoviesListProps) => {
+const MoviesList = observer(({movies, title}:MoviesListProps) => {
  
+    console.log(toJS(movies))
     //const SliderContent = movies?.rows.map((movie) => <Movie key={movie.id} movie={movie} />);
    
-    let SliderContent;
+/*     let SliderContent;
     if(movies){
         SliderContent = movies?.rows.map((movie) => <Movie key={movie.id} movie={movie} />);
-    }
+    } */
 
     return(
 
@@ -41,6 +43,6 @@ const MoviesList = ({movies, title}:MoviesListProps) => {
             </Box>
 
     )
-};
+});
 
 export default MoviesList;

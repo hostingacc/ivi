@@ -17,8 +17,6 @@ interface MyListProps{
 
 const MyList = observer(({title, content, itemsPerColumn = 11, isButton, type, inputText}:MyListProps) => {
 
-    console.log(inputText)
-
     const splitContent = (data) => {
         if (!data || data.length <= itemsPerColumn) {
             return [data];

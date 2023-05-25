@@ -24,7 +24,7 @@ const Header = observer(() => {
             pt:'1rem',
             position:'relative',
             width:'100%',
-            zIndex:3,
+            zIndex:100,
 
             "@media (max-width:600px)": {
                 justifyContent: "space-between",
