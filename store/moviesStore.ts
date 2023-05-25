@@ -52,7 +52,7 @@ import { Movies } from '@/components/interfaces/movie';
 
     } */
 
-    resetFilters() {
+    resetFilters = () => {
       this.selectedFilters = {
         genres: [],
         countries: [],
@@ -62,13 +62,18 @@ import { Movies } from '@/components/interfaces/movie';
         numRating:[],
         order:[],
       };
+
+      this.resetMovies();
+      this.updateUrl();
+      this.fetchData();
+      this.generateUrl();
     }
 
     pagination = () => {
     /*   this.limit = this.limit + 5; */
       this.page = this.page + 1;
       this.url = `http://localhost:3003/info?limit=${this.limit}&page=${this.page}`;
-      console.log(this.baseUrl)
+
       this.fetchData();
 
     }
@@ -108,14 +113,16 @@ import { Movies } from '@/components/interfaces/movie';
         this.selectedFilters[type].push({ id, name });
       }
       }
-      
+      this.resetMovies();
       this.updateUrl();
       this.fetchData();
       this.generateUrl();
      }
 
     handleMinRatingChange(value: number, type: string) {
-      this.selectedFilters[type] = value;
+      this.selectedFilters[type] = [{id: `${[value]}`, name:`${type}=${value}`}];
+
+      this.resetMovies();
       this.updateUrl();
       this.fetchData();
       this.generateUrl();
@@ -130,17 +137,14 @@ import { Movies } from '@/components/interfaces/movie';
     }
   
     generateUrl() {
-      console.log(toJS(this.selectedFilters))
       let path = 'all';
       const hasFilters = Object.values(this.selectedFilters).some(
         (filters) => filters.length > 0
       );
-      if (hasFilters || this.selectedFilters.minRating) {
+
+      if (hasFilters) {
         const filterStrings = Object.keys(this.selectedFilters)
           .map((key) => {
-            if (/* key === 'minRating' || */ key=== 'numRatings') {
-              return `${key}=${this.selectedFilters[key]}`;
-            }
             const filterValues = this.selectedFilters[key]
               .map((filter) => filter.name)
               .join('+');
@@ -160,20 +164,26 @@ import { Movies } from '@/components/interfaces/movie';
   
     generateRequest() {
       const filterStrings = Object.keys(this.selectedFilters)
-        .filter((key) =>/*  key === 'minRating' || */ key === 'numRatings' || this.selectedFilters[key].length > 0)
+        .filter(
+          (key) =>
+           this.selectedFilters[key].length > 0
+        )
         .map((key) => {
-          if (/* key === 'minRating' ||  */key === 'numRatings') {
-            return `${key}=${this.selectedFilters[key]}`;
-          } else {
-            const filterValues = this.selectedFilters[key].map((filter) => filter.id).join(",");
+            const filterValues = this.selectedFilters[key]
+              .map((filter) => filter.id)
+              .join(',');
             return `${key}=${filterValues}`;
-          }
+          
         });
-      return filterStrings.length > 0 ? `?${filterStrings.join("&")}` : "";
+      return filterStrings.join('&');
     }
 
     updateUrl() {
-      this.url = `${this.baseUrl}/${this.generateRequest()}`;
+      this.url = `${this.baseUrl}&${this.generateRequest()}`;
+    }
+
+    resetMovies() {
+      this.movies = { count: 0, rows: [] };
     }
 
     async fetchData() {
@@ -184,7 +194,6 @@ import { Movies } from '@/components/interfaces/movie';
       runInAction(() => {
         this.movies.count = data.count;
         this.movies.rows = [...this.movies.rows, ...data.rows];
-        console.log(toJS(this.movies))
       });
     }
 

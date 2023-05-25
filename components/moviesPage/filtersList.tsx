@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 
 import MoviesDropDownList from "./moviesDropDownList";
 import MyText from "../content/myText";
+import MyButton from "../buttons/myButton";
 
 const FiltersList = () => {
     const [value, setValue] = useState(0);
@@ -76,6 +77,7 @@ const FiltersList = () => {
                 </Box>
             </Stack>
                 {/* декомпозиция */}
+                <MyButton text="очистить фильтры" func={moviesStore.resetFilters}/>
           </Box>
         </>
       );

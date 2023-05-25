@@ -40,7 +40,8 @@ const Movies = observer(() => {
         );
         if (!isSelected) {
           moviesStore.resetFilters();
-          moviesStore.handleButtonClick(genre.nameRu, genre.id, "genres");
+         
+/*           moviesStore.handleButtonClick(genre.nameRu, genre.id, "genres"); */
         }
       }
     }
