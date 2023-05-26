@@ -25,8 +25,8 @@ interface DropDownItemProps {
   margin?: string | number;
   borderRadius?: string | number;
   backgroundColor?: string;
-
   isTransparent?:boolean;
+  isUnderTextNeed?:boolean;
 }
 
 const DropDownItem = observer(({
@@ -45,11 +45,12 @@ const DropDownItem = observer(({
     borderRadius,
     backgroundColor,
     isTransparent = false,
+    isUnderTextNeed= true
   }:DropDownItemProps) => {
     return (
       <Box sx={{ position: 'relative', zIndex:'2' }}>
         {button && (
-          <DropDownButton isTransparent={isTransparent} name={text} filters={moviesStore.selectedFilters[name]} isOpen={dropdownStore.dropdowns[name]} onClick={() => dropdownStore.toggleShowDropdown(name)}/>
+          <DropDownButton isUnderTextNeed={isUnderTextNeed} isTransparent={isTransparent} name={text} filters={moviesStore.selectedFilters[name]} isOpen={dropdownStore.dropdowns[name]} onClick={() => dropdownStore.toggleShowDropdown(name)}/>
         )}
         {input && (
           <>

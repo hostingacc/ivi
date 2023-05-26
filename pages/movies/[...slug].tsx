@@ -11,6 +11,7 @@ import SortIcon from '@mui/icons-material/Sort';
 import DropDownItem from "@/components/moviesPage/dropDownItem";
 import { toJS } from "mobx";
 import MyButton from "@/components/buttons/myButton";
+import { translationStore } from "@/store/translationStore";
 
 interface Filter {
   id: number;
@@ -21,44 +22,28 @@ const Movies = observer(() => {
   const router = useRouter();
   const urlQueries  = router.query;
   const [isHydrated, setIsHydrated] = useState(false);
+  const [hasLoadedFilters, setHasLoadedFilters] = useState(false);
 
   useEffect(() => {
     setIsHydrated(true);
-
   }, []);
 
   useEffect(() => {
-    
-    if (urlQueries.slug) {
-      const genre = moviesStore.genres.find(
-        (genre) => genre.nameRu === urlQueries.slug?.toString()
-      );
-  
-      if (genre) {
-        const isSelected = moviesStore.selectedFilters.genres.some(
-          (filter: Filter) => filter.id === +genre.id
-        );
-        if (!isSelected) {
-          moviesStore.resetFilters();
-         
-/*           moviesStore.handleButtonClick(genre.nameRu, genre.id, "genres"); */
-        }
+    if(urlQueries.slug){
+      if (!hasLoadedFilters && urlQueries.slug.length > 0) {
+        moviesStore.loadFilters(urlQueries);
+        setHasLoadedFilters(true);
       }
     }
-
-   
-  }, [urlQueries]);
+  }, [urlQueries, hasLoadedFilters]);
+  
 
   if (!isHydrated) {
     return null;
   }
-  
 
+  const sortTypes = [{nameRu:'По количеству оценок', name:null, id:'ratingKinopoiskVoteCount-DESC'},{nameRu:'По рейтингу', name:null, id:'ratingKinopoisk-DESC'},{nameRu:'По дате выхода', name:null ,id:'year-DESC'}, {nameRu:'По алфавиту', name:null ,id:translationStore.translation==='ru' ? 'nameRu-ASC' : 'nameEn-ASC'}];
 
- /*  console.log(toJS(moviesStore.movies)) */
-
-
-  const sortTypes = [{nameRu:'По количеству оценок', name:null, id:'1'},{nameRu:'По рейтингу', name:null, id:'2'},{nameRu:'По дате выхода', name:null ,id:'year-ASC'}, {nameRu:'По алфавиту', name:null ,id:'4'}];
 
 
     return(
@@ -67,10 +52,11 @@ const Movies = observer(() => {
               <SortIcon sx={{color:'#fff'}}/>
               <DropDownItem 
                   button
-                  text={moviesStore.order[0] || 'Сортировка'} /* Здесь должна быть выбранная сортировка */
+                  text={moviesStore.selectedFilters.order[0]?.name ||  'Сортировка'} /* Здесь должна быть выбранная сортировка */
                   name="order"
                   content={sortTypes}
                   isTransparent={true}
+                  isUnderTextNeed={false}
                 />
               </Box>
 

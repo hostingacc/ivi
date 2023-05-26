@@ -14,9 +14,10 @@ interface DropDownButtonProps{
   isOpen:boolean;
   onClick: any;
   isTransparent?:boolean;
+  isUnderTextNeed?:boolean;
 }
 
-const DropDownButton = observer(({ name, filters, isOpen, onClick, isTransparent = false }:DropDownButtonProps) => {
+const DropDownButton = observer(({ name, filters, isOpen, onClick, isTransparent = false, isUnderTextNeed = true }:DropDownButtonProps) => {
 
   let filterString;
   if(Array.isArray(filters)){
@@ -47,7 +48,7 @@ const DropDownButton = observer(({ name, filters, isOpen, onClick, isTransparent
             </Grid>
             <Grid item>
             <Box>
-              <MyText text={cutted} align='left' />
+              {isUnderTextNeed ? <MyText text={cutted} align='left' /> : null}
             </Box>
             </Grid>
           </Grid>

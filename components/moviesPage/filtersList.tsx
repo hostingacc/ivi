@@ -1,6 +1,6 @@
 import { Box, Stack, Slider } from "@mui/material";
 import { moviesStore } from "@/store/moviesStore";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import MoviesDropDownList from "./moviesDropDownList";
 import MyText from "../content/myText";
@@ -27,6 +27,17 @@ const FiltersList = () => {
       moviesStore.handleMinRatingChange(value2, 'numRatings')
     }
 
+    useEffect(() => {
+      if (moviesStore?.selectedFilters?.minRating[0]?.id) {
+        setValue(+moviesStore.selectedFilters.minRating[0].id);
+      }
+    }, [moviesStore?.selectedFilters?.minRating[0]?.id]);
+
+    useEffect(() => {
+      if (moviesStore?.selectedFilters?.numRatings[0]?.id) {
+        setValue2(+moviesStore.selectedFilters.numRatings[0].id);
+      }
+    }, [moviesStore?.selectedFilters?.numRatings[0]?.id]);
   
     return (
         <>

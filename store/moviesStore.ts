@@ -18,7 +18,7 @@ import { Movies } from '@/components/interfaces/movie';
       actors:[],
       directors:[],
       minRating:[],
-      numRating:[],
+      numRatings:[],
       order:[]
     };
     baseUrl = `http://localhost:3003/info?limit=${this.limit}&page=${this.page}`;
@@ -34,23 +34,24 @@ import { Movies } from '@/components/interfaces/movie';
     actors: Filter[] = [];
     directors:Filter[] = [];
     minRating = [];
-    numRating= [];
+    numRatings = [];
     order = [];
   
     constructor() {
       makeAutoObservable(this);
       this.fetchData();
-      this.fetchFilters(this.genresUrl, 'genres');
-      this.fetchFilters(this.countriesUrl, 'countries');
+/*       this.fetchFilters(this.genresUrl, 'genres');
+      this.fetchFilters(this.countriesUrl, 'countries'); */
       /* this.updateSelectedFiltersFromUrl(); */
-      this.fetchFilters(this.genresUrl, 'genres');
+      /* this.fetchFilters(this.genresUrl, 'genres'); */
     }
 
-/*     async loadFilters(urlArray){
+    async loadFilters(urlArray){
       await this.fetchFilters(this.genresUrl, 'genres');
+      await this.fetchFilters(this.countriesUrl, 'countries');
       this.updateSelectedFiltersFromUrl(urlArray);
 
-    } */
+    }
 
     resetFilters = () => {
       this.selectedFilters = {
@@ -59,7 +60,7 @@ import { Movies } from '@/components/interfaces/movie';
         actors:[],
         directors:[],
         minRating:[],
-        numRating:[],
+        numRatings:[],
         order:[],
       };
 
@@ -78,28 +79,46 @@ import { Movies } from '@/components/interfaces/movie';
 
     }
 
-/*     updateSelectedFiltersFromUrl(urlArray) {
-      console.log(urlArray.slug)
-      const separatedArray = urlArray?.slug?.map(element => element.split('+')).flat();
-
-      console.log(toJS(this.genres))
-  
-      separatedArray?.forEach((element:any) => {
-        const matchingGenre = this.genres.find(genre => genre.nameRu === element);
-        if (matchingGenre) {
-          this.selectedFilters.genres.push({
-            nameRu: matchingGenre.nameRu,
-            nameEn: matchingGenre.nameEn,
-            id: matchingGenre.id
-          });
-        }
-      })
-      console.log(toJS(this.selectedFilters))
-      this.fetchData();
+    updateSelectedFiltersFromUrl(urlArray) {
+   
+        this.resetMovies();
       
-      console.log(toJS(this.movies))
+        const filterTypes = Object.keys(this.selectedFilters);
 
-    } */
+        /* Работает для жанров, стран, и ползунков
+          Остальные фильтры не понимаю как сделать.
+
+          Можно убирать их из url
+        */
+
+        urlArray.slug.forEach((element:any) => {
+          const separatedValues = element.split('+');
+    
+          separatedValues.forEach(value => {
+            if (value.startsWith('minRating') || value.startsWith('numRatings')) {
+              const [filterType, filterValue] = value.split('=');
+              this.selectedFilters[filterType].push({
+                id: filterValue,
+                name: `${filterType}=${filterValue}`
+              });
+            } else {
+              filterTypes.forEach(filterType => {
+                const matchingFilter = this[filterType].find(filter => filter.nameRu === value);
+      
+                if (matchingFilter) {
+                  this.selectedFilters[filterType].push({
+                    name: matchingFilter.nameRu,
+                    id: matchingFilter.id
+                  });
+                }
+              })
+            }
+          })
+        })
+         this.updateUrl(); 
+         this.fetchData(); 
+      }
+
   
     handleButtonClick(name, id, type) {
 
@@ -107,12 +126,13 @@ import { Movies } from '@/components/interfaces/movie';
       if (index !== -1) {
         this.selectedFilters[type].splice(index, 1);
       } else {
-      if (type === 'year') {
+      if (type === 'order') {
         this.selectedFilters[type] = [{ id, name }];
       } else {
         this.selectedFilters[type].push({ id, name });
       }
       }
+
       this.resetMovies();
       this.updateUrl();
       this.fetchData();
@@ -122,10 +142,14 @@ import { Movies } from '@/components/interfaces/movie';
     handleMinRatingChange(value: number, type: string) {
       this.selectedFilters[type] = [{id: `${[value]}`, name:`${type}=${value}`}];
 
+      console.log(this.selectedFilters.minRating[0].id)
+      
       this.resetMovies();
       this.updateUrl();
       this.fetchData();
       this.generateUrl();
+
+      console.log(toJS(this.selectedFilters))
     }
     
     async fetchFilters(url: string, property: string) {

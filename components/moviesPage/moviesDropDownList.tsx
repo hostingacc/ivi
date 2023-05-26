@@ -46,6 +46,7 @@ const MoviesDropDownList = () => {
                 margin='0.3rem'
                 borderRadius={0}
                 backgroundColor="#312b45"
+                
             />
             <DropDownItem
                 button

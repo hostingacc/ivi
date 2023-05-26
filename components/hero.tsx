@@ -33,8 +33,8 @@ const Hero = () => {
         <Box >
             <Swiper
                 className={styles.swiper}
-                modules={[Autoplay, EffectCoverflow, Navigation, A11y]}
-                spaceBetween={80}
+                modules={[Autoplay, Navigation, A11y]}
+                spaceBetween={-50}
                 initialSlide={2}
                 centeredSlides={true}
                 loop={true}

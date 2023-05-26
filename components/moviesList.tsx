@@ -14,7 +14,6 @@ interface MoviesListProps {
 
 const MoviesList = observer(({movies, title}:MoviesListProps) => {
  
-    console.log(toJS(movies))
     //const SliderContent = movies?.rows.map((movie) => <Movie key={movie.id} movie={movie} />);
    
 /*     let SliderContent;
