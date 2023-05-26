@@ -142,7 +142,6 @@ import { Movies } from '@/components/interfaces/movie';
     handleMinRatingChange(value: number, type: string) {
       this.selectedFilters[type] = [{id: `${[value]}`, name:`${type}=${value}`}];
 
-      console.log(this.selectedFilters.minRating[0].id)
       
       this.resetMovies();
       this.updateUrl();

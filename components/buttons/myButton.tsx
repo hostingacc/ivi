@@ -9,7 +9,7 @@ interface ButtonProps{
     text: string;
     smallText?: string;
     icon?: ReactElement;
-    func?: any;
+    func?: ()=>void;
     width?: string;
     size?: string;
     id?: string;

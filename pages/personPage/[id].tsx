@@ -5,11 +5,12 @@ import { Box, Container, Stack } from "@mui/material";
 import { useRouter } from "next/router";
 import MyText from "@/components/content/myText";
 import Hr from "@/components/content/hr";
-import movieName from "@/components/content/translationDynamicData";
+import TranslationDynamicData from "@/components/content/translationDynamicData";
 import FormattedRating from "@/components/content/formattedRating";
 import MyButton from "@/components/buttons/myButton";
 import BackButton from "@/components/navigation/backButton";
 import Link from "next/link";
+import MyBreadcrumbs from "@/components/navigation/myBreadcrumbs";
 
 const movieCard = () => {
 
@@ -18,6 +19,12 @@ const movieCard = () => {
 
     const url = id ? 'http://localhost:3003/info/person/' + id : undefined;
     const person = useRequest(url); 
+
+    const breadcrumbs = [
+        {text:'мой Иви', href:'/'},
+        {text: person?.person?.nameRu, href:``},
+    ]
+  
 
 
     return(
@@ -71,7 +78,7 @@ const movieCard = () => {
                                     ></Image>
                                     <Box flexGrow={1} sx={{pl:'1rem'}}>
                                         <MyText text={movie.year} align={'left'} color={"#fff"} weight={500}/>
-                                        <movieName nameRu={movie.nameRu} nameEn={movie.nameEn} align={'left'} color={'#fff'} weight={500}/>
+                                        <TranslationDynamicData nameRu={movie.nameRu} nameEn={movie.nameEn} align={'left'} color={'#fff'} weight={500}/>
                                         <Stack direction='row' alignItems={'center'} gap={1}>
                                             <MyText text='Рейтинг Иви:' color="#a5a1b2"/>
                                             <FormattedRating rating={movie.ratingKinopoisk} color={'#a5a1b2'}/>
@@ -85,6 +92,10 @@ const movieCard = () => {
                     </>    
                     }
                 </Container>
+                <Box sx={{mt:'2rem', display:'flex', justifyContent:'center'}}>
+                    <MyBreadcrumbs links={breadcrumbs}/>
+                </Box>
+              
             </Container>
         </Box>
     )

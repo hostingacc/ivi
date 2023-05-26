@@ -29,7 +29,17 @@ const movieCard = () => {
     const comments = useRequest(commentsUrl);
     const persons = useRequest(personsUrl);
 
+    const topBreadcrumbs = [
+      {text:'фильмы', href:'/movies/all'},
+      {text: movie?.genres[0].nameRu, href:`/movies/${movie?.genres[0].nameRu}`},
+    ]
 
+    const bottomBreadcrumbs = [
+      {text:'мой Иви', href:'/'},
+      {text:'фильмы', href:'/movies/all'},
+      {text: movie?.genres[0].nameRu, href:`/movies/${movie?.genres[0].nameRu}`},
+      {text: movie?.nameRu, href:''}
+    ]
 
 
 
@@ -39,7 +49,7 @@ const movieCard = () => {
      
       <Container maxWidth={false} sx={{ width: '77.5rem',
     }}>
-        <MyBreadcrumbs/>
+        <MyBreadcrumbs links={topBreadcrumbs}/>
      
         <>
       {movie && (
@@ -118,6 +128,13 @@ const movieCard = () => {
       )}
     </>
     <MovieModal persons={persons} comments={comments} movieId={id || 0}/>
+
+
+    <Box sx={{mb:'2rem'}}>
+      <MyBreadcrumbs links={bottomBreadcrumbs}/>
+    </Box>
+
+
     </Container>
     
     </>

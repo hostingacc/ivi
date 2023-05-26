@@ -3,7 +3,7 @@ import { modalStore } from "../../store/modalStore";
 
 interface MyTitleProps {
   isButton?: boolean;
-  onClick?:any;
+  onClick?:() => void;
   showRedBorder?:boolean;
   text: string;
   size?: string;

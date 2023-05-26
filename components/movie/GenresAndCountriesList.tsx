@@ -3,14 +3,13 @@ import React from "react";
 import MyLink from "../navigation/myLink";
 import { GenresAndCountries } from "../interfaces/genresAndCountries";
 import MyText from "../content/myText";
+import { capitalizeFirstLetter } from "@/functions/capitalizeFirstLetter";
 
 interface GenresAndCountriesListProps {
   genres: GenresAndCountries[];
   countries: GenresAndCountries[];
   showOnlyFirst?: boolean;
 }
-
-
 
 const GenresAndCountriesList = ({
   genres,
@@ -35,12 +34,12 @@ const GenresAndCountriesList = ({
           {showOnlyFirst ? (
           <MyText
             color="rgba(255,255,255,0.85)"
-            text={e.nameRu.charAt(0).toUpperCase() + e.nameRu.slice(1)}
+            text={capitalizeFirstLetter(e.nameRu)}
           />
           ) : (
           <MyLink
             color="rgba(255,255,255,.72)"
-            content={e.nameRu.charAt(0).toUpperCase() + e.nameRu.slice(1)}
+            content={capitalizeFirstLetter(e.nameRu)}
             link={`/movies/${e.nameRu}`}
             fontSize="0.93rem"
             fontWeight={400}

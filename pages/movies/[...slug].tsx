@@ -12,6 +12,7 @@ import DropDownItem from "@/components/moviesPage/dropDownItem";
 import { toJS } from "mobx";
 import MyButton from "@/components/buttons/myButton";
 import { translationStore } from "@/store/translationStore";
+import MyBreadcrumbs from "@/components/navigation/myBreadcrumbs";
 
 interface Filter {
   id: number;
@@ -36,6 +37,19 @@ const Movies = observer(() => {
       }
     }
   }, [urlQueries, hasLoadedFilters]);
+
+
+  const genreBreadcrumbs = moviesStore.selectedFilters.genres.map(genre => ({
+    text: genre.name,
+    href: ``,
+  }));
+  
+
+  const breadcrumbs = [
+    {text:'мой Иви', href:'/'},
+    {text:'фильмы', href:'/movies/all'},
+    ...genreBreadcrumbs,
+  ]
   
 
   if (!isHydrated) {
@@ -48,6 +62,7 @@ const Movies = observer(() => {
 
     return(
             <Container maxWidth={false} sx={{ width: '77.5rem', mb:'1rem' }}>
+              <MyBreadcrumbs links={breadcrumbs} separator={'/'}/>
               <Box id="sortButton" sx={{position:'relative',zIndex:'3', display:'flex', alignItems:'center'}}>
               <SortIcon sx={{color:'#fff'}}/>
               <DropDownItem 
