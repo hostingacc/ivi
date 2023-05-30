@@ -5,12 +5,12 @@ import { modalStore } from '@/store/modalStore';
 import { observer } from 'mobx-react-lite';
 import MyTitle from '../content/myTitle';
 import { Person } from '../interfaces/persons';
-import { Comment } from '../interfaces/comment';
+import { CommentI } from '../interfaces/comment';
 
 interface MovieModalProps{
   movieId:number;
   persons:Person[];
-  comments:Comment[]
+  comments:CommentI[]
 }
 
 const MovieModal = observer(({movieId ,persons, comments }: MovieModalProps) => {

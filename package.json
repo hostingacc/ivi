@@ -36,6 +36,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-i18next": "^12.2.2",
+    "sharp": "^0.32.1",
     "swiper": "^9.2.2",
     "ts-jest": "^29.1.0",
     "typescript": "5.0.4"

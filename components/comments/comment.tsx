@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import { Box, Divider, Stack } from '@mui/material';
 import CommentInfo from './commentInfo';
 import ShowMoreText from '../features/showMoreText';
@@ -20,6 +20,7 @@ const MAX_DEPTH = 15;
 
 const Comment = ({ movieId,comment, allComments, depth = 1, showChildComments = true}: CommentProps) => {
     
+    const [isMounted,setIsMounted] = useState(false);
 
     const childComments = allComments.filter(
         (c) => c.repliedOnComment === comment.id
@@ -40,6 +41,7 @@ const Comment = ({ movieId,comment, allComments, depth = 1, showChildComments = 
             modalStore.showReviews();
         } 
     }
+
 
 
     return (
@@ -81,8 +83,8 @@ const Comment = ({ movieId,comment, allComments, depth = 1, showChildComments = 
                 )}
                 </Box>
                 <Stack direction='row' width='100%' justifyContent='space-between' marginTop='auto'>
-                    <Time time={comment.createdAt}/>
-                    <CommentLikes/>
+                    <Time time={comment.createdAt}/> 
+                    <CommentLikes/>  
                 </Stack>
 
 
@@ -118,9 +120,7 @@ const Comment = ({ movieId,comment, allComments, depth = 1, showChildComments = 
                             '&:hover': {
                                 backgroundColor: '#fff',
                             },
-                            }}/>
-                            
-                          
+                            }}/>                       
                             {childComments.map((childComment:CommentI) => (
                                 <Comment
                                     key={childComment.id}

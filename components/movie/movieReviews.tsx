@@ -24,9 +24,9 @@ const MovieReviews = ({comments}) => {
                     <MyText text={count} align="left" />
                 </Box>
                 </Box>
-            <Box sx={{mt:'1rem'}}>
-                <MyText text={'О фильме '} align={'left'}/>
-            </Box>
+                <Box sx={{mt:'1rem'}}>
+                    <MyText text={'О фильме '} align={'left'}/>
+                </Box>
             
             <CommentsList showChildComments={false} comments={comments}/>
             

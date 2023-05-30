@@ -4,7 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import MovieTrailerButtons from "./movieTrailerButtons";
 import MedallionList from "./medallionsList";
 
-const MovieTrailer = ({rating, persons}) => {
+const MovieTrailer = ({rating, persons, video}) => {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
 

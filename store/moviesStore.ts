@@ -1,18 +1,33 @@
-import { makeAutoObservable, toJS } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 import { runInAction } from 'mobx';
-import router, { useRouter } from 'next/router';
-import { Movies } from '@/components/interfaces/movie';
+import router from 'next/router';
+import { enableStaticRendering } from 'mobx-react-lite';
 
   interface Filter {
+    name: string;
     id: string;
     nameRu: string;
   }
 
+  interface SelectedFilters {
+    genres: Filter[];
+    countries: Filter[];
+    actors: Filter[];
+    directors: Filter[];
+    minRating: Filter[];
+    numRatings: Filter[];
+    order: Filter[];
+  }
+
+  const isServer = typeof window === 'undefined';
+  enableStaticRendering(isServer);
+
 
   class MoviesStore {
-    limit=5;
+    rootStore
+    limit=30;
     page=1;
-    selectedFilters = {
+    selectedFilters:SelectedFilters = {
       genres: [],
       countries: [],
       actors:[],
@@ -22,69 +37,46 @@ import { Movies } from '@/components/interfaces/movie';
       order:[]
     };
     baseUrl = `http://localhost:3003/info?limit=${this.limit}&page=${this.page}`;
-    genresUrl = 'http://localhost:3001/movies/filters/genres'
-    countriesUrl = 'http://localhost:3001/movies/filters/countries'
     actorsUrl = 'http://localhost:3005/persons/actors?keywords='
     directorsUrl = 'http://localhost:3005/persons/directors?keywords='
 
     url = this.baseUrl;
-    movies: Movies = {count: 0 , rows: []};
-    genres: Filter[] = [];
-    countries: Filter[] = [];
+
+
     actors: Filter[] = [];
     directors:Filter[] = [];
     minRating = [];
     numRatings = [];
     order = [];
+
+    movies:any = [];
+
+ 
   
-    constructor() {
+    constructor(rootStore) {
+      this.rootStore = rootStore;
       makeAutoObservable(this);
-      this.fetchData();
-/*       this.fetchFilters(this.genresUrl, 'genres');
-      this.fetchFilters(this.countriesUrl, 'countries'); */
-      /* this.updateSelectedFiltersFromUrl(); */
-      /* this.fetchFilters(this.genresUrl, 'genres'); */
     }
 
-    async loadFilters(urlArray){
-      await this.fetchFilters(this.genresUrl, 'genres');
-      await this.fetchFilters(this.countriesUrl, 'countries');
-      this.updateSelectedFiltersFromUrl(urlArray);
 
-    }
-
-    resetFilters = () => {
-      this.selectedFilters = {
-        genres: [],
-        countries: [],
-        actors:[],
-        directors:[],
-        minRating:[],
-        numRatings:[],
-        order:[],
-      };
-
-      this.resetMovies();
-      this.updateUrl();
-      this.fetchData();
-      this.generateUrl();
-    }
 
     pagination = () => {
-    /*   this.limit = this.limit + 5; */
+      
       this.page = this.page + 1;
       this.url = `http://localhost:3003/info?limit=${this.limit}&page=${this.page}`;
-
-      this.fetchData();
-
-    }
+    
+    } 
 
     updateSelectedFiltersFromUrl(urlArray) {
+
+      console.log(urlArray)
    
-        this.resetMovies();
+/*         this.resetMovies(); */
+
+
       
         const filterTypes = Object.keys(this.selectedFilters);
-
+   
         /* Работает для жанров, стран, и ползунков
           Остальные фильтры не понимаю как сделать.
 
@@ -103,7 +95,7 @@ import { Movies } from '@/components/interfaces/movie';
               });
             } else {
               filterTypes.forEach(filterType => {
-                const matchingFilter = this[filterType].find(filter => filter.nameRu === value);
+                 const matchingFilter = this.rootStore.ssrStore[filterType]?.find(filter => filter.nameRu === value);
       
                 if (matchingFilter) {
                   this.selectedFilters[filterType].push({
@@ -115,8 +107,9 @@ import { Movies } from '@/components/interfaces/movie';
             }
           })
         })
-         this.updateUrl(); 
-         this.fetchData(); 
+        this.updateUrl();  
+        this.fetchData();  
+         
       }
 
   
@@ -133,22 +126,19 @@ import { Movies } from '@/components/interfaces/movie';
       }
       }
 
-      this.resetMovies();
       this.updateUrl();
       this.fetchData();
-      this.generateUrl();
+      this.generateUrl(); 
      }
 
     handleMinRatingChange(value: number, type: string) {
       this.selectedFilters[type] = [{id: `${[value]}`, name:`${type}=${value}`}];
 
-      
-      this.resetMovies();
       this.updateUrl();
       this.fetchData();
       this.generateUrl();
 
-      console.log(toJS(this.selectedFilters))
+
     }
     
     async fetchFilters(url: string, property: string) {
@@ -198,6 +188,7 @@ import { Movies } from '@/components/interfaces/movie';
             return `${key}=${filterValues}`;
           
         });
+  
       return filterStrings.join('&');
     }
 
@@ -206,17 +197,15 @@ import { Movies } from '@/components/interfaces/movie';
     }
 
     resetMovies() {
-      this.movies = { count: 0, rows: [] };
+      this.rootStore.ssrStore.movies = { count: 0, rows: [] }
     }
 
     async fetchData() {
-
       const response = await fetch(this.url);
       const data = await response.json();
 
       runInAction(() => {
-        this.movies.count = data.count;
-        this.movies.rows = [...this.movies.rows, ...data.rows];
+          this.rootStore.ssrStore.setMovies(data, 'movies');
       });
     }
 
@@ -239,9 +228,8 @@ import { Movies } from '@/components/interfaces/movie';
         this.directors = data;
       });
     }
-
-
 }
 
 
-export const moviesStore = new MoviesStore();
+
+export {MoviesStore};

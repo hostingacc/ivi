@@ -16,6 +16,7 @@ interface DropDownProps{
   onMouseLeave?:boolean;
   isOpen?:boolean;
   name:string;
+
 }
 
 const DropDown = observer(({ 
@@ -26,7 +27,8 @@ const DropDown = observer(({
   margin=0,
   borderRadius='1rem',
   backgroundColor="#1f1b2e",
-  onMouseLeave = true
+  onMouseLeave = true,
+
 }:DropDownProps) => {
   
   const dropDownRef = useRef<HTMLDivElement>(null);

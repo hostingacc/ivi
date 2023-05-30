@@ -4,15 +4,20 @@ import MyList from "../../content/myList";
 import Hr from "../../content/hr";
 import DropdownSlider from "../../navbar/DropdownSlider";
 import DropdownSliderToRight from "../../navbar/DropdownSliderToRight";
-
+import { toJS } from "mobx";
 
 
 const MoviesDropDownContent = () => {
     const genresUrl = 'http://localhost:3001/movies/filters/genres';
-    const countriesUrl = 'http://localhost:3001/movies/filters/countries';
+
 
     const genres = useRequest(genresUrl);
-    const countries = useRequest(countriesUrl);
+    const countries = [
+        {nameRu: "Русские"},
+        {nameRu: "Зарубежные"},
+        {nameRu: "Советское кино"},
+
+    ];
     const features = [
         {nameRu: "Подборки"},
         {nameRu:"Рейтинг"},
@@ -21,7 +26,7 @@ const MoviesDropDownContent = () => {
         {nameRu:"Фильмы в HD"},
         {nameRu:"Выбор иви"},
         {nameRu:"Новинки подписки"},
-]
+    ]
 
     const generateContent = (data) => {
         return data?.map((e) => ({
@@ -30,6 +35,8 @@ const MoviesDropDownContent = () => {
         }));
     }
     /* придумать как обойтись без generate content */
+
+   
        
     const genresContent = generateContent(genres);
     const countriesContent = generateContent(countries);
@@ -44,10 +51,10 @@ const MoviesDropDownContent = () => {
 
             <Stack direction='row' justifyContent='space-between' sx={{mt:'1rem'}}>
                 <Box>
-                    <MyList title="Жанры" content={genresContent} itemsPerColumn={8}/>
+                    <MyList title="Жанры" content={genresContent} itemsPerColumn={8} isButton={true}/>
                 </Box>
                 <Box>
-                    <MyList title="Страны" content={countriesContent} itemsPerColumn={8} />
+                    <MyList title="Страны" content={countriesContent} itemsPerColumn={8} isButton={true}/>
                 </Box>
                 <Box>
                     <MyList title="Новинки" content={featuresContent} itemsPerColumn={8}/>

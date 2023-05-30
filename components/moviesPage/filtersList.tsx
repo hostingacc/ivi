@@ -1,12 +1,12 @@
 import { Box, Stack, Slider } from "@mui/material";
-import { moviesStore } from "@/store/moviesStore";
-import { useState, useRef, useEffect } from "react";
 
+import { useState, useRef, useEffect } from "react";
+import { rootStore } from "@/store/RootStore";
 import MoviesDropDownList from "./moviesDropDownList";
 import MyText from "../content/myText";
 import MyButton from "../buttons/myButton";
 
-const FiltersList = () => {
+const FiltersList = ({store}:any) => {
     const [value, setValue] = useState(0);
     const [value2, setValue2] = useState(0);
 
@@ -21,23 +21,23 @@ const FiltersList = () => {
     };
 
     const sendRequest = () => {
-      moviesStore.handleMinRatingChange(value, 'minRating')
+      rootStore.moviesStore.handleMinRatingChange(value, 'minRating')
     }
     const sendRequest2 = () => {
-      moviesStore.handleMinRatingChange(value2, 'numRatings')
+      rootStore.moviesStore.handleMinRatingChange(value2, 'numRatings')
     }
 
     useEffect(() => {
-      if (moviesStore?.selectedFilters?.minRating[0]?.id) {
-        setValue(+moviesStore.selectedFilters.minRating[0].id);
+      if (rootStore.moviesStore?.selectedFilters?.minRating[0]?.id) {
+        setValue(+rootStore.moviesStore.selectedFilters.minRating[0].id);
       }
-    }, [moviesStore?.selectedFilters?.minRating[0]?.id]);
+    }, [rootStore.moviesStore?.selectedFilters?.minRating[0]?.id]);
 
     useEffect(() => {
-      if (moviesStore?.selectedFilters?.numRatings[0]?.id) {
-        setValue2(+moviesStore.selectedFilters.numRatings[0].id);
+      if (rootStore.moviesStore?.selectedFilters?.numRatings[0]?.id) {
+        setValue2(+rootStore.moviesStore.selectedFilters.numRatings[0].id);
       }
-    }, [moviesStore?.selectedFilters?.numRatings[0]?.id]);
+    }, [rootStore.moviesStore?.selectedFilters?.numRatings[0]?.id]);
   
     return (
         <>
@@ -50,7 +50,7 @@ const FiltersList = () => {
             }}
           >
             <Stack direction="row" gap={2} justifyContent={'space-around'}>
-              <MoviesDropDownList/>
+              <MoviesDropDownList store={store}/>
             </Stack>
             <Stack direction="row" gap={2} justifyContent={'space-around'} sx={{mt:'2rem'}}>
             <Box sx={{width:'14rem'}}>
@@ -88,7 +88,7 @@ const FiltersList = () => {
                 </Box>
             </Stack>
                 {/* декомпозиция */}
-                <MyButton text="очистить фильтры" func={moviesStore.resetFilters}/>
+         {/*        <MyButton text="очистить фильтры" func={moviesStore.resetFilters}/> */}
           </Box>
         </>
       );

@@ -33,7 +33,7 @@ a {
   border-radius: 12px;
 }
 .hoverImage {
-  transition: transform 0.2s;
+  transition: transform 0.3s;
   transform-origin: bottom;
   position: relative;
   
@@ -42,13 +42,17 @@ a {
   transform: scale(1.04);
 
 }
-.hoverImage:hover::after {
+.hoverImage::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%; 
+  background-color: rgba(0,0,0,0);
+  transition: background-color 0.3s;
+}
+.hoverImage:hover::after {
   background-color: rgba(0,0,0,0.8);
 }
 .hoverContent {

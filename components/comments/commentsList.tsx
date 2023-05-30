@@ -1,12 +1,12 @@
 import { Box, Container} from '@mui/material';
 import Comment from './comment'
 import Slider from '../features/slider';
-
+import { CommentI } from '../interfaces/comment';
 
 
 interface CommentsListProps {
   movieId?: number;
-  comments: Comment[];
+  comments: CommentI[];
   showChildComments?: boolean;
 }
 

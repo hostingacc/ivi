@@ -2,16 +2,17 @@ import { Box, List, ListItem } from '@mui/material'
 import MyTitle from "./myTitle"
 import MyLink from "../navigation/myLink"
 import MyButton from '../buttons/myButton';
-import { moviesStore } from '@/store/moviesStore';
+import { MoviesStore } from '@/store/moviesStore';
 import CheckIcon from '@mui/icons-material/Check';
 import { observer } from 'mobx-react-lite';
+import { rootStore } from '@/store/RootStore';
 
 interface MyListProps{
     content:any;
-    title?: string;
-    itemsPerColumn: number;
+    title?: string | undefined | null;
+    itemsPerColumn?: number;
     isButton?:boolean;
-    type:string;
+    type?:string;
     inputText?:string;
 }
 
@@ -47,12 +48,12 @@ const MyList = observer(({title, content, itemsPerColumn = 11, isButton, type, i
                         text={item.content}
                         showEndIcon={
                             type
-                              ? moviesStore.selectedFilters[type].some(
+                              ? rootStore.moviesStore.selectedFilters[type].some(
                                   (filter) => filter.name === item.content
                                 )
                               : false
                           }
-                        func={() => moviesStore.handleButtonClick(item.content, item.id, type)}/> :
+                        func={() =>rootStore.moviesStore.handleButtonClick(item.content, item.id, type)}/> :
                         
                         <MyLink
                             link={item.link}    

@@ -18,11 +18,12 @@ const DropDownsList = observer(() => {
                 name={'profile'}
             />
             <DropDown
-                content={<MoviesDropDownContent/>}
+                content={<MoviesDropDownContent />}
                 isOpen={dropdownStore.dropdowns.movies}
                 setIsOpen={(value) => dropdownStore.setShowDropdown('movies', value)}
                 onMouseLeave={true}
                 name={'movies'}
+               
             />
             <DropDown
                 content={<SubscribeDropdownContent/>}

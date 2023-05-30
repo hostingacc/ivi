@@ -8,15 +8,13 @@ import useRequest from '@/hooks/useRequest';
 import Hero from '@/components/hero';
 import { Movies } from '@/components/interfaces/movie';
 import MyTitle from '@/components/content/myTitle';
-import MyText from '@/components/content/myText';
+import { toJS } from 'mobx';
 
-export default function Home() {
+import { rootStore } from '@/store/RootStore';
+import { initializeStore, useStore } from '@/store/ssrStore';
 
-  const url = 'http://localhost:3003/info?genres=4&limit=15';
-  const urlCom = 'http://localhost:3003/info?genres=8&limit=15';
-
-  const movies:Movies = useRequest(url);
-  const moviesCom:Movies = useRequest(urlCom);
+export default function Home({initialMobxState}) {
+  const store = useStore(initialMobxState, rootStore)
 
   return (
     <>
@@ -33,14 +31,9 @@ export default function Home() {
           <Subscribe />
           <MyTitle text='Онлайн-кинотеатр Иви: фильмы в хорошем качестве всегда приносят настоящее удовольствие'/>
           <Stack direction='column' gap={1}>
-          
-
           </Stack>
-     
-
-          <MoviesList movies = {movies} title={'Драмы'} />
-          <MoviesList movies = {moviesCom} title={'Комедии'} />
-
+          <MoviesList movies={initialMobxState.moviesWithGenre1} title={'Драмы'} />
+          <MoviesList movies={initialMobxState.moviesWithGenre2} title={'Комедии'} />
         </Container>
 
               
@@ -49,3 +42,32 @@ export default function Home() {
     </>
   )
 }
+
+
+export async function getServerSideProps(context) {
+  const store = initializeStore(null, rootStore)
+  const baseUrl = `http://192.168.0.102:3003/info?genres=4&limit=15`
+  const url2 = 'http://192.168.0.102:3003/info?genres=8&limit=15'
+
+  const [moviesWithGenre1, moviesWithGenre2] = await Promise.all([
+    fetch(baseUrl).then(res => res.json()),
+    fetch(url2).then(res => res.json())
+  ]);
+
+  store.setMovies(moviesWithGenre1, 'moviesWithGenre1');
+  store.setMovies(moviesWithGenre2, 'moviesWithGenre2');
+
+  const initialMobxState = {
+    moviesWithGenre1: store.moviesWithGenre1,
+    moviesWithGenre2: store.moviesWithGenre2,
+
+  };
+
+  return {
+    props: {
+      initialMobxState
+    },
+  }
+}
+
+

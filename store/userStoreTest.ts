@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import { User } from '@/components/interfaces/user';
 import AuthService from '@/components/services/auth';
 import axios from  'axios';
-import { AuthResponce } from '@/components/interfaces/AuthResponse';
+import { AuthResponse } from '@/components/interfaces/AuthResponse';
 
 class UserStore{
     user = {} as User;
@@ -61,7 +61,7 @@ class UserStore{
         try{
             console.log('ca trig')
 
-            const response = await axios.get<AuthResponce>('http://localhost:3006/auth/refresh', {withCredentials:true})
+            const response = await axios.get<AuthResponse>('http://localhost:3006/auth/refresh', {withCredentials:true})
 
             console.log('checkauth trig ')
 

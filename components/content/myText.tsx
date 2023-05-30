@@ -4,7 +4,7 @@ import { TextProps } from '../interfaces/textProps';
 import {highlightText} from '../../functions/highlightText';
 
 interface MyTextProps extends TextProps{
-  text: string ;
+  text: any;
   id?:string;
   hover?:string;
   inputText?:string;
@@ -14,7 +14,7 @@ const MyText = ({ id,text, align, color = 'rgba(255,255,255,.48)', weight = 400,
 
 
   const { beforeMatch = "", match = "", afterMatch = "", hasMatch = false } =
-    inputText ? highlightText(text, inputText) : {};
+    inputText ? highlightText(text.toString(), inputText) : {};
 
 
 

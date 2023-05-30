@@ -1,5 +1,5 @@
 import { Button } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MyText from '../content/myText';
 import { cutText } from '../../functions/cutText';
 
@@ -26,12 +26,17 @@ const ShowMoreText = ({
     setShowFullText(true);
   };
 
+  const [isMounted,setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+},[]);
+
 
   const displayedText = cutText(text, length ,showFullText);
 
   return (
     <>
-      {useDangerouslySetInnerHTML ? (
+      {useDangerouslySetInnerHTML && isMounted ? (
         <div dangerouslySetInnerHTML={{ __html: displayedText }}  style={{ color: 'rgba(255,255,255,.78)', textAlign: 'left',whiteSpace: 'normal'}}/>
       ) : (
         <MyText text={displayedText} align={'left'} color={color}/>

@@ -1,4 +1,4 @@
-import i18n from 'i18next';
+/* import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
@@ -12,7 +12,7 @@ i18n
     .init({
         supportedLngs:['ru', 'en'],
         fallbackLng: "ru",
-        debug: true,
+        debug: false,
         detection: {
             order: ['cookie', 'localStorage'],
             caches: ['cookie', 'localStorage'],
@@ -24,4 +24,4 @@ i18n
         
     })
 
-    export default i18n;
+export default i18n; */

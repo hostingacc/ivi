@@ -5,16 +5,17 @@ import DropDown from "../features/dropDown";
 import DropDownFiltersContent from "./dropDownFiltersContent";
 import { dropdownStore } from "@/store/DropdownStore";
 import DropDownButton from "../buttons/dropDownButton";
-import { moviesStore } from "@/store/moviesStore";
+import { MoviesStore } from "@/store/moviesStore";
 import { observer } from "mobx-react-lite";
 import { Filter } from "../interfaces/filter";
 import { Dispatch, SetStateAction } from "react";
+import { rootStore } from "@/store/RootStore";
 
 interface DropDownItemProps {
   id?: string;
   text: string;
   name: string;
-  content: Filter[];
+  content: any;
   inputText?:string;
   setState?: Dispatch<SetStateAction<string>> | undefined;
   isLoading?: boolean;
@@ -50,7 +51,7 @@ const DropDownItem = observer(({
     return (
       <Box sx={{ position: 'relative', zIndex:'2' }}>
         {button && (
-          <DropDownButton isUnderTextNeed={isUnderTextNeed} isTransparent={isTransparent} name={text} filters={moviesStore.selectedFilters[name]} isOpen={dropdownStore.dropdowns[name]} onClick={() => dropdownStore.toggleShowDropdown(name)}/>
+          <DropDownButton isUnderTextNeed={isUnderTextNeed} isTransparent={isTransparent} name={text} filters={rootStore.moviesStore.selectedFilters[name]} isOpen={dropdownStore.dropdowns[name]} onClick={() => dropdownStore.toggleShowDropdown(name)}/>
         )}
         {input && (
           <>

@@ -1,18 +1,24 @@
 import DropDownItem from "./dropDownItem";
-import { moviesStore } from "@/store/moviesStore";
+
 import { useState, useEffect } from "react";
 import { dropdownStore } from "@/store/DropdownStore";
 
-const MoviesDropDownList = () => {
+import { observer } from "mobx-react-lite";
+import { rootStore } from "@/store/RootStore";
+
+
+
+const MoviesDropDownList = observer(({store}:any) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const [actorsInput, setActorsIpnut] = useState('');
     const [directorsInput, setDirectorsInput] = useState('');
 
+
     useEffect(() => {
       if (actorsInput) {
         setIsLoading(true);
-        moviesStore.fetchPersons(actorsInput).then(() => {
+       rootStore.moviesStore.fetchPersons(actorsInput).then(() => {
           setIsLoading(false);
           dropdownStore.setShowDropdown('actors', true)
         });
@@ -23,7 +29,7 @@ const MoviesDropDownList = () => {
     useEffect(() => {
       if (directorsInput) {
         setIsLoading(true);
-        moviesStore.fetchDirectors(directorsInput).then(() => {
+       rootStore.moviesStore.fetchDirectors(directorsInput).then(() => {
           setIsLoading(false);
           dropdownStore.setShowDropdown('directors', true)
         });
@@ -40,7 +46,7 @@ const MoviesDropDownList = () => {
                 id="genresButton"
                 text="Жанры"
                 name="genres"
-                content={moviesStore.genres}
+                content={store?.genres}
                 height='auto'
                 padding='1rem'
                 margin='0.3rem'
@@ -53,7 +59,7 @@ const MoviesDropDownList = () => {
                 id="countriesButton"
                 text="Страны"
                 name="countries"
-                content={moviesStore.countries}
+                content={store?.countries}
                 height='auto'
                 padding='1rem'
                 margin='0.3rem'
@@ -64,7 +70,7 @@ const MoviesDropDownList = () => {
                 input
                 text="фильтр по Актерам"
                 name="actors"
-                content={moviesStore.actors}
+                content={rootStore.moviesStore.actors}
                 setState={setActorsIpnut}
                 inputText={actorsInput}
                 isLoading={isLoading}
@@ -73,13 +79,13 @@ const MoviesDropDownList = () => {
                 input
                 text="фильтр по Режисерам"
                 name="directors"
-                content={moviesStore.directors}
+                content={rootStore.moviesStore.directors}
                 setState={setDirectorsInput}
                 isLoading={isLoading}
             />
         </>
     )
-}
+})
 
 
 export default MoviesDropDownList;

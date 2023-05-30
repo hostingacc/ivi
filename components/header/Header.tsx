@@ -16,7 +16,7 @@ const Header = observer(() => {
     const { t } = useTranslation();
 
     return (
-        <Container maxWidth={false} sx={{ width: '77.5rem', mb:'1rem' }}>
+       
       
         <Box
             component="header" 
@@ -25,13 +25,12 @@ const Header = observer(() => {
             position:'relative',
             width:'100%',
             zIndex:100,
-
             "@media (max-width:600px)": {
                 justifyContent: "space-between",
                 marginLeft: "10px",
                 marginRight: "30px"
             }
-        }}>
+        }}> <Container maxWidth={false} sx={{ width: '77.5rem', mb:'1rem' }}>
             <Box sx={{
                 zIndex:3, 
                 width:'100%',
@@ -142,9 +141,10 @@ const Header = observer(() => {
             </Stack>
             </Box>                
             <DropDownsList/>
+            </Container>
         </Box>  
 
-            </Container>
+      
     )
 })
 
