@@ -4,6 +4,8 @@ import Link from "next/link";
 import FormattedRating from "./content/formattedRating";
 import { Box, Stack, LinearProgress} from '@mui/material';
 
+import styles from '../styles/movie.module.css'
+
 import {
     BookmarkBorderOutlined,
     AutoFixHighOutlined,
@@ -20,7 +22,7 @@ const Movie = ({movie}) => {
     const [progress, setProgress] = useState([70, 60, 80, 90]);
 
     return(
-        <Box key={movie.id} sx={{width:'9.5rem', }}>
+        <Box key={movie.id} className={styles.movie} sx={{width:'100%'}}>
                     <Link
                         href={{
                         pathname: `/movie/${movie.id}`,
@@ -28,14 +30,14 @@ const Movie = ({movie}) => {
                             id:movie.id,
                         },
                         }}>
-                    <Box className="hoverImage" sx={{position:'relative', width:'100%', height:'14.5rem', borderRadius:'0.5rem', overflow:'hidden'}}>
+                    <Box className={styles.hoverImage}  sx={{position:'relative', width:'100%', height:'auto', borderRadius:'0.5rem', overflow:'hidden'}}>
                         <Image
                             src={movie.posterUrlPreview}
                             alt="постер фильма"
                             fill
-                            sizes="(max-width: 600px) 100vw, 50vw"
+                        /*     sizes="(max-width: 600px) 100vw, 50vw" */
                         />
-                        <Box className="hoverContent" sx={{width:'100%', height:'100%',padding:'1rem', display:'flex'}}>
+                        <Box className={styles.hoverContent} sx={{width:'100%', height:'100%',padding:'1rem', display:'flex'}}>
                             <Box sx={{mt:'auto', mb:'1rem'}}>
                                 <Stack direction='row' alignItems='center'>
                                     <FormattedRating rating={movie.ratingKinopoisk} smallDecimal={true} color="#fff"/>
@@ -58,9 +60,9 @@ const Movie = ({movie}) => {
                                     </Box>
                                     
                                 </Stack>
-                                <MyText text={'сюжет'} color="rgba(255,255,255,0.85)"/>
+                                <MyText text={'сюжет'} color="rgba(255,255,255,0.85)" size={'16px'}/>
                                 <Stack direction='row' alignItems='center' flexWrap='wrap' sx={{mt:'0'}}>
-                                    <MyText text={`${movie.year},`} color="rgba(255,255,255,0.85)" />
+                                    <MyText text={`${movie.year},`} color="rgba(255,255,255,0.85)" size="16px"/>
                                     <GenresAndCountriesList showOnlyFirst={true} genres={movie.genres} countries={movie.countries}/>
                                 </Stack>
                             </Box>
@@ -74,7 +76,7 @@ const Movie = ({movie}) => {
                         </Box>
                     </Box>
                 <Box sx={{mt:'0.4rem'}}>
-                    <TranslationDynamicData nameRu={movie.nameRu} nameEn={movie.nameEn} weight={700} color="#fff" align="left" shouldCut={true}/>
+                    <TranslationDynamicData nameRu={movie.nameRu} nameEn={movie.nameEn} weight={700} color="#fff" align="left"  shouldCut={true}/>
                 </Box>
             </Link>
         </Box>   

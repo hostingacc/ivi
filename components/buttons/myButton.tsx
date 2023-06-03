@@ -12,6 +12,7 @@ interface ButtonProps{
     func?: any;
 
     width?: string;
+    height?:string;
     size?: string;
     id?: string;
     fontColor?: string;
@@ -19,10 +20,31 @@ interface ButtonProps{
     endIcon?: ReactElement;
     showEndIcon?:boolean;
     inputText?:string;
+    mobileWidth?:string;
+    justifyContent?:string;
+    border?:string;
 }
 
 
-const MyButton = ({id ,color = '#1f1b2e', hoverColor = color, fontColor='#fff', text, smallText, size = '0.93rem', icon, func, width = '12.25rem', startIcon, endIcon, showEndIcon, inputText}:ButtonProps) => {
+const MyButton = ({
+    id,
+    color = '#1f1b2e',
+    hoverColor = color,
+    fontColor='#fff',
+    text, smallText,
+    size = '0.93rem',
+    icon,
+    func,
+    width = '12.25rem',
+    height='2.5rem',
+    startIcon,
+    endIcon,
+    showEndIcon,
+    inputText,
+    mobileWidth,
+    justifyContent='center',
+    border='none'
+    }:ButtonProps) => {
 
     const [hover, setHover] = useState(false);
     
@@ -47,23 +69,34 @@ const MyButton = ({id ,color = '#1f1b2e', hoverColor = color, fontColor='#fff', 
             onMouseLeave={() => setHover(false)}
                     sx={{
                         textTransform: 'none',
+                        border,
                         backgroundColor: color,
                         borderColor: color,
                         borderWidth: color === 'transparent' ? 0 : '1px',
-                        borderRadius: '0.5rem',
-                        height:'2.5rem',
+                        borderRadius: '8px',
+                        height,
                         width,
                         boxShadow: color === 'transparent' ? 0 : undefined,
                         paddingLeft: icon ? '1rem' : 0,
                         paddingRight: icon ? '1rem' : 0,
                         display:'flex',
-                        justifyContent: endIcon ? 'space-between' : 'center',
+                        justifyContent,
                         '&:hover':  {
                             backgroundColor: hoverColor,
                             borderColor: hoverColor,
+                           /*  border: border === 'unset' ? 'unset' : '1px solid rgba(255,255,255,0.93) !important' 
+                            подумай
+                           */
                         },
                         '@media (max-width:1159px)': {
                             width:'15.4rem',
+                         },
+                         '@media (max-width:876px)': {
+                            width:'15.4rem',
+                            height: mobileWidth ? '4rem' : 'unset',
+                         },
+                         '@media (max-width:576px)': {
+                            width: mobileWidth
                          },
                     }}>
                        {icon}
@@ -73,7 +106,7 @@ const MyButton = ({id ,color = '#1f1b2e', hoverColor = color, fontColor='#fff', 
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'flex-start',
-                            marginLeft:'3px'
+                            /* marginLeft:'3px' */
                         }}> 
                         {smallText && (
                         <Typography
@@ -82,6 +115,7 @@ const MyButton = ({id ,color = '#1f1b2e', hoverColor = color, fontColor='#fff', 
                             color: 'rgba(255,255,255,.72)',
                             fontSize: '0.625rem',
                             marginBottom: '-0.2rem',
+                 
                             }}
                         >
                             {smallText}

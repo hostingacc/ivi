@@ -1,43 +1,19 @@
 import DropDownItem from "./dropDownItem";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { dropdownStore } from "@/store/DropdownStore";
 
 import { observer } from "mobx-react-lite";
 import { rootStore } from "@/store/RootStore";
-
+import { useInput } from "@/hooks/useInput";
 
 
 const MoviesDropDownList = observer(({store}:any) => {
-    const [isLoading, setIsLoading] = useState(false);
 
-    const [actorsInput, setActorsIpnut] = useState('');
-    const [directorsInput, setDirectorsInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-
-    useEffect(() => {
-      if (actorsInput) {
-        setIsLoading(true);
-       rootStore.moviesStore.fetchPersons(actorsInput).then(() => {
-          setIsLoading(false);
-          dropdownStore.setShowDropdown('actors', true)
-        });
-      } else {
-        dropdownStore.setShowDropdown('actors', false)
-      }
-    }, [actorsInput]);
-    useEffect(() => {
-      if (directorsInput) {
-        setIsLoading(true);
-       rootStore.moviesStore.fetchDirectors(directorsInput).then(() => {
-          setIsLoading(false);
-          dropdownStore.setShowDropdown('directors', true)
-        });
-      } else {
-        dropdownStore.setShowDropdown('directors', false)
-      }
-    }, [directorsInput]);
-    /* вместо этого здесь будет кастомный хук  для директоров/ актеров*/
+  const { inputValue: actorsInputValue, setInputValue: setActorsInputValue } = useInput('actors', rootStore, dropdownStore, setIsLoading);
+  const { inputValue: directorsInputValue, setInputValue: setDirectorsInputValue } = useInput('directors', rootStore, dropdownStore, setIsLoading);
 
     return(
         <>
@@ -68,19 +44,21 @@ const MoviesDropDownList = observer(({store}:any) => {
             />
             <DropDownItem
                 input
-                text="фильтр по Актерам"
+                text="Актеры"
                 name="actors"
-                content={rootStore.moviesStore.actors}
-                setState={setActorsIpnut}
-                inputText={actorsInput}
+                padding='1rem'
+                 content={rootStore.moviesStore.actors}
+                setState={setActorsInputValue}
+                inputText={actorsInputValue}
                 isLoading={isLoading}
             />
             <DropDownItem
                 input
-                text="фильтр по Режисерам"
+                text="Режисеры"
                 name="directors"
+                padding='1rem'
                 content={rootStore.moviesStore.directors}
-                setState={setDirectorsInput}
+                setState={setDirectorsInputValue}
                 isLoading={isLoading}
             />
         </>

@@ -36,6 +36,10 @@ const MyInput = ({label, setState}:MyInputProps) => {
             '& input': {
             color: 'white',
             },
+            '@media (max-width:876px)': {
+                width:'100%',
+                height:'6rem'
+             },
         }}
         label={label}
         />

@@ -63,7 +63,8 @@ const profile = observer(() => {
 
 
     return (
-        <Container maxWidth={false} sx={{ width: '77.5rem', mb:'1rem' }}>
+            <>
+   
 
 
      
@@ -88,10 +89,10 @@ const profile = observer(() => {
  {/*            <form action="http://localhost:3006/auth/google" method="get" encType="application/x-www-form-urlencoded">
             <input type="submit" value="Press to log in"/>
             </form> */}
-      {/*       <form action="http://localhost:3006/auth/google" method="get">
+            <form action="http://localhost:3006/auth/google" method="get">
             <input type="submit" value="Press to log in"/>
-            </form> */}
-        </Container>
+            </form> 
+            </>
     )
 });
 

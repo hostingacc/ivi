@@ -14,7 +14,7 @@ import PhoneForwardedIcon from '@mui/icons-material/PhoneForwarded';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 const FooterLine = () => {
     const { t } = useTranslation();
@@ -23,6 +23,7 @@ const FooterLine = () => {
             <Grid item>
                 <Box display="flex">
                     <Box sx={{ margin: 1 }}>
+                      
                         <MyButton text={'App Store'} smallText={`${t('Загрузить в')}`} color='#1f1b2e' hoverColor='#3e3659' icon={<AppleIcon />} width={'9.5rem'}/>
                     </Box>
                     <Box sx={{ margin: 1 }}>

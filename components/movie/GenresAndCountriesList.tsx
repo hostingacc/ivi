@@ -35,20 +35,22 @@ const GenresAndCountriesList = ({
           <MyText
             color="rgba(255,255,255,0.85)"
             text={capitalizeFirstLetter(e.nameRu)}
+            size={'16px'}
           />
           ) : (
           <MyLink
             color="rgba(255,255,255,.72)"
             content={capitalizeFirstLetter(e.nameRu)}
             link={`/movies/${e.nameRu}`}
-            fontSize="0.93rem"
+            fontSize="16px"
             fontWeight={400}
+            
           />
           )}
           {index < elements.length - 1 && (
           <>
           {showOnlyFirst ? (
-          <MyText color="rgba(255,255,255,0.85)" text={','}/>
+          <MyText color="rgba(255,255,255,0.85)" text={','}   size={'16px'}/>
           ) : (
           <Box
             sx={{

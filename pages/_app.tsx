@@ -4,8 +4,10 @@ import '@/styles/globals.css'
 import { ThemeProvider, createTheme } from '@mui/material'
 import type { AppProps } from 'next/app'
 import { Open_Sans } from 'next/font/google'
-import { useEffect } from 'react'
-
+import { useEffect, createContext } from 'react'
+import { appWithTranslation } from 'next-i18next'
+import TranslationStore from '../store/translationStore'
+import { useRouter } from 'next/router'
 
 const openSans = Open_Sans({ subsets: ['latin', 'cyrillic'] })
 
@@ -15,11 +17,12 @@ const theme = createTheme({
   },
 })
 
+export const TranslationStoreContext = createContext<TranslationStore | null>(null)
 
+function MyApp({ Component, pageProps }: AppProps) {
 
-function MyApp({ Component, pageProps,  ...appProps }: AppProps) {
-
-
+  const router = useRouter();
+  const translationStore = new TranslationStore(router);
 
 
   useEffect(() => {
@@ -28,34 +31,18 @@ function MyApp({ Component, pageProps,  ...appProps }: AppProps) {
     }
   }, [])
 
-  const getContent = () => {
-    if ([`/subscribe`].includes(appProps.router.pathname))
-      return <Component {...pageProps} />
 
     return (
-
+      <TranslationStoreContext.Provider value={translationStore}>
         <ThemeProvider theme={theme}>
           <Layout className={openSans.className}>
             <Component {...pageProps} />
           </Layout>
         </ThemeProvider>
-
+        </TranslationStoreContext.Provider>
     )
-  }
-  return getContent()
 }
 
-/* export const getServerSideProps = async (appContext) => {
-  const genresUrl = 'http://192.168.0.102:3001/movies/filters/genres'  
-  const store = initializeStore()
-  const genres = await fetch(genresUrl).then(res => res.json())
+export default appWithTranslation(MyApp)
 
-  store.setGenres(genres)
-
-  return {
-    initialMobxState: store,
-  }
-} */
-
-export default MyApp
 

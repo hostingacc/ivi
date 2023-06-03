@@ -4,16 +4,23 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { observer } from 'mobx-react-lite';
 import logo from '../../public/logo/reposition_iviLogoPlateRounded.svg'
-import { useTranslation } from 'react-i18next';
-import '../translate/i18next';
+import { useTranslation } from 'next-i18next';
 import MyLink from '../navigation/myLink';
 import MyButton from '../buttons/myButton';
 import DropDownsList from './dropDownsList';
 import { dropdownStore } from '@/store/DropdownStore';
+import { toJS } from 'mobx';
+import { rootStore } from '@/store/RootStore';
 
+interface HeaderProps{
+    store:any;
+    changeTo:string;
+}
 
-const Header = observer(() => {
-    const { t } = useTranslation();
+const Header = observer(({store, changeTo}:HeaderProps) => {
+    const { t } = useTranslation('common');
+
+    console.log(toJS(store))
 
     return (
        
@@ -21,7 +28,7 @@ const Header = observer(() => {
         <Box
             component="header" 
             sx={{        
-            pt:'1rem',
+            pt:'0.8rem',
             position:'relative',
             width:'100%',
             zIndex:100,
@@ -30,7 +37,7 @@ const Header = observer(() => {
                 marginLeft: "10px",
                 marginRight: "30px"
             }
-        }}> <Container maxWidth={false} sx={{ width: '77.5rem', mb:'1rem' }}>
+        }}> 
             <Box sx={{
                 zIndex:3, 
                 width:'100%',
@@ -69,7 +76,7 @@ const Header = observer(() => {
                         <MyLink link={'/movies/all'} fontWeight={700} content={t('Что нового')}/>   
                     </ListItem>
                     <ListItem onMouseOver={() => { dropdownStore.setShowDropdown('movies', true)}}>
-                        <MyLink link={'/movies/all'} fontWeight={700} content={t('Фильмы')}/>   
+                        <MyLink link={'/movies/'} fontWeight={700} content={t('Фильмы')}/>   
                     </ListItem>
                     <ListItem onMouseOver={() => { dropdownStore.setShowDropdown('movies', true)}}>
                         <MyLink link={'/movies/all'} fontWeight={700} content={t('Сериалы')}/>   
@@ -114,7 +121,7 @@ const Header = observer(() => {
                 >
                     <NotificationsIcon
                         onMouseOver={() => { dropdownStore.setShowDropdown('alert', true)}}
-                        sx={{ color: "rgba(255,255,255,.48)" }}
+                        sx={{ color: "rgba(255,255,255,.48)", fontSize:'30px' }}
                     />
                 </IconButton>
                 <Button
@@ -134,14 +141,16 @@ const Header = observer(() => {
                         }
                     }}
                 >
-                        <PersonOutlineIcon sx={{ color: "rgba(255,255,255,.48)" }} />
+                        <PersonOutlineIcon sx={{ color: "rgba(255,255,255,.48)", fontSize:'30px' }} />
                 </Button>
 
-                
+                <button onClick={() => store.onToggleLanguageClick(changeTo)}>
+                        {t('change-locale', { changeTo })}
+                </button>
             </Stack>
             </Box>                
             <DropDownsList/>
-            </Container>
+           
         </Box>  
 
       

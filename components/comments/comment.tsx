@@ -19,9 +19,6 @@ interface CommentProps {
 const MAX_DEPTH = 15;
 
 const Comment = ({ movieId,comment, allComments, depth = 1, showChildComments = true}: CommentProps) => {
-    
-    const [isMounted,setIsMounted] = useState(false);
-
     const childComments = allComments.filter(
         (c) => c.repliedOnComment === comment.id
     );
@@ -49,8 +46,8 @@ const Comment = ({ movieId,comment, allComments, depth = 1, showChildComments = 
         <Box onClick={()=>openModal()} ref={commentRef} 
             sx={{  
                 padding: showChildComments? 'unset' : '1rem',
-                width: showChildComments ? 'auto' : '17.8rem',
-                height: showChildComments ? 'auto' : '10.1rem',
+                width: '100%',
+                height: showChildComments ? 'auto' : '160px',
                 backgroundColor: showChildComments ? 'transparent' : '#1f1b2e',
                 borderRadius: showChildComments ? 'unset' : '0.8rem',
                 marginTop: showChildComments ? 'unset' : '0',

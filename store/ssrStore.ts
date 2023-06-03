@@ -19,26 +19,27 @@ class SSRStore {
     rootStore
     movies: Movies = {count: 0 , rows: []};
 
-    /* Фильмы на главной, по идее, жанры могут меняться, поэтому не стал их называть comedyMovie, dramaMovie.. */
-    moviesWithGenre1: Movies = { count: 0, rows: [] };
-    moviesWithGenre2: Movies = { count: 0, rows: [] };
+    drama: Movies = { count: 0, rows: [] };
+    comedy: Movies = { count: 0, rows: [] };
+
+
 
     genres: Filter[] = [];
     countries: Filter[] = [];
     
-    movie:any=[]
-    videos:any=[]
-    comments:any=[]
-    persons:any=[]
-
+    movie:any=[];
+    similar:any=[];
+    comments:any=[];
+    persons:any=[];
+    person:any=[];
 
   constructor(rootStore) {
     this.rootStore = rootStore;
     makeAutoObservable(this);
   }
 
-  setVideos(videos) {
-    this.videos = [...videos];
+  setSimilar(similar) {
+    this.similar = [...similar];
   }
   setComments(comments) {
  
@@ -92,23 +93,22 @@ class SSRStore {
   hydrate(data) {
     if (!data) return;
 
-  /*   console.log(data) */
-
-    this.genres = data.genres;
-    this.movies = data.movies;
-    this.countries = data.countries;
-
-/*     console.log(toJS(this.movies)) */
-
-    this.videos=  data.videos;
-    this.comments = data.comments;
-    this.persons = data.persons;
-    this.movie = data.movie;
+ 
+    Object.keys(data).forEach(key => {
+      this[key] = data[key];
+    });
   }
 }
 
+interface InitialData {
+  movie: any;
+  similar: any;
+  comments: any;
+  persons: any;
+}
+
 let store;
-export function initializeStore(initialData = null, rootStore) {
+export function initializeStore(initialData:any = null, rootStore) {
 
   //const _store = store ?? /* new SSRStore(rootStore); */ rootStore.ssrStore
 

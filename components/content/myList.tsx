@@ -14,11 +14,18 @@ interface MyListProps{
     isButton?:boolean;
     type?:string;
     inputText?:string;
+
 }
 
 const MyList = observer(({title, content, itemsPerColumn = 11, isButton, type, inputText}:MyListProps) => {
 
     const splitContent = (data) => {
+        if(data?.length > 24){
+            itemsPerColumn = 17
+        }
+        if(data?.length > 51){
+            itemsPerColumn = 30
+        }
         if (!data || data.length <= itemsPerColumn) {
             return [data];
         } else {
@@ -36,22 +43,24 @@ const MyList = observer(({title, content, itemsPerColumn = 11, isButton, type, i
    
     <Box style={{display: 'flex'}}>
         {columns?.map((columnContent, index) => (
-            <List key={index} sx={{paddingTop: 1, marginRight: index === columns.length - 1 ? 0 : '2rem'}}>
+            <List key={index} sx={{paddingTop: 1, marginRight: index === columns.length - 1 ? 0 : '1rem'}}>
                 {columnContent?.map(item => (
                     <ListItem key={item.content} sx={{paddingLeft:'0', paddingTop:'0.3rem'}}>
                         {isButton ?  
                         <MyButton
-                        endIcon={<CheckIcon />}
-                        color={'transparent'}
-                        fontColor='rgba(217,215,224, 0.49)'
-                        inputText={inputText}
-                        text={item.content}
-                        showEndIcon={
-                            type
-                              ? rootStore.moviesStore.selectedFilters[type].some(
-                                  (filter) => filter.name === item.content
-                                )
-                              : false
+                            endIcon={<CheckIcon />}
+                            color={'transparent'}
+                            fontColor='rgba(217,215,224, 0.49)'
+                            inputText={inputText}
+                            text={item.content}
+                            justifyContent='space-between'
+                            width='10rem'
+                            showEndIcon={
+                                type
+                                ? rootStore.moviesStore.selectedFilters[type].some(
+                                    (filter) => filter.name === item.content
+                                    )
+                                : false
                           }
                         func={() =>rootStore.moviesStore.handleButtonClick(item.content, item.id, type)}/> :
                         
@@ -60,6 +69,7 @@ const MyList = observer(({title, content, itemsPerColumn = 11, isButton, type, i
                             content={item.content}
                             fontSize="0.9375rem"
                             fontWeight={400}
+                       
                         /> }
 
                   

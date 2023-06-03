@@ -25,7 +25,7 @@ import { enableStaticRendering } from 'mobx-react-lite';
 
   class MoviesStore {
     rootStore
-    limit=30;
+    limit=35;
     page=1;
     selectedFilters:SelectedFilters = {
       genres: [],
@@ -36,6 +36,8 @@ import { enableStaticRendering } from 'mobx-react-lite';
       numRatings:[],
       order:[]
     };
+    filterTypes:string[];
+
     baseUrl = `http://localhost:3003/info?limit=${this.limit}&page=${this.page}`;
     actorsUrl = 'http://localhost:3005/persons/actors?keywords='
     directorsUrl = 'http://localhost:3005/persons/directors?keywords='
@@ -55,63 +57,79 @@ import { enableStaticRendering } from 'mobx-react-lite';
   
     constructor(rootStore) {
       this.rootStore = rootStore;
+      this.resetFilters = this.resetFilters.bind(this);
+      this.filterTypes = Object.keys(this.selectedFilters);
       makeAutoObservable(this);
     }
 
 
 
-    pagination = () => {
-      
+    pagination = () => { 
       this.page = this.page + 1;
       this.url = `http://localhost:3003/info?limit=${this.limit}&page=${this.page}`;
     
     } 
 
+
+
     updateSelectedFiltersFromUrl(urlArray) {
+  
+          this.resetFilters()
+          if(urlArray.slug){
 
-      console.log(urlArray)
-   
-/*         this.resetMovies(); */
 
+            if(urlArray.slug === 'all'){
+              this.resetFilters();
+            }
 
-      
-        const filterTypes = Object.keys(this.selectedFilters);
-   
-        /* Работает для жанров, стран, и ползунков
-          Остальные фильтры не понимаю как сделать.
+            
+            /* Работает для жанров, стран, и ползунков
+              Остальные фильтры не понимаю как сделать.
 
-          Можно убирать их из url
-        */
+              Можно убирать их из url
+            */
 
-        urlArray.slug.forEach((element:any) => {
-          const separatedValues = element.split('+');
-    
-          separatedValues.forEach(value => {
-            if (value.startsWith('minRating') || value.startsWith('numRatings')) {
-              const [filterType, filterValue] = value.split('=');
-              this.selectedFilters[filterType].push({
-                id: filterValue,
-                name: `${filterType}=${filterValue}`
-              });
-            } else {
-              filterTypes.forEach(filterType => {
-                 const matchingFilter = this.rootStore.ssrStore[filterType]?.find(filter => filter.nameRu === value);
-      
-                if (matchingFilter) {
+            urlArray.slug.forEach((element:any) => {
+              const separatedValues = element.split('+');
+
+              separatedValues.forEach(value => {
+                if (value.startsWith('minRating') || value.startsWith('numRatings')) {
+                  const [filterType, filterValue] = value.split('=');
                   this.selectedFilters[filterType].push({
-                    name: matchingFilter.nameRu,
-                    id: matchingFilter.id
+                    id: filterValue,
+                    name: `${filterType}=${filterValue}`
                   });
+                } else {
+                  this.filterTypes.forEach(filterType => {
+                    const matchingFilter = this.rootStore.ssrStore[filterType]?.find(filter => filter.nameRu === value);
+
+                    if (matchingFilter) {
+                      this.selectedFilters[filterType].push({
+                        name: matchingFilter.nameRu,
+                        id: matchingFilter.id
+                      });
+                    }
+                  })
                 }
               })
-            }
-          })
-        })
-        this.updateUrl();  
-        this.fetchData();  
+            })
+            this.updateUrl();  
+            this.fetchData();  
+
+          }
+      
+
          
       }
 
+      resetFilters(){
+        this.filterTypes.forEach(filterType => {
+          if (Array.isArray(this.selectedFilters[filterType])) {
+            this.selectedFilters[filterType].length = 0;
+          }
+        });
+         
+    }
   
     handleButtonClick(name, id, type) {
 
@@ -126,8 +144,9 @@ import { enableStaticRendering } from 'mobx-react-lite';
       }
       }
 
+      console.log('button tr')
       this.updateUrl();
-      this.fetchData();
+    /*   this.fetchData(); */
       this.generateUrl(); 
      }
 
@@ -135,7 +154,7 @@ import { enableStaticRendering } from 'mobx-react-lite';
       this.selectedFilters[type] = [{id: `${[value]}`, name:`${type}=${value}`}];
 
       this.updateUrl();
-      this.fetchData();
+/*       this.fetchData(); */
       this.generateUrl();
 
 
@@ -193,6 +212,7 @@ import { enableStaticRendering } from 'mobx-react-lite';
     }
 
     updateUrl() {
+     
       this.url = `${this.baseUrl}&${this.generateRequest()}`;
     }
 
@@ -201,6 +221,7 @@ import { enableStaticRendering } from 'mobx-react-lite';
     }
 
     async fetchData() {
+      console.log('trig')
       const response = await fetch(this.url);
       const data = await response.json();
 
@@ -210,22 +231,12 @@ import { enableStaticRendering } from 'mobx-react-lite';
     }
 
     
-    async fetchPersons(keywords) {
-
-      const response = await fetch(`${this.actorsUrl}${keywords}`);
+    async fetchData1(url: string, name: string, keywords: string) {
+      const response = await fetch(`${url}${keywords}`);
       const data = await response.json();
-
+    
       runInAction(() => {
-        this.actors = data;
-      });
-    }
-    async fetchDirectors(keywords) {
-
-      const response = await fetch(`${this.directorsUrl}${keywords}`);
-      const data = await response.json();
-
-      runInAction(() => {
-        this.directors = data;
+        this[name] = data;
       });
     }
 }

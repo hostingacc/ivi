@@ -1,8 +1,4 @@
 import { Box } from "@mui/material";
-import MyButton from "../buttons/myButton";
-import { moviesStore } from "@/store/moviesStore";
-import { toJS } from "mobx";
-import DropDownLinkButton from "../buttons/dropDownLinkButtron";
 import MyList from "../content/myList";
 
 interface DropDownFiltersContentProps{
@@ -26,7 +22,7 @@ const DropDownFiltersContent = ({content, type, inputText}:DropDownFiltersConten
 
       return(
         <Box>
-              <MyList content={genres} itemsPerColumn={8} isButton={true} type={type} inputText={inputText}/>
+              <MyList content={genres} itemsPerColumn={8} isButton={true} type={type} inputText={inputText} />
         </Box>
   
       )

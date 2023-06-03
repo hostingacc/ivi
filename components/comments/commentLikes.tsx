@@ -5,8 +5,6 @@ import MyText from '../content/myText';
 
 
 const CommentLikes = () => {
-
-
     return(
         <Stack direction='row' gap={1}>
             <ThumbDownOffAltIcon sx={{color:'rgba(126,121,143,.72)'}}/>

@@ -38,7 +38,11 @@ const DropDownButton = observer(({ name, filters, isOpen, onClick, isTransparent
         textTransform:'capitalize',
         backgroundColor: isTransparent ? 'transparent' : '#312b45',
         display:'flex',
-        alignItems:'center'
+        alignItems:'center',
+        '@media (max-width:876px)': {
+          width:'100%',
+          height:'6rem'
+       },
       }}>
       <Grid container sx={{height: cutted ? 'unset' : '1.4rem'}}>
         <Grid item xs={10}>

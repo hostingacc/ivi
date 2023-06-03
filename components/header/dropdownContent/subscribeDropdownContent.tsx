@@ -5,13 +5,12 @@ import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import DevicesIcon from '@mui/icons-material/Devices';
 import ExtensionOffIcon from '@mui/icons-material/ExtensionOff';
 import React from 'react'
-import DropdownSlider from '../../navbar/DropdownSlider';
-import DropdownSliderToRight from '../../navbar/DropdownSliderToRight';
 import Link from 'next/link';
 import { observer } from 'mobx-react-lite';
 import MyLink from '../../navigation/myLink';
 import MyButton from '../../buttons/myButton';
 import TileItem from '../../content/tileItem';
+import DropDownSliderList from '@/components/header/dropDownSliderList';
 
 const SubscribeDropdownContent = observer(() => {
     return (
@@ -96,8 +95,7 @@ const SubscribeDropdownContent = observer(() => {
                 </Box>
             </Box>
             <Box sx={{ position: "relative" }}>
-                <DropdownSlider />
-                <DropdownSliderToRight />
+                <DropDownSliderList/>
                 <Link style={{
                     textDecoration: "underline", color: "rgba(255,255,255,.48)",
                     position: "absolute", bottom: "20px", right: "0"

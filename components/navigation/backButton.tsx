@@ -18,9 +18,10 @@ const BackButton = () => {
                     transform: 'scale(1.1)',
                 },
             },
+            '@media (max-width: 876px)': {fontSize:'2rem'}
         }}
     >
-        <ArrowBackIosIcon />
+        <ArrowBackIosIcon  sx={{'@media (max-width: 876px)': {fontSize:'2.25rem'}}}/>
         Назад
     </Button>
     );

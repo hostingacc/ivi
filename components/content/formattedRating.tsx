@@ -5,16 +5,18 @@ interface FormattedRatingProps {
   rating: number | undefined;
   smallDecimal?: boolean;
   color?: string;
+  fontWeight?:number;
+  fontSize?:string;
 }
 
-const FormattedRating = ({ rating, smallDecimal, color = "#000"}: FormattedRatingProps) => {
+const FormattedRating = ({ rating, smallDecimal, color = "#000", fontWeight = 500, fontSize = '1rem'}: FormattedRatingProps) => {
   if (rating === undefined) {
     return null;
   }
 
   let [whole, decimal] = rating.toString().split(".");
   return (
-    <Typography sx={{ color, fontSize:'1.5rem' }}>
+    <Typography sx={{ color, fontSize, fontWeight }}>
       {whole}
       {decimal && (
         <>

@@ -32,16 +32,44 @@ const MovieTrailer = ({rating, persons, video}) => {
                     <video className="movieTrailer" id="video"  controls>
                         <source src="/trailer.mp4" type="video/mp4" />
                     </video>
+                    <Box sx={{
+                        width:'228px',
+                        m:'-10px auto',
+                    /*     p:'0 4px', */
+                         '@media (min-width:876px)': {
+                            display:'none',
+                         },
+                       
+                         
+                    }}>
+                        <MovieTrailerButtons openModal={openModal} showInBox={true}/>
+                    </Box>
+
+
                     <Stack direction='row' sx={{alignItems:'center'}}>
                     <Box sx={{
-                        '@media (min-width:1159px)': {
-                        display:'none',
                     
+                        '@media (min-width:1159px)': {
+                            display:'none',
+                           
                         }
                     }}>
                         <MedallionList rating={rating} persons={persons}/>
                     </Box>
-                    <MovieTrailerButtons openModal={openModal}/>
+                    <Box sx={{
+                     
+                        mt:'1rem',
+                        '@media (max-width:1159px)': {
+                           ml:'auto',
+                           
+                        },
+                         '@media (max-width:876px)': {
+                            display:'none'
+                         },
+                    }}>
+                        <MovieTrailerButtons openModal={openModal}/>
+                    </Box>
+                    
                     </Stack>
                 </Box>
             </Box>

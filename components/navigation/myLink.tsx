@@ -19,6 +19,7 @@ const MyLink = ({
   fontSize,
   fontWeight,
   color,
+
 }: MyLinkProps) => {
   const isInternal = link.startsWith('/');
 
@@ -44,6 +45,8 @@ const MyLink = ({
         '&:hover': {
           color: '#fff',
         },
+
+        
       };
 
   return isInternal ? (

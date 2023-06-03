@@ -38,10 +38,10 @@ class UserStore{
     async googleLogin() {
         try{
             const response = await AuthService.googleLogin();
-/*             localStorage.setItem('token', response.data.accessToken)
+            localStorage.setItem('token', response.data.accessToken)
             localStorage.setItem('refreshToken', response.data.refreshToken)
             this.setAuth(true);
-            this.setUser(response.data.user) */
+            this.setUser(response.data.user)
             console.log(response)
 
         } catch (e:any) {
@@ -73,7 +73,7 @@ class UserStore{
     async checkAuth() {
         const token = localStorage.getItem('refreshToken');
         try{
-            const response = await axios.get<AuthResponse>('http://localhost:3006/auth/refresh', {
+            const response = await axios.get<AuthResponse>('http://localhost:3006/users/info', {
             withCredentials:true,
             
             headers: {

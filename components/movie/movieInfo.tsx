@@ -1,16 +1,13 @@
-import { Box, Stack} from "@mui/material";
-import MovieTime from "./movieTime";
-import MovieAgeLimit from "./movieAgeLimit";
+import { Box } from "@mui/material";
+
 import ShowMoreText from "../features/showMoreText";
-import MyText from "../content/myText";
-import GenresAndCountriesList from "./GenresAndCountriesList";
-import MovieLanguageInfo from "./movieLanguageInfo";
 import MovieName from "../content/translationDynamicData";
 import { GenresAndCountries } from "../interfaces/genresAndCountries";
 import { Person } from "../interfaces/persons";
 import MedallionList from "./medallionsList";
 import MovieInfoRating from "./movieInfoRating";
-
+import MovieDetails from "./movieDetails";
+import TranslationDynamicData from "../content/translationDynamicData";
 
 interface MovieInfoProps {
     nameRu: string;
@@ -40,31 +37,20 @@ const MovieInfo = ({
     description,
     rating}:MovieInfoProps) => {
 
-          
+      
+    
+
     return(
         <Box sx={{color:'#fff', width:'27.43rem', ml:'auto'}}>
           <Box sx={{mb:'2rem'}}>
-            <MovieName nameRu={nameRu} nameEn={nameEn} weight={600} size={'3.75rem'} color={'#fff'} line={'2.9rem'}/>
+            <TranslationDynamicData nameRu={`Фильм ${nameRu} смотреть онлайн`} nameEn={`Movie ${nameEn} watch online`} weight={700} size={'3rem'} color={'#fff'} line={'52px'} align={'center'}/>
           </Box>
-
-
-        <Stack direction="row" sx={{ justifyContent: "center" }} spacing={1}>
-          <MyText text={year} align={'center'} color="rgba(255,255,255,.72)"/>
-          <MovieTime minutes={+movieLength} />
-          <MovieAgeLimit text={ratingAgeLimits} />
-        </Stack>
-        <GenresAndCountriesList genres={genres} countries={countries}/>
-        <MovieLanguageInfo/>
-
-          <MedallionList rating={rating} persons={persons}/>
-
-        
+        <MovieDetails year={year} movieLength={movieLength} ratingAgeLimits={ratingAgeLimits} genres={genres} countries={countries}/>
+        <MedallionList rating={rating} persons={persons}/>
         <Box sx={{mt:'2rem'}}>
           <ShowMoreText text={description} color="rgba(255,255,255,.78)" length={150} buttonText={'Детали о фильме'}/>
         </Box>
-
-
-        <MovieInfoRating rating={rating} voteCount={ratingVoteCount}/>
+        <MovieInfoRating rating={rating} voteCount={ratingVoteCount} />
       </Box>
     )
 }

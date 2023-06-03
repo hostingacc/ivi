@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import MyText from "./myText";
+import { TranslationStoreContext } from "../../pages/_app";
 
 interface TimeProps {
   time: string;
@@ -16,7 +17,7 @@ const Time = ({ time }: TimeProps) => {
 
   return (
     <Box sx={{ display: "flex", gap: 0.5 }}>
-      <MyText align="left" text={`${day} ${month} ${year}`} />
+      <MyText size='16px' align="left" text={`${day} ${month} ${year}`} />
     </Box>
   );
 };

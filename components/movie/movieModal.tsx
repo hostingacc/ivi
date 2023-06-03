@@ -25,9 +25,10 @@ const MovieModal = observer(({movieId ,persons, comments }: MovieModalProps) => 
           pt:'10rem',
           justifyContent: 'center',
           overflow: 'auto',
+          backgroundColor:'rgba(16, 14, 25, 0.9)'
         }}
       >
-        <Box sx={{ position: 'relative', width: '1200px', m: '0 auto' }}>
+        <Box sx={{ position: 'relative', width: '1200px', m: '0 auto', padding:'0 4rem' }}>
           
           <Stack direction="row" alignItems="center">
             <MyTitle text='Создатели' isButton={true} showRedBorder={true} onClick={() => modalStore.showCreators()}/>    
@@ -35,15 +36,15 @@ const MovieModal = observer(({movieId ,persons, comments }: MovieModalProps) => 
             <MyTitle text='Трейлеры' isButton={true} showRedBorder={true} onClick={() => modalStore.showTrailers()}/>
           </Stack>
 
-          <Divider sx={{color:'#fff', width:'100%', height:'1px', borderColor:'rgba(255,255,255,0.12)'}}/>
+          <Divider sx={{color:'#fff', width:'100%', height:'1px', borderColor:'rgba(255,255,255,0.12)', mt:'13px'}}/>
 
           <Box>{modalStore.content}</Box>
-          <Container maxWidth={false} sx={{ width: '1203px', position: 'absolute' }}>
+          {/* <Container maxWidth={false} sx={{ width: '1203px', position: 'absolute' }}> */}
             {modalStore.content === 'Отзывы' ? (
               <CommentsList  movieId={movieId} comments={comments}/>
             ) : null}
             {modalStore.content === 'Создатели' ? <MoviePersonsList persons={persons} /> : null}
-          </Container>
+         {/*  </Container> */}
         </Box>
       </Modal>
       {modalStore.modalIsOpen && (
@@ -54,7 +55,7 @@ const MovieModal = observer(({movieId ,persons, comments }: MovieModalProps) => 
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: 'rgba(16, 14, 25, 0.98)',
+          /*   backgroundColor: 'rgba(16, 14, 25, 1)', */
           }}
         />
       )}

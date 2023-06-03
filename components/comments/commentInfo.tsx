@@ -1,4 +1,4 @@
-import { Typography, Box, Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import avatar from '../../public/temporaryFiles/ava.jpg'
 import Image from "next/image";
 import MyText from "../content/myText";
@@ -24,15 +24,15 @@ const CommentInfo = ({name,time,showChildComments}:CommentInfoProps) => {
   
 
       <Stack direction={'row'} spacing={1} sx={{height:'100%', width:'100%'}}>
-      {showChildComments &&
+      {! showChildComments &&
          <Box sx={{height:'100%'}}>
          <Image height={20} width={20} src={avatar} alt="ававтар автора комментария" />
        </Box>
       }
    
-        <MyText text={name} align="left" weight={700}/>
+        <MyText text={name} align="left" weight={700} size="16px"/>
 
-        {showChildComments &&
+        { showChildComments &&
           <Time time={time}/>
         }
        

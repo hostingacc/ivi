@@ -1,24 +1,25 @@
-import { Box, Button } from '@mui/material'
-import WidgetsIcon from '@mui/icons-material/Widgets';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { Box,} from '@mui/material'
+
 import React from 'react'
 import Image from 'next/image';
-import { Autoplay, EffectCoverflow, Navigation, A11y } from 'swiper';
+import { Autoplay, Navigation, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import styles from "../styles/Header.module.css"
+import styles from "../styles/Hero.module.css"
 import Link from 'next/link';
 import MyLink from './navigation/myLink';
 import MyButton from './buttons/myButton';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+
 
 const slides: string[] = [
     "/slider/chicago.jpeg", "/slider/cosmos.jpeg", "/slider/crush.jpeg",
     "/slider/eskort.jpeg", "/slider/false.jpeg", "/slider/family.jpeg",
-    "/slider/fortuna.jpeg", "/slider/hello.jpeg", "/slider/human.jpeg",
+    "/slider/fortuna.jpeg", "/slider/human.jpeg",
     "/slider/kills.jpeg", "/slider/listen.jpeg", "/slider/marlou.jpeg",
     "/slider/minute.jpeg", "/slider/money.jpeg", "/slider/moris.jpeg",
     "/slider/nevskiy.jpeg", "/slider/nolimit.jpeg", "/slider/norton.jpeg",
@@ -30,45 +31,47 @@ const slides: string[] = [
 
 const Hero = () => {
     return (
-        <Box >
+        <Box  sx={{width:'100%', height:'100%', display:'flex', justifyContent:'center', position:'relative'}}>
+                    <>
+           {/*          <div className={`swiper-next swiper-button-next`}>
+                        <ArrowForwardIosIcon  sx={{color:'#fff', fontSize:'3rem'}}/>
+                  </div>
+               
+                  <div className={`swiper-prev swiper-button-prev`}>
+                      <ArrowBackIosIcon sx={{color:'#fff', fontSize:'3rem'}}/> 
+                  </div> */}
+                  </>
             <Swiper
-                className={styles.swiper}
                 modules={[Autoplay, Navigation, A11y]}
-                spaceBetween={-50}
+                spaceBetween={20}
                 initialSlide={2}
                 centeredSlides={true}
                 loop={true}
                 autoplay={{ delay: 5000, disableOnInteraction: false }}
-                effect="coverflow"
-                coverflowEffect={{
-                    rotate: 15,
-                    scale: 1,
-                    stretch: 0,
-                    depth: 100,
-                    modifier: 3,
-                    slideShadows: true
-                }}
+                style={{overflow:'visible', width:'100%'}}
                 slidesPerView={1}
-                navigation={true}              
+                navigation={true}             
             >
                 {slides.map((slide, i) => {
-                    return <SwiperSlide key={i}>
+                    return <SwiperSlide className={styles.slide} style={{width:'100%' }}  key={i}>
                         <Box
                             className={styles.container}
                             sx={{
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center",
-                                position: "relative"
+                                position: "relative",
+                                width:'100%',
+                                height:'100%'
                             }}>
                             <Image
                                 src={slide}
                                 alt='Slider'
-                                width={1216}
-                                height={370}
+                               
+                                fill
                                 className={styles.image}
                                 style={{
-                                    borderRadius: "20px",
+                                    borderRadius: "20px"
                                 }}
                             />
                             <Box sx={{

@@ -31,7 +31,6 @@ const CommentAddForm = ({id, movieId}:CommentAddFormProps) => {
 
 
     const commentClassToggle = (e: { preventDefault: () => void; }) => {
-
         e.preventDefault();
         setIsCommentOpen((prev) => !prev);
       };

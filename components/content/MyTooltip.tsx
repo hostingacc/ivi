@@ -15,7 +15,7 @@ const MyTooltip = ({content, text}:MyTooltipProps) => {
                 bgcolor: '#100e19',
                 position:'absolute',
                 top:'-1rem',
-                whiteSpace:'nowrap'
+                whiteSpace:'nowrap',
             },
             },
         }}>

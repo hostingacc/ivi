@@ -1,7 +1,12 @@
-import { Box, Container} from '@mui/material';
+import { Box } from '@mui/material';
 import Comment from './comment'
-import Slider from '../features/slider';
 import { CommentI } from '../interfaces/comment';
+import { useWindowSize } from '@/hooks/useWindowSize';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 
 interface CommentsListProps {
@@ -13,27 +18,54 @@ interface CommentsListProps {
 const CommentsList = ({movieId = 0 ,comments, showChildComments = true}:CommentsListProps) => {
   const topLevelComments = comments?.filter((c) => c.repliedOnComment === null);
 
- const SliderContent = topLevelComments?.map((comment) => (
-    <Comment
-     key={comment.id}
-     comment={comment}
-     allComments={comments}
-     showChildComments={false} 
-     movieId={comment.movieId}     
-    />
-  ));
- 
+
+  const size = useWindowSize();
+
+  let slidesPerView = 4;
+
+    if (size.width) {
+      
+         if (size.width <= 512) {
+          slidesPerView = 1;
+        } else if (size.width <= 880) {
+          slidesPerView = 2;
+        } else if (size.width <= 1159) {
+          slidesPerView = 3;
+        }
+      }
 
     return (
         <Box>
 
           <Box sx={{
             display: showChildComments ? 'block' : 'flex',
+            width:'100%',
             flexDirection: 'row',
             gap: showChildComments ? 0 : '1rem',    
           }}>
             {!showChildComments ? (
-                <Slider itemsCount={SliderContent?.length} itemsToShow={4} content={SliderContent} containerWidth={75.99875} itemWidth={17.8} />      
+                  <Swiper                 
+                    modules={[Navigation]}
+                    spaceBetween={10}
+                    slidesPerView={slidesPerView}
+                    navigation={{
+                      nextEl: `.swiper-button-next`,
+                      prevEl: `.swiper-button-prev`,
+                  }}          
+                  >
+                       {topLevelComments?.map((comment) => (
+                        <SwiperSlide key={comment.id}>
+                        <Comment
+                          key={comment.id}
+                          comment={comment}
+                          allComments={comments}
+                          showChildComments={false} 
+                          movieId={comment.movieId}     
+                        />
+                        </SwiperSlide>
+                      ))}
+                  </Swiper>
+
             ) : (
               topLevelComments?.map((comment) => (
                 <Comment

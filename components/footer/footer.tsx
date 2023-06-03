@@ -12,13 +12,15 @@ import React from 'react';
 import mouthpiece from '../../public/icons/mouthpiece.svg'
 import Hr from '../content/hr';
 
-import { useTranslation } from 'react-i18next';
-import '../translate/i18next';
+import { useTranslation } from 'next-i18next';
 import MyList from '../content/myList';
-import TranslateButton from '../translateButton/translateButton';
+import { TranslationStoreContext } from "../../pages/_app";
+import { useContext } from 'react';
 
 const Footer = () => {
     const { t } = useTranslation();
+
+    const translationStore = useContext(TranslationStoreContext)
 
     const firstColumnContent = [
         { link: 'https://corp.ivi.ru/', content: t('О компании') },
@@ -126,7 +128,6 @@ const Footer = () => {
                         <Box width={252} marginTop={'20px'}>
                             <MyText text={t('Смотрите фильмы, сериалы и мультфильмы без рекламы')} align={'center'}/>
                         </Box>
-                        <TranslateButton />
                         <MyLink link={'/admin'} fontWeight={700} content={'Админка'}/>
                     </Box>
                 </Grid>    

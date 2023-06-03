@@ -35,7 +35,7 @@ const MobileNavBar = observer(() => {
             value={navbar.value}
             onChange={(e, newValue) => navbar.handleChange(e, newValue)}
         >
-{/*             <BottomNavigationAction
+            <BottomNavigationAction
                 label="Домой"
                 value="домой"
                 icon={<Link href="/" style={{ color: "rgba(255,255,255,.48)" }}><HouseIcon /></Link>}
@@ -59,7 +59,7 @@ const MobileNavBar = observer(() => {
                 label="Ещё"
                 value="ещё"
                 icon={<Link href="/" style={{ color: "rgba(255,255,255,.48)" }}>< MoreHorizIcon /></Link>}
-            /> */}
+            />
         </BottomNavigation >
     );
 })

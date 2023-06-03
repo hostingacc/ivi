@@ -27,7 +27,7 @@ const DropDown = observer(({
   margin=0,
   borderRadius='1rem',
   backgroundColor="#1f1b2e",
-  onMouseLeave = true,
+  onMouseLeave = false,
 
 }:DropDownProps) => {
   
@@ -38,7 +38,7 @@ const DropDown = observer(({
   }
 
   useEffect(() => {
-    function handleClickOutside(event) {
+    const handleClickOutside = (event) => {
       if (
         dropDownRef.current &&
         !dropDownRef.current.contains(event.target) &&
@@ -58,7 +58,7 @@ const DropDown = observer(({
   return (
     <Fade in={dropdownStore.dropdowns[name]}>
       <Box
-        onMouseLeave={onMouseLeave ? close : null}
+     /*    onMouseLeave={onMouseLeave ? close : null} */
         ref={dropDownRef}
         sx={{
           borderRadius,
@@ -70,7 +70,8 @@ const DropDown = observer(({
           left:'50%',
           transform: 'translateX(-50%)',
           height,
-          zIndex:'100'
+          zIndex:'100',
+          boxShadow:'0 20px 96px #121011'
         }}
       >
         {content}

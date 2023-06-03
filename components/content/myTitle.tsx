@@ -11,7 +11,7 @@ interface MyTitleProps {
   fontWeight?:number;
 }
 
-const MyTitle = ({ isButton, text, onClick, showRedBorder, size = '1.5rem', lineHeight=size, fontWeight = 700}: MyTitleProps) => {
+const MyTitle = ({ isButton, text, onClick, showRedBorder, size = '24px', lineHeight=size, fontWeight = 700}: MyTitleProps) => {
 
   const isSelected = modalStore.content === text;
   
@@ -30,7 +30,7 @@ const MyTitle = ({ isButton, text, onClick, showRedBorder, size = '1.5rem', line
     "&:after": {
       content: '""',
       position: 'absolute',
-      bottom: isButton ? (/* isSelected && */ showRedBorder ? '-14px': '-4px'): 'none',
+      bottom: isButton ? ( showRedBorder ? '-14px': '-4px'): 'none',
       left: 0,
       right: 0,
       height: isButton ? (isSelected && showRedBorder ? '6px': '1px'): 'none',
@@ -42,6 +42,7 @@ const MyTitle = ({ isButton, text, onClick, showRedBorder, size = '1.5rem', line
         backgroundColor: isButton && !isSelected ? "#fff" : undefined,
       },
     },
+
   };
 
 

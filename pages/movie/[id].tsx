@@ -1,6 +1,6 @@
 import MovieInfo from "@/components/movie/movieInfo";
 import MovieTrailer from "@/components/movie/movieTrailer";
-import { Container, Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { useRouter } from "next/router";
 import MoviePersons from "@/components/movie/moviePersons";
 import MyBreadcrumbs from "@/components/navigation/myBreadcrumbs";
@@ -8,25 +8,31 @@ import MovieDevices from "@/components/movie/devices";
 import MovieReviews from "@/components/movie/movieReviews";
 import MovieModal from "@/components/movie/movieModal";
 import ShowMoreText from "@/components/features/showMoreText";
-import MovieName from "../../components/content/translationDynamicData";
 import MovieInfoRating from "@/components/movie/movieInfoRating";
-import { initializeStore, useStore } from '@/store/ssrStore';
-import { toJS } from "mobx";
+import { initializeStore } from '@/store/ssrStore';
 import { rootStore } from "@/store/RootStore";
+import TranslationDynamicData from "../../components/content/translationDynamicData";
+import MoviesList from "@/components/moviesList";
+import MovieDetails from "@/components/movie/movieDetails";
+import { useWindowSize } from "@/hooks/useWindowSize";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 
-const movieCard = ({initialMobxState}:any) => {
+const movie = ({initialMobxState}:any) => {
 
-  const store = useStore(initialMobxState, rootStore)
-  const { movie, videos, comments, persons } = initialMobxState;
+
+  const { movie, similar, comments, persons } = initialMobxState;
+
+
 
     const router = useRouter()
     const id = Array.isArray(router.query.id) ? Number(router.query.id[0]) : Number(router.query.id);
 
+    const size = useWindowSize();
 
     const topBreadcrumbs = [
       {text:'фильмы', href:'/movies/all'},
-      {text: store.movie?.genres[0].nameRu, href:`/movies/${store.movie?.genres[0].nameRu}`},
+      {text: movie?.genres[0].nameRu, href:`/movies/${movie?.genres[0].nameRu}`},
     ]
 
     const bottomBreadcrumbs = [
@@ -36,10 +42,9 @@ const movieCard = ({initialMobxState}:any) => {
       {text: movie?.nameRu, href:''}
     ]
 
-
     return(
       <>
-      <Container maxWidth={false} sx={{ width: '77.5rem' }}>
+
         <MyBreadcrumbs links={topBreadcrumbs}/>
      
         <>
@@ -59,10 +64,23 @@ const movieCard = ({initialMobxState}:any) => {
               display:'none',
              
             },}}>
-              <MovieName nameRu={movie.nameRu} nameEn={movie.nameEn} weight={600} size={'3.75rem'} color={'#fff'} line={'2.9rem'} align={'left'}/>
-        </Box>
 
-          <MovieTrailer video={videos} rating={movie.ratingKinopoisk} persons={persons}/>
+              <TranslationDynamicData nameRu={`Фильм ${movie.nameRu} смотреть онлайн`} nameEn={`Movie ${movie.nameEn} watch online`} weight={700} size={'60px'} color={'#fff'} line={'52px'} align={'left'}/>
+        </Box>
+        <Stack direction='column' sx={{
+            mr:'auto',
+            mt:'2rem',
+            position:"relative",
+            '@media (min-width:1159px)': {
+              display:'none'
+            },
+            }}
+            >
+          <MovieDetails year={movie.year} movieLength={movie.filmLength} ratingAgeLimits={movie.ratingAgeLimits} genres={movie.genres} countries={movie.countries} justifyContent="flex-start"/>
+
+          </Stack>
+
+          <MovieTrailer video={MovieTrailer} rating={movie.ratingKinopoisk} persons={persons}/>
 
         <Box sx={{
             ml:'auto',
@@ -85,18 +103,27 @@ const movieCard = ({initialMobxState}:any) => {
             /> 
         </Box>
         <Box sx={{
-            mb:'2rem',
+            mb:'4rem',
             '@media (min-width:1159px)': {
               display:'none',
 
             },}}>
 
-        <Box sx={{width:'42rem'}}>
-          <ShowMoreText text={movie.description} color="rgba(255,255,255,.78)" length={350} buttonText={'Детали о фильме'}/>
+        <Box sx={{
+          width:'42rem',
+          '@media (max-width:879px)': {
+            width:'unset'
+          },
+        }}>
+          <ShowMoreText text={movie.description} color="rgba(255,255,255,.78)" length={350} buttonText={'Детали о фильме'} showCollapseButton={true}/>
           <MovieInfoRating rating={movie.ratingKinopoisk} voteCount={movie.ratingKinopoiskVoteCount}/>
         </Box>
         </Box>
 
+        </Box>
+        <Box sx={{mt:'2rem'}}>
+          <TranslationDynamicData nameRu={`С фильмом «${movie.nameRu}» смотрят`} nameEn={`With the film «${movie.nameEn}» watch`} color={"#fff"} weight={700} line={"28px"} align={'left'} size={'24px'}/>
+          <MoviesList movies={similar}/>
         </Box>
         <MoviePersons
             persons={persons}
@@ -106,7 +133,7 @@ const movieCard = ({initialMobxState}:any) => {
             countries={movie.countries}
             comments={comments}
             id={movie.id}
-           
+            width={size.width}
           /> 
           <MovieReviews comments={comments}/>
           <MovieDevices 
@@ -123,50 +150,55 @@ const movieCard = ({initialMobxState}:any) => {
       <MyBreadcrumbs links={bottomBreadcrumbs}/>
     </Box>
 
-
-    </Container>
-    
     </>
     )
 }
 
-export async function getServerSideProps(context) {
-  const store = initializeStore(null, rootStore)
-  const { id } = context.query;
-  const url = id ? 'http://192.168.0.102:3001/movies/' + id : undefined;
-  const videoUrl = id ? url + '/videos' : undefined;
-  const commentsUrl = id ? 'http://192.168.0.102:3004/comments/' + id + '/flat' : undefined;
-  const personsUrl = id ? 'http://192.168.0.102:3005/persons/' + id : undefined;
+export async function getServerSideProps({query, res, locale}) {
 
-  const [movie, videos, comments, persons] = await Promise.all([
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59',
+  );
+  
+
+  const {id} = query;
+  const url = id ? 'http://192.168.0.103:3001/movies/' + id : undefined;
+  const similarUrl = id ? url + '/similar' : undefined;
+  const commentsUrl = id ? 'http://192.168.0.103:3004/comments/' + id + '/flat' : undefined;
+  const personsUrl = id ? 'http://192.168.0.103:3005/persons/' + id : undefined;
+
+  const [movie,  similar, comments, persons] = await Promise.all([
     url ? fetch(url).then((res) => res.json()) : Promise.resolve(undefined),
-    videoUrl ? fetch(videoUrl).then((res) => res.json()) : Promise.resolve(undefined),
+    similarUrl ? fetch(similarUrl).then((res) => res.json()) : Promise.resolve(undefined),
     commentsUrl ? fetch(commentsUrl).then((res) => res.json()) : Promise.resolve(undefined),
     personsUrl ? fetch(personsUrl).then((res) => res.json()) : Promise.resolve(undefined),
   ]);
-  store.setMovie(movie);
-  store.setVideos(videos);
-  store.setComments(comments);
-  store.setPersons(persons);
 
- 
+  const initialData = {
+    movie: movie,
+    similar: similar,
+    comments: comments,
+    persons: persons
+  };
   
+  const store = initializeStore(initialData, rootStore);
+
   const initialMobxState = {
     movie: store.movie,
-    videos: store.countries,
+    similar: store.similar,
     comments: store.comments,
     persons: store.persons
   };
 
   return {
     props:{
-      initialMobxState
+      initialMobxState,
+      ...(await serverSideTranslations(locale ?? 'ru', ["common"])),
     }
   };
 }
 
 
-export default movieCard;
-
-
+export default movie;
 

@@ -1,10 +1,10 @@
 import useRequest from "@/hooks/useRequest";
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import MyList from "../../content/myList";
 import Hr from "../../content/hr";
-import DropdownSlider from "../../navbar/DropdownSlider";
-import DropdownSliderToRight from "../../navbar/DropdownSliderToRight";
+
 import { toJS } from "mobx";
+import DropDownSliderList from "@/components/header/dropDownSliderList";
 
 
 const MoviesDropDownContent = () => {
@@ -19,13 +19,14 @@ const MoviesDropDownContent = () => {
 
     ];
     const features = [
-        {nameRu: "Подборки"},
-        {nameRu:"Рейтинг"},
-        {nameRu: "Трейлеры"},
-        {nameRu:"Что посмотреть"},
-        {nameRu:"Фильмы в HD"},
-        {nameRu:"Выбор иви"},
-        {nameRu:"Новинки подписки"},
+        {content: "Новинки", link:'https://www.ivi.tv/new/movie-new'},
+        {content: "Подборки", link:'https://www.ivi.tv/collections'},
+        {content:"Рейтинг", link:'/movies/minRating=7'}, 
+        {content: "Трейлеры", link:'https://www.ivi.tv/trailers'},
+        {content:"Что посмотреть", link:'https://www.ivi.tv/goodmovies'},
+        {content:"Фильмы в HD", link:'https://www.ivi.tv/movies-hd'},
+        {content:"Выбор иви", link:'https://www.ivi.tv'},
+        {contentn:"Новинки подписки", link:'https://www.ivi.tv/collections/very-new-svod?sort=priority_in_collection'},
     ]
 
     const generateContent = (data) => {
@@ -51,22 +52,44 @@ const MoviesDropDownContent = () => {
 
             <Stack direction='row' justifyContent='space-between' sx={{mt:'1rem'}}>
                 <Box>
-                    <MyList title="Жанры" content={genresContent} itemsPerColumn={8} isButton={true}/>
+                    <MyList title="Жанры" content={genresContent} itemsPerColumn={8} />
                 </Box>
                 <Box>
-                    <MyList title="Страны" content={countriesContent} itemsPerColumn={8} isButton={true}/>
+                    <MyList title="Страны" content={countriesContent} itemsPerColumn={8} />
                 </Box>
-                <Box>
-                    <MyList title="Новинки" content={featuresContent} itemsPerColumn={8}/>
+               
+                <Box sx={{
+                    borderLeft: "1px solid rgba(255,255,255,.2)",
+                    height:'110%',
+                  
+                    
+                }}>
+         
+                      {features.map((f, i) => {
+                        return <Typography sx={{
+                            color: "rgba(255,255,255,.48)",
+                            fontSize: "14px",
+                            fontWeight: "600",
+                            marginBottom: "10px",
+                            paddingLeft: "20px",
+                            ":hover": {
+                                color: "white",
+                                borderLeft: "2px solid white"
+                            }
+                        }} key={i}>{f.content}</Typography> 
+
+                      
+                    })} 
+                   
+
                 </Box>
-                <Box>
-                    <DropdownSlider/>
-                    <DropdownSliderToRight/>
-                    <DropdownSlider/>    
-                </Box>
+                <DropDownSliderList/>
             </Stack>
         </Box> 
     )
 }
 
 export default MoviesDropDownContent;
+
+
+

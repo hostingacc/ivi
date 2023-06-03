@@ -1,18 +1,13 @@
-import { Breadcrumbs} from '@mui/material';
+import { Breadcrumbs } from '@mui/material';
 import React from 'react';
 import MyLink from './myLink';
 import { capitalizeFirstLetter } from '@/functions/capitalizeFirstLetter';
 import MyText from '../content/myText';
 
-
 const MyBreadcrumbs = ({ links, separator = '·' }) => {
-  // Find the index of the first genreBreadcrumb in the links array
+
   const genreIndex = links.findIndex(link => link.href === '');
-
-  // Extract the genreBreadcrumbs from the links array
   const genreBreadcrumbs = links.slice(genreIndex);
-
-  // Remove the genreBreadcrumbs from the links array
   const otherLinks = links.slice(0, genreIndex);
 
   return (
@@ -41,21 +36,21 @@ const MyBreadcrumbs = ({ links, separator = '·' }) => {
             fontWeight={500}
             link={link.href}
             content={capitalizeFirstLetter(link.text)}
+            fontSize={'16px'}
           />
         ) : (
           <MyText
             key={i}
             weight={500}
-            size={'1rem'}
+            size={'16px'}
             text={capitalizeFirstLetter(link.text)}
           />
         );
       })}
 
-      {/* Render the genreBreadcrumbs as a single element */}
       <MyText
         weight={500}
-        size={'1rem'}
+        size={'16px'}
         text={genreBreadcrumbs
           .map(genre => capitalizeFirstLetter(genre.text))
           .join(', ')}

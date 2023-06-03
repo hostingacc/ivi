@@ -32,6 +32,9 @@ const MyText = ({ id,text, align, color = 'rgba(255,255,255,.48)', weight = 400,
           color:hover
           
       },
+    /*   '@media (max-width:876px)': {
+        fontSize:`1.35rem`
+     }, */
     }}
   >
       {inputText ? (
