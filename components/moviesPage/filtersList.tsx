@@ -3,6 +3,10 @@ import MoviesDropDownList from "./moviesDropDownList";
 import { styled } from '@mui/material/styles';
 import SlidersList from "./slidersList";
 
+import { toJS } from "mobx";
+import MyButton from "../buttons/myButton";
+import { rootStore } from "@/store/RootStore";
+
 const StyledBox = styled(Box)({
   backgroundColor: '#1f1b2e',
   height: '12.18rem',
@@ -56,12 +60,12 @@ const FiltersList = ({store}:any) => {
   return (
     <StyledBox>
       <TopLine gap={2} justifyContent={'space-around'}>
-        <MoviesDropDownList store={store}/>
+      <MoviesDropDownList store={store}/> 
       </TopLine>
       <BottomLine direction="row" gap={2}>
         <SlidersList/>
       </BottomLine>
-{/*         <MyButton text="очистить фильтры" func={rootStore.moviesStore.resetFilters}/> */}
+         <MyButton text="очистить фильтры" func={() => rootStore.moviesStore.resetFilters(false)}/> 
     </StyledBox>
     );
   };

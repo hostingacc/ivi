@@ -13,7 +13,7 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 
 export default function Home({initialMobxState}) {
-  const store = useStore(initialMobxState, rootStore);
+
 
 
 

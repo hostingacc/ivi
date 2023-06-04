@@ -8,14 +8,15 @@ import DropDownButton from "../buttons/dropDownButton";
 import { MoviesStore } from "@/store/moviesStore";
 import { observer } from "mobx-react-lite";
 import { Filter } from "../interfaces/filter";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { rootStore } from "@/store/RootStore";
+import { toJS } from "mobx";
 
 interface DropDownItemProps {
   id?: string;
   text: string;
   name: string;
-  content: any;
+/*   content?: any; */
   inputText?:string;
   setState?: Dispatch<SetStateAction<string>> | undefined;
   isLoading?: boolean;
@@ -28,14 +29,12 @@ interface DropDownItemProps {
   backgroundColor?: string;
   isTransparent?:boolean;
   isUnderTextNeed?:boolean;
-
+  store?:any;
 }
 
 const DropDownItem = observer(({
-    id,
     text,
     name,
-    content,
     setState,
     inputText,
     isLoading,
@@ -47,8 +46,26 @@ const DropDownItem = observer(({
     borderRadius,
     backgroundColor,
     isTransparent = false,
-    isUnderTextNeed= true
+    isUnderTextNeed= true,
+    store
   }:DropDownItemProps) => {
+
+
+/*     const [hydrate, setHydrate] = useState(false) */
+
+/*     useEffect(()=>{
+      setHydrate(true);
+    },[])
+
+    if(!hydrate){
+      return null;
+    } */
+    /* переместить это в более мелкий компонент */
+
+ 
+
+    console.log(toJS(store?.sortTypes))
+
     return (
       <Box sx={{ position: 'relative', zIndex:'2' }}>
         {button && (
@@ -56,7 +73,7 @@ const DropDownItem = observer(({
             isUnderTextNeed={isUnderTextNeed}
             isTransparent={isTransparent}
             name={text}
-            filters={rootStore.moviesStore.selectedFilters[name]}
+            filters={store?.selectedFilters[name]}   
             isOpen={dropdownStore.dropdowns[name]}
             onClick={() => dropdownStore.toggleShowDropdown(name)} />
         )}
@@ -75,11 +92,13 @@ const DropDownItem = observer(({
             borderRadius={borderRadius}
             backgroundColor={backgroundColor}
             isOpen={dropdownStore.dropdowns[name]}
+           
             content={
               <DropDownFiltersContent
-                content={content}
+                content={store?.[name]}
                 type={name}
                 inputText={inputText}
+                store={store}
               />
             }
             setIsOpen={(value) => dropdownStore.setShowDropdown(name, value)}

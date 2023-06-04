@@ -9,6 +9,7 @@ import { appWithTranslation } from 'next-i18next'
 import TranslationStore from '../store/translationStore'
 import { useRouter } from 'next/router'
 
+
 const openSans = Open_Sans({ subsets: ['latin', 'cyrillic'] })
 
 const theme = createTheme({

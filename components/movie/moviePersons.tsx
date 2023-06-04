@@ -8,6 +8,7 @@ import MyTitle from "../content/myTitle";
 import { observer } from "mobx-react-lite";
 import { modalStore } from "@/store/modalStore";
 import { Person } from "../interfaces/persons";
+import TranslationDynamicData from "../content/translationDynamicData";
 
 
 interface moviePersonsProps {
@@ -63,7 +64,8 @@ const moviePersons = observer(({persons, width}:moviePersonsProps) => {
                                     </Image>
                             </Box>
                             <Box sx={{width:'77px'}}>
-                                <MyText  text={person.nameRu} align="left" color='rgba(255,255,255,0.89)'/>
+                              {/*   <MyText  text={person.nameRu} align="left" color='rgba(255,255,255,0.89)'/> */}
+                                <TranslationDynamicData nameRu={person.nameRu} nameEn={person.nameEn} align="left" color="rgba(255,255,255,0.89)"/>
                             </Box>
                         </Link>
                     </Box>

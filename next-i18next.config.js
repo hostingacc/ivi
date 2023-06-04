@@ -5,10 +5,11 @@
  */
 module.exports = {
     // https://www.i18next.com/overview/configuration-options#logging
-    debug: process.env.NODE_ENV === 'development',
+    debug: false,
     i18n: {
         locales: ['ru', 'en'],
         defaultLocale: 'ru',
+      
     },
     /** To avoid issues when deploying to some paas (vercel...) */
     localePath:

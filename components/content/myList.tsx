@@ -14,10 +14,10 @@ interface MyListProps{
     isButton?:boolean;
     type?:string;
     inputText?:string;
-
+    store?:any;
 }
 
-const MyList = observer(({title, content, itemsPerColumn = 11, isButton, type, inputText}:MyListProps) => {
+const MyList = observer(({title, content, itemsPerColumn = 11, isButton, type, inputText, store}:MyListProps) => {
 
     const splitContent = (data) => {
         if(data?.length > 24){
@@ -57,12 +57,12 @@ const MyList = observer(({title, content, itemsPerColumn = 11, isButton, type, i
                             width='10rem'
                             showEndIcon={
                                 type
-                                ? rootStore.moviesStore.selectedFilters[type].some(
+                                ? store.selectedFilters[type].some(
                                     (filter) => filter.name === item.content
                                     )
                                 : false
                           }
-                        func={() =>rootStore.moviesStore.handleButtonClick(item.content, item.id, type)}/> :
+                        func={() =>rootStore.moviesStore.handleButtonClick(item.content, item.id, type)}/> : 
                         
                         <MyLink
                             link={item.link}    
@@ -70,7 +70,7 @@ const MyList = observer(({title, content, itemsPerColumn = 11, isButton, type, i
                             fontSize="0.9375rem"
                             fontWeight={400}
                        
-                        /> }
+                        /> } 
 
                   
                     </ListItem>

@@ -20,7 +20,6 @@ interface HeaderProps{
 const Header = observer(({store, changeTo}:HeaderProps) => {
     const { t } = useTranslation('common');
 
-    console.log(toJS(store))
 
     return (
        

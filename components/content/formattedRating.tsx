@@ -10,7 +10,7 @@ interface FormattedRatingProps {
 }
 
 const FormattedRating = ({ rating, smallDecimal, color = "#000", fontWeight = 500, fontSize = '1rem'}: FormattedRatingProps) => {
-  if (rating === undefined) {
+  if (rating === undefined || rating === null) {
     return null;
   }
 

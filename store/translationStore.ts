@@ -9,12 +9,14 @@ class TranslationStore {
     makeAutoObservable(this);
     this.router = router;
     this.currentLanguage = router.locale;
+    Cookies.set('currentLanguage', router.locale);
   }
 
   onToggleLanguageClick(newLocale: string) {
     const { pathname, asPath, query } = this.router;
     this.router.push({ pathname, query }, asPath, { locale: newLocale });
     this.currentLanguage = newLocale;
+    Cookies.set('currentLanguage', newLocale);
   }
 }
 

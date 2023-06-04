@@ -3,7 +3,8 @@
     transition: transform 0.3s;
     transform-origin: bottom;
     position: relative;
-    min-height: 224px;
+    min-height: 234px;
+    min-width: 153px;
 
   }
   .hoverImage:hover {

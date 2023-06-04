@@ -3,12 +3,24 @@ import React from 'react';
 import MyLink from './myLink';
 import { capitalizeFirstLetter } from '@/functions/capitalizeFirstLetter';
 import MyText from '../content/myText';
+import { useState, useEffect } from 'react';
 
 const MyBreadcrumbs = ({ links, separator = '·' }) => {
 
   const genreIndex = links.findIndex(link => link.href === '');
   const genreBreadcrumbs = links.slice(genreIndex);
   const otherLinks = links.slice(0, genreIndex);
+
+/* 
+  const [hydrate, setHydrate] = useState(false)
+
+  useEffect(()=>{
+    setHydrate(true);
+  },[])
+
+  if(!hydrate){
+    return null;
+  } */
 
   return (
     <Breadcrumbs

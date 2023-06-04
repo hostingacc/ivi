@@ -15,6 +15,8 @@ const MoviesDropDownList = observer(({store}:any) => {
   const { inputValue: actorsInputValue, setInputValue: setActorsInputValue } = useInput('actors', rootStore, dropdownStore, setIsLoading);
   const { inputValue: directorsInputValue, setInputValue: setDirectorsInputValue } = useInput('directors', rootStore, dropdownStore, setIsLoading);
 
+  console.log(store)
+
     return(
         <>
             <DropDownItem
@@ -22,44 +24,47 @@ const MoviesDropDownList = observer(({store}:any) => {
                 id="genresButton"
                 text="Жанры"
                 name="genres"
-                content={store?.genres}
+
                 height='auto'
                 padding='1rem'
                 margin='0.3rem'
                 borderRadius={0}
                 backgroundColor="#312b45"
-                
-            />
-            <DropDownItem
+                store={store}
+            />  
+           <DropDownItem
                 button
                 id="countriesButton"
                 text="Страны"
                 name="countries"
-                content={store?.countries}
+
                 height='auto'
                 padding='1rem'
                 margin='0.3rem'
                 borderRadius={0}
                 backgroundColor="#312b45"
-            />
+                store={store}
+            /> 
             <DropDownItem
                 input
                 text="Актеры"
                 name="actors"
                 padding='1rem'
-                 content={rootStore.moviesStore.actors}
+                /*  content={rootStore.moviesStore.actors} */
                 setState={setActorsInputValue}
                 inputText={actorsInputValue}
                 isLoading={isLoading}
+                store={rootStore.moviesStore}
             />
             <DropDownItem
                 input
                 text="Режисеры"
                 name="directors"
                 padding='1rem'
-                content={rootStore.moviesStore.directors}
+               /*  content={rootStore.moviesStore.directors} */
                 setState={setDirectorsInputValue}
                 isLoading={isLoading}
+                store={rootStore.moviesStore}
             />
         </>
     )

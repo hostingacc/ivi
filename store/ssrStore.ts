@@ -22,6 +22,7 @@ class SSRStore {
     drama: Movies = { count: 0, rows: [] };
     comedy: Movies = { count: 0, rows: [] };
 
+    sortTypes:Filter[] =[];
 
 
     genres: Filter[] = [];
@@ -33,6 +34,17 @@ class SSRStore {
     persons:any=[];
     person:any=[];
 
+    selectedFilters:any = {
+      genres: [],
+      countries: [],
+      actors:[],
+      directors:[],
+      minRating:[],
+      numRatings:[],
+      order:[],
+      page:[]
+    };
+
   constructor(rootStore) {
     this.rootStore = rootStore;
     makeAutoObservable(this);
@@ -42,7 +54,6 @@ class SSRStore {
     this.similar = [...similar];
   }
   setComments(comments) {
- 
     this.comments = [...comments];
    
   }
@@ -67,9 +78,6 @@ class SSRStore {
 
   setMovies(newData, propertyName, pagination = false) {
 
-/*     console.log('trigger')
-
-    console.log(newMovies) */
     runInAction(() => {
         if(pagination){
             this[propertyName].count = newData.count;
@@ -77,26 +85,20 @@ class SSRStore {
         }else{
             this[propertyName] = newData;
         }
-  
 
-       /*  console.log(this.movies) */
- /*        this[propertyName].count = newMovies.count;
-        this[propertyName].rows = [...this[propertyName].rows, ...newMovies.rows]; */
-       /*  this[propertyName] = [...newMovies]; */
     });
-
-  
   }
-
-
 
   hydrate(data) {
     if (!data) return;
 
+
  
     Object.keys(data).forEach(key => {
-      this[key] = data[key];
+      this[key] = toJS(data[key]);
     });
+
+
   }
 }
 
@@ -111,6 +113,8 @@ let store;
 export function initializeStore(initialData:any = null, rootStore) {
 
   //const _store = store ?? /* new SSRStore(rootStore); */ rootStore.ssrStore
+
+ // console.log('initialData', initialData.genres)
 
   const _store = rootStore.ssrStore;
 

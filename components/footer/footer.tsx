@@ -52,7 +52,7 @@ const Footer = () => {
             <Hr/>
             <Grid container justifyContent="space-between" sx={{ mt: '48px', mb:'48px'}}>
                 <Grid item>
-                    <MyList title={t('О нас')} content={firstColumnContent}/>
+                    <MyList  title={t('О нас')} content={firstColumnContent}/>
                 </Grid>
                 <Grid item>
                     <MyList title={t('Разделы')} content={secondColumnContent}/>
