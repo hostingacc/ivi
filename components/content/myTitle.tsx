@@ -3,20 +3,27 @@ import { modalStore } from "../../store/modalStore";
 
 interface MyTitleProps {
   isButton?: boolean;
-  onClick?:() => void;
-  showRedBorder?:boolean;
+  onClick?: () => void;
+  showRedBorder?: boolean;
   text: string;
   size?: string;
-  lineHeight?:string;
-  fontWeight?:number;
+  lineHeight?: string;
+  fontWeight?: number;
 }
 
-const MyTitle = ({ isButton, text, onClick, showRedBorder, size = '24px', lineHeight=size, fontWeight = 700}: MyTitleProps) => {
-
+const MyTitle = ({
+  isButton,
+  text,
+  onClick,
+  showRedBorder,
+  size = "24px",
+  lineHeight = size,
+  fontWeight = 700,
+}: MyTitleProps) => {
   const isSelected = modalStore.content === text;
-  
+
   const styles = {
-    position: 'relative',
+    position: "relative",
     fontSize: size,
     lineHeight,
     fontWeight,
@@ -29,12 +36,16 @@ const MyTitle = ({ isButton, text, onClick, showRedBorder, size = '24px', lineHe
     padding: isButton ? "0 4px" : 0,
     "&:after": {
       content: '""',
-      position: 'absolute',
-      bottom: isButton ? ( showRedBorder ? '-14px': '-4px'): 'none',
+      position: "absolute",
+      bottom: isButton ? (showRedBorder ? "-14px" : "-4px") : "none",
       left: 0,
       right: 0,
-      height: isButton ? (isSelected && showRedBorder ? '6px': '1px'): 'none',
-      backgroundColor: isButton ? (isSelected && showRedBorder ? "red" : "rgba(255,255,255,0.1)") : "none",
+      height: isButton ? (isSelected && showRedBorder ? "6px" : "1px") : "none",
+      backgroundColor: isButton
+        ? isSelected && showRedBorder
+          ? "red"
+          : "rgba(255,255,255,0.1)"
+        : "none",
     },
     "&:hover": {
       backgroundColor: "transparent",
@@ -42,10 +53,7 @@ const MyTitle = ({ isButton, text, onClick, showRedBorder, size = '24px', lineHe
         backgroundColor: isButton && !isSelected ? "#fff" : undefined,
       },
     },
-
   };
-
-
 
   if (isButton) {
     return (

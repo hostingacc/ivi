@@ -1,15 +1,21 @@
-import React from 'react';
-import { Typography } from '@mui/material';
+import React from "react";
+import { Typography } from "@mui/material";
 
 interface FormattedRatingProps {
   rating: number | undefined;
   smallDecimal?: boolean;
   color?: string;
-  fontWeight?:number;
-  fontSize?:string;
+  fontWeight?: number;
+  fontSize?: string;
 }
 
-const FormattedRating = ({ rating, smallDecimal, color = "#000", fontWeight = 500, fontSize = '1rem'}: FormattedRatingProps) => {
+const FormattedRating = ({
+  rating,
+  smallDecimal,
+  color = "#000",
+  fontWeight = 500,
+  fontSize = "1rem",
+}: FormattedRatingProps) => {
   if (rating === undefined || rating === null) {
     return null;
   }

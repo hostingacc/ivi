@@ -7,8 +7,20 @@ interface TimeProps {
 }
 
 const Time = ({ time }: TimeProps) => {
-
-  const months = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+  const months = [
+    "января",
+    "февраля",
+    "марта",
+    "апреля",
+    "мая",
+    "июня",
+    "июля",
+    "августа",
+    "сентября",
+    "октября",
+    "ноября",
+    "декабря",
+  ];
 
   const date = new Date(time);
   const day = date.getDate();
@@ -17,7 +29,7 @@ const Time = ({ time }: TimeProps) => {
 
   return (
     <Box sx={{ display: "flex", gap: 0.5 }}>
-      <MyText size='16px' align="left" text={`${day} ${month} ${year}`} />
+      <MyText size="16px" align="left" text={`${day} ${month} ${year}`} />
     </Box>
   );
 };

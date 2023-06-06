@@ -1,99 +1,90 @@
-import React, { useState } from 'react';
-import { Box, Container } from '@mui/material';
-import MyInput from '@/components/features/myInput';
-import MyText from '@/components/content/myText';
-import MyButton from '@/components/buttons/myButton';
-import { userStore } from '@/store/userStore';
-import { observer } from 'mobx-react-lite';
-import { toJS } from 'mobx';
-import useRequest from '@/hooks/useRequest';
-import { useRouter } from 'next/router';
+import React, { useState } from "react";
+import { Box } from "@mui/material";
+import MyInput from "@/components/controls/myInput";
+import MyText from "@/components/content/myText";
+import MyButton from "@/components/controls/buttons/myButton";
+import { userStore } from "@/store/userStore";
+import { observer } from "mobx-react-lite";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const profile = observer(() => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [login, setLogin] = useState<string>("");
 
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [login, setLogin] = useState<string>('');
+  const Login = (login, email, password) => {
+    userStore.login(login, email, password);
+  };
+  const register = (login, email, password) => {
+    userStore.register(login, email, password);
+  };
 
-    const Login = (login ,email, password) => {
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column ",
+        m: "12rem auto",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "400px",
+        "@media (max-width:423px)": {
+          width: "100%",
+        },
+      }}
+    >
+      <Box>
+        <MyText
+          color="#fff"
+          text={
+            userStore.isAuth
+              ? `Пользователь авторизован ${userStore.user.email}`
+              : "Авторизуйтесь"
+          }
+        />
+      </Box>
 
-        userStore.login(login, email, password)
-   /*      userStore.getInfo() */
-    }
-    const register = (login ,email, password) => {
-        userStore.register(login, email, password)
-    }
+      <Box sx={{ mt: "2rem", width: "100%" }}>
+        <MyInput setState={setLogin} label={"login"} />
+      </Box>
+      <Box sx={{ mt: "2rem", width: "100%" }}>
+        <MyInput setState={setEmail} label={"email"} />
+      </Box>
+      <Box sx={{ mt: "2rem", width: "100%" }}>
+        <MyInput setState={setPassword} label={"password"} />
+      </Box>
 
-
-
- /*    const url = 'http://localhost:3006/users/info'
-    const data = useRequest(url)
-    console.log(data) */
-
-    /* const google = () => {
-        window.location.href = 'http://localhost:3006/auth/google';
-        const urlParams = new URLSearchParams(window.location.search);
-        console.log(urlParams)
-        const accessToken = urlParams.get('access_token');
-        if (accessToken) {
-            console.log(accessToken)
-        // The user successfully logged in with Google
-        // Store the access token and use it to authenticate subsequent requests
-        localStorage.setItem('access_token', accessToken);
-        }
-    }
-    const vk= () => {
-
-        fetch('https://api.vk.com/method/users.get?access_token=YOUR_ACCESS_TOKEN&v=5.131', {
-        method: 'GET'
-        })
-        .then(response => response.json())
-        .then(data => {
-        // Обработка данных
-        console.log(data);
-        });
-    } */
- 
- 
-    const router = useRouter();
-    const { access_token } = router.query;
-
-    console.log(access_token)
-
-
-
-    return (
-            <>
-   
-
-
-     
-      {/*       <MyText text={userStore.isAuth ? `Пользователь авторизован ${userStore.user.email}` : 'Авторизуйтесь'}/> */}
-            
-        
-
-
-            <MyText text={'логин'}/>
-            <MyInput setState={setLogin} label={'login'}/>
-            <MyInput setState={setEmail} label={'email'}/>
-            <MyInput setState={setPassword} label={'password'}/>
-           
-            <MyButton text={'Вход'} func={() => Login(login ,email, password)}/>
-            <MyButton text={'Регистрация'} func={() => register(login ,email, password)}/>
-
-      {/* 
-          <a href='http://localhost:3006/auth/google'>gooogle</a>  */}
-
-           {/*  <MyButton func={google} text='google'/>
-            <MyButton func={vk} text='vk'/> */}  
- {/*            <form action="http://localhost:3006/auth/google" method="get" encType="application/x-www-form-urlencoded">
-            <input type="submit" value="Press to log in"/>
-            </form> */}
-            <form action="http://localhost:3006/auth/google" method="get">
-            <input type="submit" value="Press to log in"/>
-            </form> 
-            </>
-    )
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        sx={{ width: "100%", mt: "2rem" }}
+      >
+        <MyButton
+          text={"Вход"}
+          func={() => Login(login, email, password)}
+          hoverColor="#3e3659"
+        />
+        <MyButton
+          text={"Регистрация"}
+          func={() => register(login, email, password)}
+          hoverColor="#3e3659"
+        />
+      </Box>
+    </Box>
+  );
 });
 
-export default profile
+export default profile;
+
+export async function getServerSideProps({ req, res, locale }) {
+  res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=10, stale-while-revalidate=59"
+  );
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? "ru", ["common"])),
+    },
+  };
+}

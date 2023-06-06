@@ -1,7 +1,7 @@
-import { createContext } from 'react';
+import { createContext } from "react";
 interface Store {
-    genres: any[];
-    countries: any[];
-  }
+  genres: any[];
+  countries: any[];
+}
 
 export const StoreContext = createContext<Store | null>(null);
