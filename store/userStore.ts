@@ -1,84 +1,115 @@
-import { makeAutoObservable } from 'mobx';
-import { User } from '@/components/interfaces/user';
-import AuthService from '@/components/services/auth';
-import axios from  'axios';
-import { AuthResponce } from '@/components/interfaces/AuthResponse';
+import { makeAutoObservable } from "mobx";
+import { User } from "@/interfaces/user";
+import AuthService from "@/services/auth";
+import axios from "axios";
+import { AuthResponse } from "@/interfaces/AuthResponse";
 
-class UserStore{
-    user = {} as User;
-    isAuth = false;
+class UserStore {
+  user = {} as User;
+  isAuth = false;
 
- 
+  envUrl = process.env.NEXT_PUBLIC_API_URL;
 
-    constructor(){
-        makeAutoObservable(this)
+  constructor() {
+    makeAutoObservable(this);
+  }
+
+  setAuth(bool: boolean) {
+    this.isAuth = bool;
+  }
+
+  setUser(user: User) {
+    this.user = user;
+  }
+
+  async login(login, email: string, password: string) {
+    try {
+      const response = await AuthService.login(login, email, password);
+      localStorage.setItem("token", response.data.accessToken);
+      localStorage.setItem("refreshToken", response.data.refreshToken);
+
+      console.log(response.data);
+      this.setAuth(true);
+      this.setUser(response.data.user);
+    } catch (e: any) {
+      console.log(e.response?.data?.message);
     }
-
-    setAuth(bool:boolean){
-        this.isAuth = bool;
+  }
+  async googleLogin() {
+    try {
+      const response = await AuthService.googleLogin();
+      localStorage.setItem("token", response.data.accessToken);
+      localStorage.setItem("refreshToken", response.data.refreshToken);
+      this.setAuth(true);
+      this.setUser(response.data.user);
+    } catch (e: any) {
+      console.log(e.response?.data?.message);
     }
-
-    setUser(user: User){
-        this.user = user
-
+  }
+  async register(login, email: string, password: string) {
+    try {
+      const response = await AuthService.registration(login, email, password);
+      localStorage.setItem("token", response.data.accessToken);
+      localStorage.setItem("refreshToken", response.data.refreshToken);
+      this.setAuth(true);
+      this.setUser(response.data.user);
+    } catch (e: any) {
+      console.log(e.response?.data?.message);
     }
+  }
+  async logout() {
+    try {
+      //  const response = await AuthService.logout();
+      localStorage.removeItem("token");
+      this.setAuth(false);
+      this.setUser({} as User);
+    } catch (e: any) {
+      console.log(e.response?.data?.message);
+    }
+  }
 
-    async login(login, email:string, password: string) {
-        try{
-            const response = await AuthService.login(login, email, password);
-            localStorage.setItem('token', response.data.accessToken)
-            localStorage.setItem('refreshToken', response.data.refreshToken)
-            this.setAuth(true);
-            this.setUser(response.data.user)
+  async checkAuth() {
+    const token = localStorage.getItem("token");
 
-        } catch (e:any) {
-            console.log(e.response?.data?.message)
+    try {
+      const response = await axios.get<AuthResponse>(
+        `${this.envUrl}:3006/users/info`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-    }
-    async register(login, email:string, password: string) {
-        try{
-            const response = await AuthService.registration(login, email, password);
-            localStorage.setItem('token', response.data.accessToken)
-            localStorage.setItem('refreshToken', response.data.refreshToken)
-            this.setAuth(true);
-            this.setUser(response.data.user)
-        } catch (e:any) {
-            console.log(e.response?.data?.message)
-        }
-    }
-    async logout() {
-        try{
-            const response = await AuthService.logout();
-            localStorage.removeItem('token')
-            this.setAuth(false);
-            this.setUser({} as User)
-        } catch (e:any) {
-            console.log(e.response?.data?.message)
-        }
-    }
+      );
 
-    async checkAuth() {
-        const token = localStorage.getItem('refreshToken');
-        try{
-            const response = await axios.get<AuthResponce>('http://localhost:3006/auth/refresh', {
-            withCredentials:true,
-            
-            headers: {
-                Authorization: `Bearer ${token}`
-            }},
-            )
-
-   
-            
-            localStorage.setItem('token', response.data.accessToken)
-            this.setAuth(true);
-            this.setUser(response.data.user)
-        } catch (e:any) {
-            console.log('fffff')
-            console.log(e.response?.data?.message)
-        }
+      if (response.data) {
+        this.setAuth(true);
+        this.setUser(response.data as unknown as User);
+      } else {
+        this.refresh();
+      }
+    } catch (e: any) {
+      console.log(e.response?.data?.message);
     }
+  }
+  async refresh() {
+    const token = localStorage.getItem("refreshToken");
+    try {
+      const response = await axios.get<AuthResponse>(
+        `${this.envUrl}:3006/auth/refresh`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      localStorage.setItem("refreshToken", response.data.refreshToken);
+      localStorage.setItem("token", response.data.accessToken);
+      this.setAuth(true);
+    } catch (e: any) {
+      console.log(e.response?.data?.message);
+    }
+  }
 }
-
 
 export const userStore = new UserStore();

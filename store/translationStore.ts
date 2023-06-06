@@ -1,22 +1,29 @@
 import { makeAutoObservable } from "mobx";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
-export class TranslationStore {
-  translation = "ru";
+class TranslationStore {
+  router: any;
+  currentLanguage: string;
 
-
-  constructor() {
+  constructor(router: any) {
     makeAutoObservable(this);
-    const storedTranslation = Cookies.get('i18nextLng');
-    if (storedTranslation) {
-      this.translation = storedTranslation;
-    }
+    this.router = router;
+    this.currentLanguage = router.locale;
+    Cookies.set("currentLanguage", router.locale, {
+      sameSite: "None",
+      secure: true,
+    });
   }
 
-  setTranslation(status) {
-    this.translation = status;
+  onToggleLanguageClick(newLocale: string) {
+    const { pathname, asPath, query } = this.router;
+    this.router.push({ pathname, query }, asPath, { locale: newLocale });
+    this.currentLanguage = newLocale;
+    Cookies.set("currentLanguage", newLocale, {
+      sameSite: "None",
+      secure: true,
+    });
   }
 }
 
-export const translationStore = new TranslationStore();
-
+export default TranslationStore;

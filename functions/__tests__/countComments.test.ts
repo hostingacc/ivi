@@ -1,8 +1,7 @@
-import { countComments } from '../countComments';
+import { countComments } from "../countComments";
 
-
-describe('countComments', () => {
-  test('возвращается количество комментариев', () => {
+describe("countComments", () => {
+  test("возвращается количество комментариев", () => {
     const comments: any = [
       { id: 1, repliedOnComment: null },
       { id: 2, repliedOnComment: 1 },
@@ -12,7 +11,7 @@ describe('countComments', () => {
     expect(countComments(comments)).toBe(4);
   });
 
-  test('возвращается 0, если массив пустой', () => {
+  test("возвращается 0, если массив пустой", () => {
     expect(countComments([])).toBe(0);
   });
 });
