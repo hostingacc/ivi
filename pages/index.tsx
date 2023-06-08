@@ -48,7 +48,13 @@ export default function Home({ initialMobxState }) {
           <Hero />
           <Subscribe />
 
-          <Box sx={{ width: "70%", mt: "2rem" }}>
+          <Box sx={{
+            width: "70%",
+            mt: "2rem",
+            "@media (max-width:599px)": {
+              width: "100%",
+            }, 
+            }}>
             <MyTitle text="Онлайн-кинотеатр Иви: фильмы в хорошем качестве всегда приносят настоящее удовольствие" />
             <ShowMoreText
               length={189}

@@ -43,92 +43,57 @@ class MoviesStore {
     makeAutoObservable(this);
   }
 
-  updateSelectedFiltersFromUrl(urlArray) {
-    if (urlArray.slug) {
-      if (urlArray.slug === "all") {
-        this.resetFilters();
-      }
-      urlArray.slug.forEach((element: any) => {
-        const separatedValues = element.split("+");
-        separatedValues.forEach((value) => {
-          this.updateFilter(value);
+  updateSelectedFiltersFromUrl(url){
+    if (typeof window !== "undefined") {
+      this.resetFilters(false);
+    }
+    if(url.slug){
+      let filtersWithoutKeys: string[] = [];
+      let filtersWithKeys: string[] = [];
+      
+      url.slug.forEach(element => {
+        if (element.includes("=")) {
+          filtersWithKeys.push(element);
+          } else {
+            let subparts = element.split("+");
+              filtersWithoutKeys.push(...subparts);
+            }
+      });
+
+      this.addFiltersWithoutKey(filtersWithoutKeys);
+      this.addFiltersWithKey(filtersWithKeys);
+      return this.rootStore.ssrStore.selectedFilters;
+    }
+  }
+
+    addFiltersWithoutKey(array: string[]) {    
+      this.filterTypes.forEach(filterType => {
+        array.forEach(value => {
+          const matchingFilter = this.rootStore.ssrStore[filterType]?.find(
+            filter => filter.nameRu === value
+          );
+          if (matchingFilter) {
+            this.rootStore.ssrStore.selectedFilters[filterType].push({
+              name: matchingFilter.nameRu,
+              id: matchingFilter.id,
+            });
+          }
         });
       });
+
     }
-    return this.rootStore.ssrStore.selectedFilters;
-  }
 
-  updateFilter(value: string) {
-    if (value.startsWith("minRating") || value.startsWith("numRatings")) {
-      this.updateRatingFilter(value);
-    } else if (value.startsWith("actors") || value.startsWith("directors")) {
-      this.updateActorDirectorFilter(value);
-    } else if (value.startsWith("page")) {
-      this.updatePageFilter(value);
-    } else {
-      this.updateOtherFilters(value);
-    }
-  }
-
-  updateRatingFilter(value: string) {
-    const [filterType, filterValue] = value.split("=");
-    this.rootStore.ssrStore.selectedFilters[filterType].push({
-      id: filterValue,
-      name: `${filterType}=${filterValue}`,
-    });
-  }
-
-  updateActorDirectorFilter(value: string) {
-    const [filterType, filterValue, test] = value.split("=");
-    const [name, id] = filterValue.split(",id=");
-
-    this.rootStore.ssrStore.selectedFilters[filterType].push({
-      id: parseInt(test),
-      name: name,
-    });
-  }
-
-  updatePageFilter(value: string) {
-    const [filterType, filterValue] = value.split("=");
-    this.rootStore.ssrStore.selectedFilters.page = [
-      { name: `${filterType}=${filterValue}`, id: filterValue },
-    ];
-  }
-
-  updateOtherFilters(value: string) {
-    if (value === "Русские") {
-      this.rootStore.ssrStore.selectedFilters.countries.push({
-        name: "Россия",
-        id: 14,
+    addFiltersWithKey(array: string[]) {
+      array.forEach(element => {
+        let [key, value] = element.split("=");
+        if (this.rootStore.ssrStore.selectedFilters.hasOwnProperty(key)) {
+           this.rootStore.ssrStore.selectedFilters[key].push({
+              name: key,
+              id: value
+           })      
+        }
       });
-    } else if (value === "Советское кино") {
-      this.rootStore.ssrStore.selectedFilters.countries.push({
-        name: "СССР",
-        id: 13,
-      });
-    } else if (value === "Зарубежные") {
-      const filteredCountries = this.rootStore.ssrStore.countries.filter(
-        (country) => country.id !== 13 && country.id !== 14
-      );
-      Array.prototype.push.apply(
-        this.rootStore.ssrStore.selectedFilters.countries,
-        filteredCountries
-      );
     }
-
-    this.filterTypes.forEach((filterType) => {
-      const matchingFilter = this.rootStore.ssrStore[filterType]?.find(
-        (filter) => filter.nameRu === value
-      );
-
-      if (matchingFilter) {
-        this.rootStore.ssrStore.selectedFilters[filterType].push({
-          name: matchingFilter.nameRu,
-          id: matchingFilter.id,
-        });
-      }
-    });
-  }
 
   resetFilters(isServerSide = false) {
     this.page = 1;
@@ -249,8 +214,6 @@ class MoviesStore {
     const data = await response.json();
 
     runInAction(() => {
-      //this[name] = data;
-
       this.rootStore.ssrStore[name] = data;
     });
   }

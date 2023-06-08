@@ -31,6 +31,7 @@ interface DropDownItemProps {
   isUnderTextNeed?: boolean;
   store?: any;
   width?: string;
+  left?:string;
 }
 
 const DropDownItem = observer(
@@ -49,8 +50,9 @@ const DropDownItem = observer(
     backgroundColor,
     isTransparent = false,
     isUnderTextNeed = true,
-    width = "100%",
+    width = "unset",
     store,
+    left='50%'
   }: DropDownItemProps) => {
     return (
       <Box sx={{ position: "relative" }}>
@@ -82,6 +84,7 @@ const DropDownItem = observer(
           }}
         >
           <DropDown
+            left={left}
             name={name}
             height={height}
             padding={padding}
@@ -89,7 +92,7 @@ const DropDownItem = observer(
             borderRadius={borderRadius}
             backgroundColor={backgroundColor}
             isOpen={dropdownStore.dropdowns[name]}
-            width={input ? "300px" : "100%"}
+            width={input ? "300px" : width}
             content={
               <DropDownFiltersContent
                 content={store?.[name]}

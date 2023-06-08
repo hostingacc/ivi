@@ -11,7 +11,7 @@ interface DevicesProps {
   poster: string;
 }
 
-const Devices = ({ nameRu, nameEn, poster }: DevicesProps) => {
+const MovieDevices = ({ nameRu, nameEn, poster }: DevicesProps) => {
   return (
     <Box
       sx={{
@@ -38,7 +38,9 @@ const Devices = ({ nameRu, nameEn, poster }: DevicesProps) => {
             text={
               "Приложение доступно для скачивания на iOS, Android, SmartTV и приставках"
             }
+            size="16px"
             align={"left"}
+            line="20px"
           />
         </Box>
 
@@ -82,4 +84,4 @@ const Devices = ({ nameRu, nameEn, poster }: DevicesProps) => {
   );
 };
 
-export default Devices;
+export default MovieDevices;

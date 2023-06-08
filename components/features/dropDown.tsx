@@ -7,6 +7,7 @@ import { observer } from "mobx-react-lite";
 interface DropDownProps {
   content: React.ReactElement;
   type?: string;
+  left?:string;
   setIsOpen: any;
   height?: string;
   padding?: string | number;
@@ -24,6 +25,7 @@ const DropDown = observer(
   ({
     name,
     content,
+    left="50%",
     height = "auto",
     padding = "5rem 1rem",
     margin = 0,
@@ -31,7 +33,7 @@ const DropDown = observer(
     backgroundColor = "#1f1b2e",
     onMouseLeave = false,
     shouldDisplayAtMobile = true,
-    width = "100%",
+    width
   }: DropDownProps) => {
     const dropDownRef = useRef<HTMLDivElement>(null);
 
@@ -76,6 +78,8 @@ const DropDown = observer(
             boxShadow: "0 20px 96px #121011",
             "@media (max-width:1200px)": {
               display: shouldDisplayAtMobile ? "block" : "none",
+              left:'0',
+              transform: "unset",
             },
             "@media (max-width:599px)": {
               width: "100%",
