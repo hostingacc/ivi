@@ -80,11 +80,8 @@ class MoviesStore {
         })
       }
       if (array[0] === 'Зарубежные') {
-        // Loop through all possible country filters
         this.rootStore.ssrStore.countries.forEach(country => {
-          // Check if the country id is not 13 or 14
           if (country.id !== 13 && country.id !== 14) {
-            // Push the country filter to selectedFilters.countries
             this.rootStore.ssrStore.selectedFilters.countries.push({
               name: country.nameRu,
               id: country.id,

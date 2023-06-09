@@ -79,6 +79,7 @@ const MyButton = ({
         paddingRight: icon ? "1rem" : 0,
         display: "flex",
         justifyContent,
+        
         "&:hover": {
           backgroundColor: hoverColor,
           borderColor: hoverColor,
@@ -97,6 +98,7 @@ const MyButton = ({
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
+          
         }}
       >
         {smallText && (

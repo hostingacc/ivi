@@ -56,7 +56,9 @@ const Movies = observer(({ initialMobxState }: any) => {
         />
       </Box>
 
-      <Stack direction="row" justifyContent="space-between">
+      <Stack 
+        direction="row"
+        justifyContent="space-between">
         <Box
           id="sortButton"
           sx={{
@@ -75,6 +77,7 @@ const Movies = observer(({ initialMobxState }: any) => {
             store={initialMobxState}
             isTransparent={true}
             isUnderTextNeed={false}
+            left={"18%"}
           />
         </Box>
         <MyButton
@@ -83,6 +86,7 @@ const Movies = observer(({ initialMobxState }: any) => {
           text="Сбросить фильтры"
           func={() => rootStore.moviesStore.resetFilters(false)}
         />
+
       </Stack>
 
       <FiltersList store={initialMobxState} /> 

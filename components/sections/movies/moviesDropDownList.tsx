@@ -43,6 +43,7 @@ const MoviesDropDownList = observer(({ store }: any) => {
         borderRadius={0}
         backgroundColor="#312b45"
         store={store}
+      
       />
       <DropDownItem
         input
