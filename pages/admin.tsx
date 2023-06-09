@@ -7,6 +7,7 @@ import MyText from "@/components/content/myText";
 import MyInput from "@/components/controls/myInput";
 import { Movies } from "@/interfaces/movie";
 import GenresList from "@/components/sections/admin/genresList";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Admin = () => {
   const envUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -45,4 +46,34 @@ const Admin = () => {
   );
 };
 
+export async function getServerSideProps({locale, req}) {
+  // Get the user's role from the request object
+ // const userRole = context.req.user.role;
+
+ console.log(req.user)
+
+
+  // Check if the user is not an admin
+/*   if (userRole !== 'admin') {
+    // Redirect the user to the home page
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+ */
+  // If the user is an admin, allow them to access the page
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? "ru", ["common"])),
+    },
+  };
+}
+
+
+
+
 export default Admin;
+

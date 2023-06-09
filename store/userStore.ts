@@ -3,6 +3,7 @@ import { User } from "@/interfaces/user";
 import AuthService from "@/services/auth";
 import axios from "axios";
 import { AuthResponse } from "@/interfaces/AuthResponse";
+import Cookies from 'js-cookie';
 
 class UserStore {
   user = {} as User;
@@ -20,6 +21,9 @@ class UserStore {
 
   setUser(user: User) {
     this.user = user;
+    const roles = user.roles.map(role => role.value);
+    const rolesJson = JSON.stringify(roles);
+    Cookies.set('rolesIvi', rolesJson);
   }
 
   async login(login, email: string, password: string) {

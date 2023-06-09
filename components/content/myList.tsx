@@ -72,13 +72,13 @@ const MyList = observer(
                       text={item.content}
                       justifyContent="space-between"
                       width="14rem"
-                      showEndIcon={
+                     showEndIcon={
                         type
                           ? store.selectedFilters[type].some(
                               (filter) => filter.name === item.content
                             )
                           : false
-                      }
+                      } 
                       func={() =>
                         rootStore.moviesStore.handleButtonClick(
                           item.content,

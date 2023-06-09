@@ -31,7 +31,7 @@ const DropDown = observer(
     backgroundColor = "#1f1b2e",
     onMouseLeave = false,
     shouldDisplayAtMobile = true,
-    width = "100%",
+    width = "auto",
   }: DropDownProps) => {
     const dropDownRef = useRef<HTMLDivElement>(null);
 

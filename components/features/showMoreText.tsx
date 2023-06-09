@@ -39,7 +39,7 @@ const ShowMoreText = ({
 
   return (
     <>
-      {useDangerouslySetInnerHTML && isMounted ? (
+      {useDangerouslySetInnerHTML /* && isMounted */ ? (
         <div
           dangerouslySetInnerHTML={{ __html: displayedText }}
           style={{

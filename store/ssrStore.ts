@@ -10,7 +10,7 @@ interface Filter {
   nameRu: string;
 }
 
-interface SelectedFilters {
+/* interface SelectedFilters {
   genres: Filter[];
   countries: Filter[];
   actors: Filter[];
@@ -19,6 +19,16 @@ interface SelectedFilters {
   numRatings: Filter[];
   order: Filter[];
   page: Filter[];
+} */
+interface SelectedFilters {
+  genres: Filter[];
+  countries: Filter[];
+  actors: Filter[];
+  directors: Filter[];
+  minRating:Filter[]
+  numRatings:Filter[];
+  order:Filter[];
+  page:Filter[];
 }
 
 const isServer = typeof window === "undefined";

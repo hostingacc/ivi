@@ -13,6 +13,7 @@ import MyTitle from "@/components/content/myTitle";
 import ShowMoreText from "@/components/features/showMoreText";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import ClearIcon from "@mui/icons-material/Clear";
+import { toJS } from "mobx";
 
 const Movies = observer(({ initialMobxState }: any) => {
   const store = useStore(initialMobxState, rootStore);
@@ -32,17 +33,17 @@ const Movies = observer(({ initialMobxState }: any) => {
       text: genre.name,
       href: ``,
     })
-  );
+  ); 
 
-  const breadcrumbs = [
+   const breadcrumbs = [
     { text: "мой Иви", href: "/" },
     { text: "фильмы", href: "/movies/all" },
     ...genreBreadcrumbs,
-  ];
+  ]; 
 
   return (
     <Box sx={{ mb: "20rem" }}>
-      <MyBreadcrumbs links={breadcrumbs} separator={"/"} />
+    <MyBreadcrumbs links={breadcrumbs} separator={"/"} /> 
 
       <Box sx={{ width: "70%", mt: "2rem" }}>
         <MyTitle text="Фильмы смотреть онлайн" size="2.5rem" />
@@ -84,7 +85,7 @@ const Movies = observer(({ initialMobxState }: any) => {
         />
       </Stack>
 
-      <FiltersList store={initialMobxState} />
+      <FiltersList store={initialMobxState} /> 
       {urlQueries.slug ? (
         <>
           <MoviesList url={urlQueries.slug} movies={store.movies.rows} />
@@ -111,7 +112,7 @@ const Movies = observer(({ initialMobxState }: any) => {
             swiperButtonId="2"
           />
         </>
-      )}
+      )} 
     </Box>
   );
 });
@@ -126,10 +127,11 @@ export async function getServerSideProps({ req, res, locale, query }) {
 
   rootStore.moviesStore.resetFilters(true);
 
-  let selectedFilters =
-    rootStore.moviesStore.updateSelectedFiltersFromUrl(query);
 
+  let selectedFilters = rootStore.moviesStore.updateSelectedFiltersFromUrl(query);
+  
   const apiUrl = rootStore.moviesStore.generateUrl();
+
 
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const moviesUrl = `${baseUrl}:3003/info?${apiUrl}&limit=35&`;
@@ -149,7 +151,8 @@ export async function getServerSideProps({ req, res, locale, query }) {
     },
   ];
 
-  const [movies, drama, comedy, countries, genres] = await Promise.all([
+
+   const [movies, drama, comedy, countries, genres] = await Promise.all([
     fetch(moviesUrl).then((res) => res.json()),
     fetch(dramaUrl).then((res) => res.json()),
     fetch(comedyUrl).then((res) => res.json()),
@@ -163,7 +166,7 @@ export async function getServerSideProps({ req, res, locale, query }) {
     rootStore.ssrStore.movies.rows.push(...movies.rows);
   } else {
     rootStore.ssrStore.setMovies(movies, "movies");
-  }
+  } 
 
   const initialData = {
     movies: rootStore.ssrStore.movies,
@@ -171,11 +174,10 @@ export async function getServerSideProps({ req, res, locale, query }) {
     comedy,
     countries,
     genres,
-    selectedFilters,
     order,
-    /*     actors:
-    directors: */
+
   };
+
 
   const store = initializeStore(initialData, rootStore);
 
@@ -187,8 +189,6 @@ export async function getServerSideProps({ req, res, locale, query }) {
     genres: store.genres,
     selectedFilters: store.selectedFilters,
     order: store.order,
-    /*     actors:store.actors,
-    directors: store.directors */
   };
 
   return {

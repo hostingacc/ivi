@@ -89,7 +89,7 @@ const DropDownItem = observer(
             borderRadius={borderRadius}
             backgroundColor={backgroundColor}
             isOpen={dropdownStore.dropdowns[name]}
-            width={input ? "300px" : "100%"}
+            width={input ? "300px" : "unset"}
             content={
               <DropDownFiltersContent
                 content={store?.[name]}

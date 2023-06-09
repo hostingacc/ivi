@@ -10,12 +10,10 @@ import { initializeStore } from "@/store/ssrStore";
 import ShowMoreText from "@/components/features/showMoreText";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
-import MyButton from "@/components/controls/buttons/myButton";
-import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
+
 
 export default function Home({ initialMobxState }) {
-  const { t } = useTranslation("common");
+
 
   const text = `<p class="paragraph">Случалось ли вам отказаться от просмотра интересного фильма из-за того, что его показывали в неудобное время? Приходилось ли искать в сети интернет, где смотреть фильмы онлайн? А спорить с домашними из-за выбора кино для просмотра по ТВ?</p>
 

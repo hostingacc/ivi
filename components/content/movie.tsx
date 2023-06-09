@@ -44,7 +44,7 @@ const Movie = ({ movie }) => {
             src={movie.posterUrlPreview}
             alt="постер фильма"
             fill
-            /*     sizes="(max-width: 600px) 100vw, 50vw" */
+            sizes="(min-width: 1024px) 160px, 100vw"
           />
           <Box
             className={styles.hoverContent}
