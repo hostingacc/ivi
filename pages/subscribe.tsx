@@ -11,6 +11,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const subscribe = () => {
   return (
@@ -407,4 +408,20 @@ const subscribe = () => {
     </>
   );
 };
+
+export async function getServerSideProps({ req, res, locale }) {
+  res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=10, stale-while-revalidate=59"
+  );
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? "ru", ["common"])),
+    },
+  };
+}
+
+
+
 export default subscribe;

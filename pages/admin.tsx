@@ -53,9 +53,8 @@ export async function getServerSideProps({locale, req}) {
  console.log(req.user)
 
 
-  // Check if the user is not an admin
+
 /*   if (userRole !== 'admin') {
-    // Redirect the user to the home page
     return {
       redirect: {
         destination: '/',
@@ -64,7 +63,7 @@ export async function getServerSideProps({locale, req}) {
     };
   }
  */
-  // If the user is an admin, allow them to access the page
+
   return {
     props: {
       ...(await serverSideTranslations(locale ?? "ru", ["common"])),
