@@ -71,7 +71,7 @@ const DropDown = observer(
             backgroundColor,
             width,
             position: "absolute",
-            left: "50%",
+            left,
             transform: "translateX(-50%)",
             height,
             zIndex: "100",

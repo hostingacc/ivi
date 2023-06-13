@@ -28,13 +28,6 @@ class MoviesStore {
 
   sortTypes: Filter[] = [];
 
-  actors: Filter[] = [];
-  directors: Filter[] = [];
-  minRating = [];
-  numRatings = [];
-  order = [];
-  movies: any = [];
-
   constructor(rootStore) {
     this.rootStore = rootStore;
     this.resetFilters = this.resetFilters.bind(this);
@@ -43,7 +36,7 @@ class MoviesStore {
     makeAutoObservable(this);
   }
 
-  updateSelectedFiltersFromUrl(url){
+  async updateSelectedFiltersFromUrl(url){
     if (typeof window !== "undefined") {
       this.resetFilters(false);
     }
@@ -60,13 +53,13 @@ class MoviesStore {
             }
       });
 
-      this.addFiltersWithoutKey(filtersWithoutKeys);
-      this.addFiltersWithKey(filtersWithKeys);
+     await this.addFiltersWithoutKey(filtersWithoutKeys);
+     await this.addFiltersWithKey(filtersWithKeys);
       return this.rootStore.ssrStore.selectedFilters;
     }
   }
 
-    addFiltersWithoutKey(array: string[]) {    
+   async addFiltersWithoutKey(array: string[]) {    
       if(array[0] === 'Русские'){
         this.rootStore.ssrStore.selectedFilters.countries.push({
           name: 'Россия',
@@ -89,12 +82,16 @@ class MoviesStore {
           }
         });
       }
-      this.filterTypes.forEach(filterType => {
-        array.forEach(value => {
+ 
+
+      array.forEach(value => {
+        let isMatched = false;
+        this.filterTypes.forEach(filterType => {
           const matchingFilter = this.rootStore.ssrStore[filterType]?.find(
             filter => filter.nameRu === value
           );
           if (matchingFilter) {
+            isMatched = true;
             this.rootStore.ssrStore.selectedFilters[filterType].push({
               name: matchingFilter.nameRu,
               id: matchingFilter.id,
@@ -102,20 +99,42 @@ class MoviesStore {
           }
         });
       });
+      }
+      
+      
+    
 
-    }
-
-    addFiltersWithKey(array: string[]) {
-      array.forEach(element => {
-        let [key, value] = element.split("=");
-        if (this.rootStore.ssrStore.selectedFilters.hasOwnProperty(key)) {
-           this.rootStore.ssrStore.selectedFilters[key].push({
-              name: key,
-              id: value
-           })      
+      async addFiltersWithKey(array: string[]) {
+        for (const element of array) {
+          let [key, value] = element.split("=");
+          if (this.rootStore.ssrStore.selectedFilters.hasOwnProperty(key)) {
+            const values = value.split(", ");
+            for (const val of values) {
+              const existingFilter = this.rootStore.ssrStore.selectedFilters[key].find(
+                filter => filter.name === val
+              );
+              if (!existingFilter) {
+                if (key === 'actors' || key === 'directors') {
+                  const response = await fetch(`${this.envUrl}:3005/persons/${key}?keywords=${val}`);
+                  const data = await response.json();
+                  this.rootStore.ssrStore.selectedFilters[key].push({
+                    name: val,
+                    id: data[0].id
+                  });
+                  console.log('this should be logged first', toJS(this.rootStore.ssrStore.selectedFilters))
+                } else {
+                  this.rootStore.ssrStore.selectedFilters[key].push({
+                    name: val,
+                    id: val
+                  });
+                }
+              }
+            }
+          }
         }
-      });
-    }
+      }
+      
+      
 
   resetFilters(isServerSide = false) {
     this.page = 1;
@@ -161,11 +180,16 @@ class MoviesStore {
         if (type === "order") {
           this.rootStore.ssrStore.selectedFilters.page.length = 0;
         }
-      } else {
+      }/* else if(type === "actors" ){
+        this.rootStore.ssrStore.selectedFilters[type].push({ id, name });
+      
+      } */
+       else {
         this.rootStore.ssrStore.selectedFilters.page.length = 0;
         this.rootStore.ssrStore.selectedFilters[type].push({ id, name });
       }
     }
+
 
     this.generateRequest();
   }
@@ -184,16 +208,15 @@ class MoviesStore {
     const hasFilters = Object.values(
       this.rootStore.ssrStore.selectedFilters
     ).some((filters: any) => filters.length > 0);
-
+  
     if (hasFilters) {
       const filterStrings = Object.keys(this.rootStore.ssrStore.selectedFilters)
         .map((key) => {
           if (key === "directors" || key === "actors") {
             if (this.rootStore.ssrStore.selectedFilters[key].length > 0) {
               let filterValues = this.rootStore.ssrStore.selectedFilters[key]
-                .map((filter) => `${filter.name},id=${filter.id}`)
-                .join("+");
-              filterValues = filterValues.replace(/\s+/g, "");
+                .map((filter) => filter.name)
+                .join(", ");
               return `${key}=${filterValues}`;
             }
           } else {
@@ -204,9 +227,11 @@ class MoviesStore {
           }
         })
         .filter((str) => str?.length > 0);
-      path = filterStrings.join("/");
+      path = filterStrings.join("+");
     }
-
+  
+    console.log('path',path)
+  
     router.push(
       {
         pathname: `/movies/${path}`,
@@ -215,19 +240,27 @@ class MoviesStore {
       { scroll: false }
     );
   }
+  
+  
+  
+  
 
-  generateUrl() {
+  async generateUrl(query) {
+    await this.updateSelectedFiltersFromUrl(query);
+  
     const filterStrings = Object.keys(this.rootStore.ssrStore.selectedFilters)
-
       .filter((key) => this.rootStore.ssrStore.selectedFilters[key].length > 0)
       .map((key) => {
-        const filterValues = this.rootStore.ssrStore.selectedFilters[key]
-          .map((filter) => filter.id)
-          .join(",");
-
+        let filterValues;
+     
+          filterValues = this.rootStore.ssrStore.selectedFilters[key]
+            .map((filter) => filter.id)
+            .join(",");
+       
         return `${key}=${filterValues}`;
       });
-
+      console.log(toJS(this.rootStore.ssrStore.selectedFilters))
+  
     return filterStrings.join("&");
   }
 

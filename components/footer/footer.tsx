@@ -174,7 +174,10 @@ const Footer = () => {
                   align={"center"}
                 />
               </Box>
-              <MyLink link={"/admin"} fontWeight={700} content={"Админка"} />
+              <Box sx={{m:'2rem auto'}}>
+                <MyLink link={"/admin"} fontWeight={700} content={"Админка"} />
+              </Box>
+             
             </Box>
           </Grid>
         </Grid>

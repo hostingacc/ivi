@@ -5,7 +5,7 @@ import { useSlider } from "@/hooks/useSlider";
 import { rootStore } from "@/store/RootStore";
 
 const StyledBox = styled(Box)({
-  width: "14rem",
+  width: "16rem",
   "@media (max-width:876px)": {
     width: "100%",
   },

@@ -33,7 +33,7 @@ const MedallionList = ({ persons, rating }: MedallionListProps) => {
                 alignItems: "center",
                 marginLeft: "unset",
               }}
-              href={`/personPage/${e.id}`}
+              href={`/person/${e.id}`}
             >
               <Box sx={{ height: "56px", width: "56px" }}>
                 <Medallion image={e.posterUrl} />

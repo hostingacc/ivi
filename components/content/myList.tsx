@@ -45,6 +45,7 @@ const MyList = observer(
 
     const columns = splitContent(content);
 
+
     return (
       <>
         {title && <MyTitle text={title} size="0.9375rem" />}
@@ -72,13 +73,13 @@ const MyList = observer(
                       text={item.content}
                       justifyContent="space-between"
                       width="14rem"
-                     showEndIcon={
+                      showEndIcon={
                         type
                           ? store.selectedFilters[type].some(
                               (filter) => filter.name === item.content
                             )
                           : false
-                      } 
+                      } /*   вызывает cannot update while rendering но только у input */
                       func={() =>
                         rootStore.moviesStore.handleButtonClick(
                           item.content,

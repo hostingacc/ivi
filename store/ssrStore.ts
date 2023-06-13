@@ -10,16 +10,7 @@ interface Filter {
   nameRu: string;
 }
 
-/* interface SelectedFilters {
-  genres: Filter[];
-  countries: Filter[];
-  actors: Filter[];
-  directors: Filter[];
-  minRating: Filter[];
-  numRatings: Filter[];
-  order: Filter[];
-  page: Filter[];
-} */
+
 interface SelectedFilters {
   genres: Filter[];
   countries: Filter[];

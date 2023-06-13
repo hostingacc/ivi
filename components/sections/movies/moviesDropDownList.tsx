@@ -1,12 +1,10 @@
 import DropDownItem from "./dropDownItem";
-
 import { useState } from "react";
 import { dropdownStore } from "@/store/DropdownStore";
-
 import { observer } from "mobx-react-lite";
 import { rootStore } from "@/store/RootStore";
 import { useInput } from "@/hooks/useInput";
-import { toJS } from "mobx";
+
 
 const MoviesDropDownList = observer(({ store }: any) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -55,7 +53,9 @@ const MoviesDropDownList = observer(({ store }: any) => {
         setState={setActorsInputValue}
         inputText={actorsInputValue}
         isLoading={isLoading}
-        store={rootStore?.ssrStore}
+        store={rootStore?.ssrStore} 
+        left="17rem !important"
+        width="10rem"
       />
       <DropDownItem
         input
@@ -68,6 +68,8 @@ const MoviesDropDownList = observer(({ store }: any) => {
         inputText={directorsInputValue}
         isLoading={isLoading}
         store={rootStore.ssrStore}
+        left="17rem"
+        width="10rem"
       />
     </>
   );

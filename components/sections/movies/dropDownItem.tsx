@@ -8,9 +8,8 @@ import DropDownButton from "../../controls/buttons/dropDownButton";
 
 import { observer } from "mobx-react-lite";
 import { Filter } from "../../../interfaces/filter";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { rootStore } from "@/store/RootStore";
-import { toJS } from "mobx";
 
 interface DropDownItemProps {
   id?: string;
@@ -54,6 +53,10 @@ const DropDownItem = observer(
     store,
     left='50%'
   }: DropDownItemProps) => {
+
+  
+    
+
     return (
       <Box sx={{ position: "relative" }}>
         {button && (
@@ -92,7 +95,7 @@ const DropDownItem = observer(
             borderRadius={borderRadius}
             backgroundColor={backgroundColor}
             isOpen={dropdownStore.dropdowns[name]}
-            width={input ? "300px" : "unset"}
+            width={input ? "250px" : "unset"}
             content={
               <DropDownFiltersContent
                 content={store?.[name]}

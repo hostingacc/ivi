@@ -1,7 +1,6 @@
 import { Box } from "@mui/material";
 import Image from "next/image";
 import FormattedRating from "../../content/formattedRating";
-import Link from "next/link";
 
 interface MedallionProps {
   image?: string;

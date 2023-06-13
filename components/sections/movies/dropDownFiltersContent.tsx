@@ -1,6 +1,8 @@
 import { Box } from "@mui/material";
 import MyList from "../../content/myList";
 import { useWindowSize } from "@/hooks/useWindowSize";
+import { observer } from "mobx-react-lite";
+import { toJS } from "mobx";
 
 interface DropDownFiltersContentProps {
   content: any;
@@ -9,23 +11,25 @@ interface DropDownFiltersContentProps {
   store?: any;
 }
 
-const DropDownFiltersContent = ({
+const DropDownFiltersContent = observer(({
   content,
   type,
   inputText,
   store,
 }: DropDownFiltersContentProps) => {
   const generateContent = () => {
-    return store?.[type]?.map((e) => ({
+     return store?.[type]?.map((e) => ({
       link: `/movies/${e.nameRu}`,
       content: e.nameRu,
       id: e.id,
       type: type,
-    }));
+    })); 
+   
   };
   const size = useWindowSize();
 
   let itemsPerColumn;
+
 
   let width;
   if (size.width) {
@@ -52,6 +56,6 @@ const DropDownFiltersContent = ({
       />
     </Box>
   );
-};
+});
 
 export default DropDownFiltersContent;
