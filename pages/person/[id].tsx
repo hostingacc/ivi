@@ -258,4 +258,4 @@ export async function getServerSideProps({ query, res, locale }) {
   };
 }
 
-export default person;
+export default Person;
