@@ -2,5 +2,8 @@
   "extends": [
     "plugin:@next/next/recommended",
     "plugin:storybook/recommended"
-  ]
+  ],
+   "parserOptions": {
+    "sourceType": "module"
+  }
 }
