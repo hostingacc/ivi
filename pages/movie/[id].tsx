@@ -250,4 +250,4 @@ export async function getServerSideProps({ query, res, locale }) {
   };
 }
 
-export default movie;
+export default Movie;
