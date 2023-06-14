@@ -13,7 +13,7 @@ module.exports = {
   },
 
   /** To avoid issues when deploying to some paas (vercel...) */
- localePath: path.resolve('./public/static/locales'),
+ localePath: path.resolve('./public/locales'),
 
   reloadOnPrerender: process.env.NODE_ENV === "development",
 
