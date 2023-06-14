@@ -17,7 +17,7 @@ import MovieDetails from "@/components/sections/movie/movieDetails";
 import { useWindowSize } from "@/hooks/useWindowSize";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-const movie = ({ initialMobxState }: any) => {
+const Movie = ({ initialMobxState }: any) => {
   const { movie, similar, comments, persons } = initialMobxState;
 
   const router = useRouter();
