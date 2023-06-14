@@ -6,7 +6,7 @@ const nextConfig = {
 
   i18n,
   env: {
-    SERVER: process.env.SERVER,
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
   },
   images: {
     remotePatterns: [
