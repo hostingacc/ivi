@@ -13,7 +13,7 @@ import { initializeStore, useStore } from "@/store/ssrStore";
 import { rootStore } from "@/store/RootStore";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-const person = ({ initialMobxState }: any) => {
+const Person = ({ initialMobxState }: any) => {
   const store = useStore(initialMobxState, rootStore);
 
   const breadcrumbs = [
