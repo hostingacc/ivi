@@ -10,10 +10,11 @@ module.exports = {
   i18n: {
     locales: ["ru", "en"],
     defaultLocale: "ru",
-      ...(typeof window === undefined
+
+  },
+        ...(typeof window === undefined
     ? { localePath: path.resolve('./public/locales') }
     : {}),
-  },
 
   /** To avoid issues when deploying to some paas (vercel...) */
 
