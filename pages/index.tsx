@@ -79,7 +79,7 @@ export default function Home({ initialMobxState }) {
   );
 }
 
-export async function getStaticProps({ locale }) {
+export async function getServerSideProps({ locale }) {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const dramaUrl = `${baseUrl}:3003/info?genres=4&limit=15`;
   const comedyUrl = `${baseUrl}:3003/info?genres=8&limit=15`;
@@ -104,11 +104,6 @@ export async function getStaticProps({ locale }) {
     props: {
       initialMobxState,
       ...(await serverSideTranslations(locale ?? "ru", ["common"])),
-      paths: [
-        // if no `locale` is provided only the defaultLocale will be generated
-        { params: { slug: "/" }, locale: "ru" },
-        { params: { slug: "/en" }, locale: "en" },
-      ],
     },
   };
 }
