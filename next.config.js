@@ -5,7 +5,9 @@ const nextConfig = {
   reactStrictMode: false,
 
   i18n,
-
+  env: {
+    SERVER: process.env.SERVER,
+  },
   images: {
     remotePatterns: [
       {
