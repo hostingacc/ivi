@@ -5,14 +5,13 @@ import { observer } from "mobx-react-lite";
 import { initializeStore, useStore } from "@/store/ssrStore";
 import { rootStore } from "@/store/RootStore";
 import { useRouter } from "next/router";
-import SortIcon from "@mui/icons-material/Sort";
+/* import SortIcon from "@mui/icons-material/Sort"; */
 import DropDownItem from "@/components/sections/movies/dropDownItem";
 import MyButton from "@/components/controls/buttons/myButton";
 import MyBreadcrumbs from "@/components/controls/navigation/myBreadcrumbs";
 import MyTitle from "@/components/content/myTitle";
 import ShowMoreText from "@/components/features/showMoreText";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import ClearIcon from "@mui/icons-material/Clear";
 import { toJS } from "mobx";
 
 const Movies = observer(({ initialMobxState }: any) => {
@@ -56,7 +55,7 @@ const Movies = observer(({ initialMobxState }: any) => {
         />
       </Box>
 
-      <Stack 
+    {/*   <Stack 
         direction="row"
         justifyContent="space-between">
         <Box
@@ -87,7 +86,7 @@ const Movies = observer(({ initialMobxState }: any) => {
           func={() => rootStore.moviesStore.resetFilters(false)}
         />
 
-      </Stack>
+      </Stack> */}
 
       <FiltersList store={initialMobxState} /> 
       {urlQueries.slug ? (

@@ -1,7 +1,7 @@
 import React from "react";
 import { List, ListItem, ListItemText, IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
+/* import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit"; */
 import MyText from "../../content/myText";
 
 const GenresList = ({ genres }) => {
@@ -14,13 +14,13 @@ const GenresList = ({ genres }) => {
             sx={{ color: "#fff" }}
             onClick={() => console.log(`Change ${genre.nameRu}`)}
           >
-            <EditIcon />
+{/*             <EditIcon />
           </IconButton>
           <IconButton
             sx={{ color: "#fff" }}
             onClick={() => console.log(`Delete ${genre.nameRu}`)}
           >
-            <DeleteIcon />
+            <DeleteIcon /> */}
           </IconButton>
         </ListItem>
       ))}

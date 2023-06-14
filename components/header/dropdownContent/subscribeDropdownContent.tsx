@@ -1,9 +1,9 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
-import VideocamIcon from "@mui/icons-material/Videocam";
+/* import VideocamIcon from "@mui/icons-material/Videocam";
 import CreateNewFolderIcon from "@mui/icons-material/CreateNewFolder";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import DevicesIcon from "@mui/icons-material/Devices";
-import ExtensionOffIcon from "@mui/icons-material/ExtensionOff";
+import ExtensionOffIcon from "@mui/icons-material/ExtensionOff"; */
 import React from "react";
 import Link from "next/link";
 import { observer } from "mobx-react-lite";
@@ -50,7 +50,7 @@ const SubscribeDropdownContent = observer(() => {
             margin: "30px 0 30px 0",
           }}
         >
-          <Stack direction={"row"} alignItems={"center"} gap={"20px"}>
+{/*           <Stack direction={"row"} alignItems={"center"} gap={"20px"}>
             <TileItem
               text={"Новинки сериалов и фильмов"}
               icon={<VideocamIcon sx={{ color: "rgba(255,255,255,.48)" }} />}
@@ -84,7 +84,7 @@ const SubscribeDropdownContent = observer(() => {
               }
               width={"13.75rem"}
             />
-          </Stack>
+          </Stack> */}
         </Box>
         <Box
           sx={{

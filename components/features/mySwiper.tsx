@@ -2,8 +2,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+/* import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos"; */
 import { Box } from "@mui/material";
 import { useState } from "react";
 
@@ -37,14 +37,14 @@ const MySwiper = ({
             className={`swiper-next ${nextEl}`}
             style={{ visibility: isEnd ? "hidden" : "visible" }}
           >
-            <ArrowForwardIosIcon sx={{ color: "#fff", fontSize: "3rem" }} />
+{/*             <ArrowForwardIosIcon sx={{ color: "#fff", fontSize: "3rem" }} /> */}
           </Box>
 
           <Box
             className={`swiper-prev ${prevEl}`}
             style={{ visibility: isBeginning ? "hidden" : "visible" }}
           >
-            <ArrowBackIosIcon sx={{ color: "#fff", fontSize: "3rem" }} />
+{/*             <ArrowBackIosIcon sx={{ color: "#fff", fontSize: "3rem" }} /> */}
           </Box>
         </>
       ) : null}

@@ -1,9 +1,9 @@
 import BottomNavigation from "@mui/material/BottomNavigation";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+/* import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import HouseIcon from "@mui/icons-material/House";
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
 import SearchIcon from "@mui/icons-material/Search";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz"; */
 import { observer } from "mobx-react-lite";
 import navbar from "../../../store/MobileNavBar";
 import MyBottomNavigation from "./myBottomNavigationAction";
@@ -38,7 +38,7 @@ const MobileNavBar = observer(() => {
       value={navbar.value}
       onChange={(e, newValue) => navbar.handleChange(e, newValue)}
     >
-      <MyBottomNavigation
+{/*       <MyBottomNavigation
         link="/"
         label="Домой"
         value="домой"
@@ -67,7 +67,7 @@ const MobileNavBar = observer(() => {
         label="Ещё"
         value="ещё"
         icon={<MoreHorizIcon sx={{ fontSize: "30" }} />}
-      />
+      /> */}
     </BottomNavigation>
   );
 });

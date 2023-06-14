@@ -1,6 +1,6 @@
 import { Button, Grid, Box } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+/* import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess"; */
 import { observer } from "mobx-react-lite";
 import MyText from "../../content/myText";
 import { Filter } from "../../../interfaces/filter";
@@ -77,13 +77,13 @@ const DropDownButton = observer(
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={2}>
+{/*           <Grid item xs={2}>
             {isOpen ? (
               <ExpandLessIcon fontSize="large" sx={{ color: "#fff" }} />
             ) : (
               <ExpandMoreIcon fontSize="large" sx={{ color: "#fff" }} />
             )}
-          </Grid>
+          </Grid> */}
         </Grid>
       </Box>
     );

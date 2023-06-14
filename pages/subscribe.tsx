@@ -6,8 +6,8 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+/* import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore"; */
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -69,7 +69,7 @@ const subscribe = () => {
               </Typography>
             </Link>
           </Box>
-          <Button
+        {/*   <Button
             startIcon={<ArrowBackIosNewIcon sx={{ color: "white" }} />}
             sx={{ margin: "30px 0 0 30px" }}
           >
@@ -89,7 +89,7 @@ const subscribe = () => {
                 Назад
               </Typography>
             </Link>
-          </Button>
+          </Button> */}
         </Box>
         <video
           loop
@@ -172,7 +172,7 @@ const subscribe = () => {
               Отменить можно в любой момент
             </Typography>
             <IconButton>
-              <ExpandMoreIcon sx={{ color: "white", fontSize: "50px" }} />
+             {/*  <ExpandMoreIcon sx={{ color: "white", fontSize: "50px" }} /> */}
             </IconButton>
           </Box>
         </Box>

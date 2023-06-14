@@ -1,5 +1,5 @@
 import { Box, Button } from "@mui/material";
-import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
+/* import ElectricBoltIcon from "@mui/icons-material/ElectricBolt"; */
 import React from "react";
 import Link from "next/link";
 import MyText from "../content/myText";
@@ -14,7 +14,7 @@ const Subscribe = () => {
     >
       <Link href="/subscribe">
         <Button
-          startIcon={<ElectricBoltIcon sx={{ color: "yellow" }} />}
+    /*       startIcon={<ElectricBoltIcon sx={{ color: "yellow" }} />} */
           sx={{
             width: "100%",
             backgroundImage:

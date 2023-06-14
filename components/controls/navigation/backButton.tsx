@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { useRouter } from "next/router";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+/* import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos"; */
 
 interface backButtonProps {
   func?: () => void;
@@ -25,9 +25,9 @@ const BackButton = ({ func }: backButtonProps) => {
         "@media (max-width: 876px)": { fontSize: "2rem" },
       }}
     >
-      <ArrowBackIosIcon
+{/*       <ArrowBackIosIcon
         sx={{ "@media (max-width: 876px)": { fontSize: "2.25rem" } }}
-      />
+      /> */}
       Назад
     </Button>
   );

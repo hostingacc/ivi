@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import AppleIcon from "@mui/icons-material/Apple";
+/* import AppleIcon from "@mui/icons-material/Apple"; */
 import MyButton from "../components/controls/buttons/myButton";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
@@ -53,7 +53,7 @@ export const Transparent: Story = {
   },
 };
 
-export const WithStartIcon: Story = {
+/* export const WithStartIcon: Story = {
   args: {
     text: "App Store",
     smallText: "Загрузите в",
@@ -71,3 +71,4 @@ export const WithEndIcon: Story = {
     color: "#ea003d",
   },
 };
+ */

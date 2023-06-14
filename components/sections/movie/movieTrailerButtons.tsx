@@ -1,10 +1,10 @@
 import MyButton from "../../controls/buttons/myButton";
 import { Stack, Box } from "@mui/material";
 import SmallButton from "../../controls/buttons/smallButton";
-import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
+/* import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import IosShareIcon from "@mui/icons-material/IosShare";
+import IosShareIcon from "@mui/icons-material/IosShare"; */
 
 interface MovieTrailerButtons {
   openModal: () => void;
@@ -49,7 +49,7 @@ const MovieTrailerButtons = ({ openModal, showInBox = false }) => {
           },
         }}
       >
-        <MyButton
+       {/*  <MyButton
           text={"Трейлер"}
           width={"100%"}
           icon={<PlayArrowOutlinedIcon />}
@@ -78,7 +78,7 @@ const MovieTrailerButtons = ({ openModal, showInBox = false }) => {
               width="100%"
             />
           </Box>
-        </Box>
+        </Box> */}
       </Stack>
     </Box>
   );

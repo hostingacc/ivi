@@ -1,5 +1,5 @@
 import { Box, Grid, Button, Link, Container } from "@mui/material";
-import { Mail, Phone } from "@mui/icons-material";
+/* import { Mail, Phone } from "@mui/icons-material"; */
 import MyLink from "../controls/navigation/myLink";
 
 import FooterLine from "./footerLine";
@@ -107,14 +107,14 @@ const Footer = () => {
               <Grid item>
                 <Grid container spacing={1}>
                   <Grid item>
-                    <SmallButton
+     {/*                <SmallButton
                       icon={<Mail sx={{ color: "#fff", width: "16px" }} />}
-                    />
+                    /> */}
                   </Grid>
                   <Grid item>
-                    <SmallButton
+        {/*             <SmallButton
                       icon={<Phone sx={{ color: "#fff", width: "16px" }} />}
-                    />
+                    /> */}
                   </Grid>
                 </Grid>
               </Grid>

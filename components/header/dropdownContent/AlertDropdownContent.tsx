@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import NotificationsIcon from "@mui/icons-material/Notifications";
+/* import NotificationsIcon from "@mui/icons-material/Notifications"; */
 import React from "react";
 import { observer } from "mobx-react-lite";
 
@@ -15,9 +15,9 @@ const AlertDropdownContent = observer(() => {
         mt: "5rem",
       }}
     >
-      <NotificationsIcon
+{/*       <NotificationsIcon
         sx={{ color: "rgba(255,255,255,.48)", fontSize: "60px" }}
-      />
+      /> */}
       <Typography sx={{ color: "rgba(255,255,255,.48)" }}>
         Здесь появляются только важные сообщения
       </Typography>

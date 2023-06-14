@@ -1,7 +1,7 @@
 import { Stack, Typography, Box } from "@mui/material";
 
-import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import SubtitlesIcon from "@mui/icons-material/Subtitles";
+/* import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import SubtitlesIcon from "@mui/icons-material/Subtitles"; */
 import MyText from "../../content/myText";
 
 interface MovieLanguageInfoProps {
@@ -31,11 +31,11 @@ const MovieLanguageInfo = ({ justifyContent }: MovieLanguageInfoProps) => {
         <MyText text={"FullHD"} align={"center"} color="#fff" size={"16px"} />
       </Box>
       <Stack direction="row" spacing={1} alignItems="center">
-        <VolumeUpIcon sx={{ fontSize: "22px" }} />
+{/*         <VolumeUpIcon sx={{ fontSize: "22px" }} />
         <MyText text={"Рус"} size="16px" color="#fff" />
       </Stack>
       <Stack direction="row" spacing={1} alignItems="center">
-        <SubtitlesIcon sx={{ fontSize: "22px" }} />
+        <SubtitlesIcon sx={{ fontSize: "22px" }} /> */}
         <MyText text={"Eng"} size="16px" color="#fff" />
       </Stack>
     </Stack>

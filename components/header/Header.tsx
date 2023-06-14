@@ -7,9 +7,9 @@ import {
   Stack,
   Container,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+/* import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline"; */
 import { observer } from "mobx-react-lite";
 import logo from "../../public/logo/reposition_iviLogoPlateRounded.svg";
 import { useTranslation } from "next-i18next";
@@ -152,7 +152,7 @@ const Header = observer(({ store, changeTo }: HeaderProps) => {
             />
           </Box>
           <Button
-            startIcon={<SearchIcon sx={{ color: "rgba(255,255,255,.48)" }} />}
+       /*      startIcon={<SearchIcon sx={{ color: "rgba(255,255,255,.48)" }} />} */
             sx={{
               color: "rgba(255,255,255,.48)",
               fontSize: "15px",
@@ -176,12 +176,12 @@ const Header = observer(({ store, changeTo }: HeaderProps) => {
               },
             }}
           >
-            <NotificationsIcon
+          {/*   <NotificationsIcon
               onMouseOver={() => {
                 dropdownStore.setShowDropdown("alert", true);
               }}
               sx={{ color: "rgba(255,255,255,.48)", fontSize: "30px" }}
-            />
+            /> */}
           </IconButton>
           <Button
             onClick={() => router.push("/profile")}
@@ -203,9 +203,9 @@ const Header = observer(({ store, changeTo }: HeaderProps) => {
               },
             }}
           >
-            <PersonOutlineIcon
+          {/*   <PersonOutlineIcon
               sx={{ color: "rgba(255,255,255,.48)", fontSize: "30px" }}
-            />
+            /> */}
           </Button>
           <MyButton
             text={t("change-locale")}

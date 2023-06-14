@@ -1,5 +1,5 @@
-import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
-import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
+/* import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt"; */
 import { Stack } from "@mui/material";
 import MyText from "../../content/myText";
 
@@ -10,7 +10,7 @@ const CommentLikes = () => {
       gap={1}
       sx={{ fontSize: "24px", alignItems: "center" }}
     >
-      <ThumbDownOffAltIcon
+{/*       <ThumbDownOffAltIcon
         fontSize="inherit"
         sx={{ color: "rgba(126,121,143,.72)" }}
       />
@@ -18,7 +18,7 @@ const CommentLikes = () => {
       <ThumbUpOffAltIcon
         fontSize="inherit"
         sx={{ color: "rgba(126,121,143,.72)" }}
-      />
+      /> */}
     </Stack>
   );
 };

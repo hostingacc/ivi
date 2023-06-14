@@ -2,7 +2,7 @@ import { Box, List, ListItem } from "@mui/material";
 import MyTitle from "./myTitle";
 import MyLink from "../controls/navigation/myLink";
 import MyButton from "../controls/buttons/myButton";
-import CheckIcon from "@mui/icons-material/Check";
+/* import CheckIcon from "@mui/icons-material/Check"; */
 import { observer } from "mobx-react-lite";
 import { rootStore } from "@/store/RootStore";
 import { toJS } from "mobx";
@@ -66,7 +66,7 @@ const MyList = observer(
                 >
                   {isButton ? (
                     <MyButton
-                      endIcon={<CheckIcon />}
+           /*            endIcon={<CheckIcon />} */
                       color={"transparent"}
                       fontColor="rgba(217,215,224, 0.49)"
                       inputText={inputText}

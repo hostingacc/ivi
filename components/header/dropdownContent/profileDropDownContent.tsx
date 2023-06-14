@@ -1,11 +1,11 @@
 import { Box, Stack } from "@mui/material";
-import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
+/* import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import HistoryIcon from "@mui/icons-material/History";
 import CelebrationIcon from "@mui/icons-material/Celebration";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import ResetTvIcon from "@mui/icons-material/ResetTv";
-import CreditCardIcon from "@mui/icons-material/CreditCard";
+import CreditCardIcon from "@mui/icons-material/CreditCard"; */
 import React from "react";
 import MyLink from "../../controls/navigation/myLink";
 import MyButton from "../../controls/buttons/myButton";
@@ -34,7 +34,7 @@ const ProfileDropDownContent = observer(() => {
         }}
       >
         <Stack direction={"row"} alignItems={"center"} gap={"20px"}>
-          <TileItem
+        {/*   <TileItem
             text={"Покупки"}
             icon={<SubscriptionsIcon sx={{ color: "rgba(255,255,255,.48)" }} />}
           />
@@ -65,7 +65,7 @@ const ProfileDropDownContent = observer(() => {
           <TileItem
             text={"Способы оплаты"}
             icon={<CreditCardIcon sx={{ color: "rgba(255,255,255,.48)" }} />}
-          />
+          /> */}
         </Stack>
       </Box>
       <Box

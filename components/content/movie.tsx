@@ -6,12 +6,12 @@ import { Box, Stack, LinearProgress } from "@mui/material";
 
 import styles from "../../styles/movie.module.css";
 
-import {
+/* import {
   BookmarkBorderOutlined,
   AutoFixHighOutlined,
   StarBorderPurple500Outlined,
   DoNotDisturbAltOutlined,
-} from "@mui/icons-material";
+} from "@mui/icons-material"; */
 import MyTooltip from "./MyTooltip";
 import TranslationDynamicData from "./translationDynamicData";
 import MyText from "./myText";
@@ -109,7 +109,7 @@ const Movie = ({ movie }) => {
               spacing={1}
               sx={{ right: "16px", top: "1rem", position: "absolute" }}
             >
-              <MyTooltip
+ {/*              <MyTooltip
                 content={<BookmarkBorderOutlined />}
                 text={"Смотреть позже"}
               />
@@ -121,7 +121,7 @@ const Movie = ({ movie }) => {
               <MyTooltip
                 content={<DoNotDisturbAltOutlined />}
                 text={"Не нравится такое"}
-              />
+              /> */}
             </Stack>
           </Box>
         </Box>
